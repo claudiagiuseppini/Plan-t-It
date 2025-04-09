@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
+    <title>Gestione Compiti</title>
+    <style>
+        .container{
+            height:1200px;
+            width:1000px;
+            padding:10px;
+            background-color:#FDBCB7;
+            margin:0 auto;
+            border: thick #b60e0e;
+        }
+
+        .box {
+            background-color: lightblue;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 5px;
+        }
+    </style>
+
+    <script type ="application/javascript"> 
+    var count = 0;
+
+    function openMyWin() {
+       var x = window.open("./formA.html", "formA", "width=1000,height=1000");
+       x.moveTo(0,0);
+
+    }
+
+    function aggiungiB(){
+        var nuovoDiv = document.createElement("div");
+        nuovoDiv.classList.add("box");
+        nuovoDiv.textContent = "Questo è un nuovo oggetto!";
+        document.getElementById("container").appendChild(nuovoDiv);
+
+    }
+
+    function verificaF(){
+        if (localStorage.getItem('avviaFunzione') === 'true'){
+            aggiungiB();
+            localStorage.removeItem('avviaFunzione');
+        }
+    }
+//NON FUNZIONAAAAAAAAA
+    window.addEventListener('storage', function(event) {
+  
+            if (event.key === 'avviaFunzione' && event.newValue === 'true') {
+                eseguiFunzione();
+                localStorage.removeItem('avviaFunzione'); 
+            }
+        });
+
+        
+        verificaFunzione();
+
+
+
+
+    </script>
+</head>
+<body>
+    <h1 > Gestione dei Compiti</h1>
+    <div>
+        
+
+        <br>
+        <br>
+    </div>
+
+
+    <input class="btn btn-outline-success" type="submit" value="Crea Nuovo Compito" onclick="openMyWin()">
+    <input class="btn btn-primary" type="aggiungi box" value="Cancella Compito Esistente" id ='prova' onclick="aggiungiB()">
+    <input class="btn btn-primary" type="aggiungi box" value="verifica funzione" id ='verifica' onclick="verificaF()">
+
+    <div>
+        <br>
+        <br>
+    </div>
+
+
+
+    <div id = "container" class="container">
+
+    <p id ='titolo'>
+        ce la puoi fare !!!
+    </p>
+        
+        
+            
+    
+
+    </div>
+
+    
+</body>
+</html>

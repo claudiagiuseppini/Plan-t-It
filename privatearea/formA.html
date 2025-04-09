@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type ="application/javascript">
+        function sendData() {
+            localStorage.setItem('avviaFunzione', 'true');
+            // var dato = document.getElementById('titolo').value;
+            // // localStorage.setItem("titolo", dato);
+            // // window.location.href = "assignments.html";
+            // window.opener.postMessage('avviaFunzione', window.location.origin);
+            window.close();
+
+        }
+        
+    </script>
+</head>
+<body>
+
+   
+<form action="" method="post" name="registr" style = "text-align: center;"onsubmit="return valida()">
+    <br>
+    <br>
+
+    titolo del compito:
+    <input type="text" name="cognome" size="40" maxlength="40" id ="titolo" >
+
+    <br>
+    <br>
+
+    Descrizione:
+    <input type="text" name="nome" size="30" maxlength="50" id ="descrizione" >
+    <br>
+    <br>
+    
+    Priorità:
+    <select name="regione" id ="priorità">
+        <option value="">Seleziona</option>
+        <option value="easy">EASY</option>
+        <option value="normale">Normale</option>
+        <option value="modesto">Difficilotto</option>
+        <option value="difficile">Difficile</option>
+        <option value="molto difficile">Morte</option>
+
+    </select>
+    <br>
+    <br>
+    
+    <input class="btn btn-outline-success" type="submit" value="Crea Nuovo Compito" onclick="sendData()">
+    <input class="btn btn-danger" type="reset" value="Cancella Compito Esistente">
+
+</form>
+</body>
+</html>
