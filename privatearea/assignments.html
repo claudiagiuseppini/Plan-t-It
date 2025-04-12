@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
     <title>Gestione Compiti</title>
     <style>
         .container{
@@ -20,6 +20,8 @@
             margin: 10px;
             padding: 20px;
             border-radius: 5px;
+            width: 900;
+            height: 10000;
         }
     </style>
 
@@ -32,31 +34,28 @@
 
     }
 
-    function aggiungiB(){
+    function aggiungiBox(){
         var nuovoDiv = document.createElement("div");
-        nuovoDiv.classList.add("box");
-        nuovoDiv.textContent = "Questo è un nuovo oggetto!";
+        nuovoDiv.classList.add("box"); 
+    
+        const title = localStorage.getItem("titolo");
+        const description = localStorage.getItem("descrizione");
+        const priority = localStorage.getItem("priorita");
+        const date = localStorage.getItem("scadenza");
+
+        nuovoDiv.textContent = title + "   " + description + "  " + priority + "  " + date;
+
         document.getElementById("container").appendChild(nuovoDiv);
 
     }
 
-    function verificaF(){
-        if (localStorage.getItem('avviaFunzione') === 'true'){
-            aggiungiB();
-            localStorage.removeItem('avviaFunzione');
-        }
-    }
-//NON FUNZIONAAAAAAAAA
-    window.addEventListener('storage', function(event) {
-  
-            if (event.key === 'avviaFunzione' && event.newValue === 'true') {
-                eseguiFunzione();
-                localStorage.removeItem('avviaFunzione'); 
-            }
-        });
 
-        
-        verificaFunzione();
+    window.addEventListener("storage", function(event) {
+      if (event.key === "titolo") {
+        aggiungiBox();
+      }
+    });
+
 
 
 
@@ -74,8 +73,8 @@
 
 
     <input class="btn btn-outline-success" type="submit" value="Crea Nuovo Compito" onclick="openMyWin()">
-    <input class="btn btn-primary" type="aggiungi box" value="Cancella Compito Esistente" id ='prova' onclick="aggiungiB()">
-    <input class="btn btn-primary" type="aggiungi box" value="verifica funzione" id ='verifica' onclick="verificaF()">
+    <input class="btn btn-primary" type="aggiungi box" value="PROVA" id ="prova" onclick="aggiungiBox()">
+
 
     <div>
         <br>
@@ -85,14 +84,11 @@
 
 
     <div id = "container" class="container">
+        <br> credici che ce la fai
 
-    <p id ='titolo'>
-        ce la puoi fare !!!
-    </p>
+       
         
         
-            
-    
 
     </div>
 

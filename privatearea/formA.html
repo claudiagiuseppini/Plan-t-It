@@ -1,53 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
     <script type ="application/javascript">
-        function sendData() {
-            localStorage.setItem('avviaFunzione', 'true');
-            // var dato = document.getElementById('titolo').value;
-            // // localStorage.setItem("titolo", dato);
-            // // window.location.href = "assignments.html";
-            // window.opener.postMessage('avviaFunzione', window.location.origin);
+        function saveData() {
+
+            localStorage.setItem("titolo", document.getElementById("titolo").value);
+            localStorage.setItem("descrizione", document.getElementById("descrizione").value);
+            localStorage.setItem("priorita", document.getElementById("priorità").value);
+            localStorage.setItem("scadenza", document.getElementById("scadenza").value);
+        
+
+            window.location.href = "assignments.html";
+
+            
+            
+
+
+
+            alert("TUTTO SALVATO");
+            
             window.close();
 
         }
         
+        
     </script>
 </head>
 <body>
+    <div class="container-form">
+        <h2> Aggiungi Nuovo Compito</h2>
+        <form style = "text-align: center;"onsubmit="saveData(); return false;">
+            <br>
+            <label for="title">Titolo del Compito</label>
+            <input type="text" id ="titolo"  required >
+            <br>
+            <br>
+
+            <label for="description">Descrizione del Compito</label>
+            <textarea id ="descrizione" rows="4" required ></textarea>
+            <br>
+            <br>
+
+            <label for="priority">Livello di Priorità</label>
+            <select id ="priorità" required>
+                <option value="">Seleziona</option>
+                <option value="easy">EASY</option>
+                <option value="normale">Normale</option>
+                <option value="modesto">Difficilotto</option>
+                <option value="difficile">Difficile</option>
+                <option value="molto difficile">Morte</option>
+            </select>
+            <br>
+            <br>
+
+            <label for="due-date">Scadenza (opzionale)</label>
+            <input type="date" id ="scadenza" >
+            <br>
+            <br>
+
+            <label for="file">Carica File (opzionale)</label>
+            <input type="file" id ="file">
+            <br>
+            <br>
+           
+            <button type="submit" class="submit-btn">Invia</button>
+        </form>
+
+    </div>
 
    
-<form action="" method="post" name="registr" style = "text-align: center;"onsubmit="return valida()">
-    <br>
-    <br>
 
-    titolo del compito:
-    <input type="text" name="cognome" size="40" maxlength="40" id ="titolo" >
-
-    <br>
-    <br>
-
-    Descrizione:
-    <input type="text" name="nome" size="30" maxlength="50" id ="descrizione" >
-    <br>
-    <br>
-    
-    Priorità:
-    <select name="regione" id ="priorità">
-        <option value="">Seleziona</option>
-        <option value="easy">EASY</option>
-        <option value="normale">Normale</option>
-        <option value="modesto">Difficilotto</option>
-        <option value="difficile">Difficile</option>
-        <option value="molto difficile">Morte</option>
-
-    </select>
-    <br>
-    <br>
-    
-    <input class="btn btn-outline-success" type="submit" value="Crea Nuovo Compito" onclick="sendData()">
-    <input class="btn btn-danger" type="reset" value="Cancella Compito Esistente">
-
-</form>
 </body>
 </html>
