@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Plan(t)-It</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="./css/mainpage_style.css" />
+
+  <!-- FullCalendar -->
+  <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css' rel='stylesheet' />
+</head>
+
+<body class="d-flex flex-column"> <!-- d-flex classe bootstrap che trasforma il body in un contenitore flexbox-->
+
+   <!-- Navbar -->
+   <nav class="navbar px-3 mt-3 mx-3 position-relative z-3">
+    <!--Hamburger-menu-->
+    <button class="btn btn-outline-secondary d-lg-none" id="hamburger-menu" type="button"> <!-- d-lg-none lo rende visibile solo su schermi piccoli-->
+      <i class="fas fa-bars"></i>
+    </button>
+    <!--Titolo-->
+    <a class="navbar-brand fs-1 text-success ms-2" href="#">Plan(t)-It</a>
+    <!--Bottone dropdown user-->
+    <div class="dropdown">
+      <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fa-solid fa-user"></i>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+        <li><h6 class="dropdown-header">Mario Rossi</h6></li>
+        <li><hr class="dropdown-divider"></li>
+        <!-- Probabilmente va aggiunto href alla pagina di Login -->
+        <li><a class="dropdown-item text-danger" href="#">Sign Out</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="container-fluid flex-grow-1 d-flex mt-3 mb-3">
+    <div class="row flex-nowrap w-100 px-3">
+      
+      <!-- Sidebar -->
+      <div class="col-auto px-0">
+        <div id="sidebar" class="d-lg-block border-end h-100 p-3">
+          <h1 class="fs-3 mb-4 text-success">La tua Area</h1>
+          <hr>
+          <!-- Contenuto della sidebar se si aggiunge un nuovo link IMPORTANTE aggiungerlo anche script.js per farlo caricare nel main (sarebbe meglio con Framwork) -->
+          <ul class="nav flex-column">
+            <li class="nav-item fs-5"><a class="nav-link" href="#" id="home-link"><i class="fas fa-home me-2"></i>Home</a></li>
+            <li class="nav-item fs-5"><a class="nav-link" href="#" id="calendario-link"><i class="fas fa-calendar-alt me-2"></i>Calendario</a></li>
+            <li class="nav-item fs-5"><a class="nav-link" href="#" id="notifiche-link"><i class="fa-regular fa-bell me-2"></i>Notifiche</a></li>
+            <li class="nav-item fs-5"><a class="nav-link" href="#" id="giardino-link"><i class="fas fa-leaf me-2"></i>Il tuo giardino</a></li>
+            <li class="nav-item fs-5"><a class="nav-link" href="#" id="amici-link"><i class="fa-solid fa-users me-2"></i>Amici</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <main class="col px-4 py-4 ms-3 bg-white bg-opacity-75 rounded-4 shadow-sm">
+        <!-- qua va il contenuto dinamico che è rappresentato da ogni pagina html ad esempio giorno o home -->
+      </main>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center py-3 mt-auto mx-3 mb-3 bg-white bg-opacity-75 rounded shadow-sm">
+    <small>© 2025 Plan(t)-It</small>
+  </footer>
+  
+  <!-- Custom JS -->
+  <script src="./js/mainpage_script.js"></script>
+  <script src="./js/calendario_script.js"></script>
+
+  <!-- Bootstrap JS -->
+  <script src="../bootstrap/js/bootstrap.bundle.js"></script>
+
+  <!-- FullCalendar JS -->
+   <script src="./js/index.global.min.js"></script>
+
+</body>
+</html>
