@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
           if (page==='calendario'){
             inizializzaCalendario();
           }
+          if (page==='home'){
+            inizializzaCalendarioHome();
+          }
         })
         .catch(error => console.error('Errore nel caricamento del contenuto:', error));
     };
@@ -22,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('compiti-link').addEventListener('click', () => loadPageContent('assignments'));
   
     // Carica la pagina di default (ad esempio Home)
-    loadPageContent('calendario');
+    loadPageContent('home');
 });
  
 

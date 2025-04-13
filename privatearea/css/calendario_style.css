@@ -1,0 +1,37 @@
+#calendar .fc-toolbar button{
+    background-color: #81c784;
+    color: white; 
+    border-color: #66bb6a;
+    padding: 8px 16px; 
+    font-size: 17px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    
+}
+#calendar .fc-toolbar button:hover{
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3); 
+}
+#calendar .fc-toolbar button:active{
+    background-color: #2e7d32;
+    color: white;
+    border-color: #2e7d32;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3); 
+}
+
+/*colori lun-mar-mer...*/
+#calendar .fc-col-header-cell-cushion{
+    color:#2e7d32;
+}
+/*colori giorni mese*/
+#calendar .fc-daygrid-day-number{
+    color: #4d4d4d;
+}
+
+@media (max-width: 768px) {
+    #calendar .fc-toolbar button {
+        font-size: 10px;
+    }
+    #calendar .fc-toolbar-title {
+        font-size: 17px;
+    }
+}
+
