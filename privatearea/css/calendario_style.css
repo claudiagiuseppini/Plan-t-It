@@ -20,10 +20,12 @@
 /*colori lun-mar-mer...*/
 #calendar .fc-col-header-cell-cushion{
     color:#2e7d32;
+    text-decoration: none !important; /*serve per togliere la sottolineatura, se cancello la riga la possiamo rimettere*/
 }
 /*colori giorni mese*/
 #calendar .fc-daygrid-day-number{
     color: #4d4d4d;
+    text-decoration: none !important;
 }
 
 @media (max-width: 768px) {
