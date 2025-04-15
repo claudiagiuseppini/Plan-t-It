@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('compiti-link').addEventListener('click', () => loadPageContent('assignments'));
   
     // Carica la pagina di default (ad esempio Home)
-    loadPageContent('home');
+    loadPageContent('calendario');
 });
  
 
@@ -47,4 +47,12 @@ document.addEventListener('click', (e) => {
     document.body.classList.remove('sidebar-open');
     }
 });
+
+//aggiunge classe active per ogni nav-link cliccato e la rimuove dagli altri non cliccati
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', function() {
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    this.classList.add('active');
+  });
+})
 

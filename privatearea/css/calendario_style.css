@@ -1,25 +1,19 @@
-#calendar .fc-toolbar button{
-    background-color: #81c784;
-    color: white; 
-    border-color: #66bb6a;
-    padding: 8px 16px; 
-    font-size: 17px; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-    
-}
-#calendar .fc-toolbar button:hover{
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3); 
-}
-#calendar .fc-toolbar button:active{
-    background-color: #2e7d32;
-    color: white;
-    border-color: #2e7d32;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3); 
-}
+:root {
+    --pastel-green: #66bb6a;
+
+    --fc-button-bg-color: var(--pastel-green);
+    --fc-button-border-color: var(--pastel-green);
+    --fc-button-hover-bg-color: #2e7d32;
+    --fc-button-hover-border-color: #2e7d32;
+    --fc-button-active-bg-color: #2e7d32;
+    --fc-button-active-border-color: #2e7d32;
+    --fc-button-text-color: white;
+
+  }
 
 /*colori lun-mar-mer...*/
 #calendar .fc-col-header-cell-cushion{
-    color:#2e7d32;
+    color:rgb(49, 49, 49);;
     text-decoration: none !important; /*serve per togliere la sottolineatura, se cancello la riga la possiamo rimettere*/
 }
 /*colori giorni mese*/
@@ -28,12 +22,13 @@
     text-decoration: none !important;
 }
 
+/*responsive*/
 @media (max-width: 768px) {
     #calendar .fc-toolbar button {
-        font-size: 10px;
+        font-size: 15px;
     }
     #calendar .fc-toolbar-title {
-        font-size: 17px;
+        font-size: 20px;
     }
 }
 

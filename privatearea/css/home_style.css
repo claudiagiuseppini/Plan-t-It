@@ -1,0 +1,41 @@
+/*giorno (es. 15 aprile 2025)*/
+#calendarList .fc-toolbar-title {
+    font-size: 20px;
+}
+
+
+/* giorno (es. martedi) */
+#calendarList .fc-list-day-text {
+    color:rgb(49, 49, 49);
+    text-decoration: none !important;
+}
+
+/**pulsanti prev,next*/
+#calendarList .fc-toolbar button{
+    background-color: #81c784;
+    color: white; 
+    border-color: #66bb6a;
+    padding: 8px 16px; 
+    font-size: 17px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    
+}
+#calendarList .fc-toolbar button:hover{
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3); 
+}
+#calendarList .fc-toolbar button:active{
+    background-color: #2e7d32;
+    color: white;
+    border-color: #2e7d32;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3); 
+}
+
+/*responsive*/
+@media (max-width: 768px) {
+    #calendarList .fc-toolbar button {
+        font-size: 15px;
+    }
+    #calendarList .fc-toolbar-title {
+        font-size: 20px;
+    }
+}

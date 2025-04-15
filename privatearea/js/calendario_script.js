@@ -1,7 +1,11 @@
+let calendar; /*salvo l'istanza del calendario in modo da poterla distruggere e ricreare quando cambia la dim dello schermo*/
 function inizializzaCalendario(){
     const isMobile = window.innerWidth < 768; //variabile che se true indica che il dispositivo è mobile
     var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
+    if (calendar) { /* se esiste già un calendario lo distrugge*/
+        calendar.destroy();
+    }
+    calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: window.innerWidth < 768 ? 'timeGridDay' : 'dayGridMonth',
         locale: 'it',
         selectable: true,
@@ -75,3 +79,14 @@ function inizializzaCalendario(){
       });
       calendar.render();
 }
+/*Salvo la modalità attuale della finestra*/
+let lastIsMobile = window.innerWidth < 768;
+
+/*Ascoltatore evento resize: succede ogni volta che cambio la dimensione della finestra*/
+window.addEventListener('resize', () => {
+    const currentIsMobile = window.innerWidth < 768;
+    if (currentIsMobile !== lastIsMobile) {
+        lastIsMobile = currentIsMobile;
+        inizializzaCalendario(); /*se ho cambiatà modalità rinizializzo il calendario*/
+    }
+});
