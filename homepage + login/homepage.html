@@ -4,52 +4,105 @@
     <meta charset = "UTF-8">
     <meta name = "viewport" content = "width=device-width initial-scale=1">
     <title> Plan(t)It</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script> 
     <link rel = "stylesheet" href = "style.css">
 </head>
 
-<body>
-    <header>
-        <nav class = "navbar">
-            <img src="../../assets/logo plantit.png" class = "logo">
-            <ul class = "nav-menu">
-                <li><a href = "opening_page.html" class = "nav-link"> Home </a></li>
-                <li><a href = "come_funziona.html" class = "nav-link"> Come Funziona </a></li>
-                <li><a href = "registrati.html" class = "nav-link"> Registrati </a></li>
-                <li><a href = "login.html" class = "nav-link"> Login </a></li>
-            </ul>
-        </nav>
-    </header>
+<body> 
+<header> 
+<nav class="navbar navbar-expand-lg custom-navbar fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand mx-auto" href="#"><img src="../assets/logo plantit.png" height="80"></a>
 
-    <section class="section-1"> 
-        <div class="section-content"> 
-            <h1 class = "title"> 🌱Coltiva il tuo futuro, un piano alla volta🌱</h1>
-            <h3 class = "description"> Plan(t)it è un planner per studenti, ma non solo, che vogliono crescere nel tempo, organizzandosi giorno per giorno </h2>
-            <a href="login.html"> <button class= "btn"> Inizia ora</button></a>
-        </div>
-    </section>
+      <!--ms auto per allineare a sinistra -->
+      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Come funziona</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="registrati.html">Registrati</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
 
-    <section class="timeline">
-        <div class="step">
-          <div class="content">
-            <h3>1. Pianta un obiettivo</h3>
-            <p>Inizia impostando un piano di studio chiaro e raggiungibile.</p>
-          </div>
+<section class="section-1"> 
+    <div class="section-content"> 
+      <div class="card text-center card-custom">
+        <div class="card-body">
+          <h5 class="card-title">🌱Coltiva il tuo futuro, un giorno alla volta🌱</h5>
+          <p class="card-text">Plan(t)it è un planner pensato per studenti, ma non solo, che vogliono crescere nel tempo, organizzandosi giorno per giorno </p>
+          <a href="login.html"> <button class= "btn"> Inizia ora</button></a>
         </div>
-        <div class="step">
-          <div class="content">
-            <h3>2. Nutrilo ogni giorno</h3>
-            <p>Organizza il tuo tempo e segui piccoli passi con costanza.</p>
-          </div>
+      </div>
+</section>
+
+<section class="section-2"> 
+<div class="card text-center card-custom">
+<div class="card-body">
+<!-- py5: classe bootstrap per un ampio padding verticale (top e bottom)-->
+<section class="py-5 " id="perche-usare-plantit">
+  <div class="section2-content">
+
+    <!-- mb-5: margin bottom-->
+    <h2 class="text-center mb-5"> Perché usare Plan(t)it ?</h2>
+
+    <!-- g-5: gap tra le righe e le colonne-->
+    <div class="row text-center g-5">
+      <div class="col-md-4">
+        <div class="d-flex flex-column align-items-center">
+          <!-- fs: 1 è il font size-->
+          <div class="fs-1 mb-3">🌱</div> 
+          <h5>Coltiva i tuoi obiettivi</h5>
+          <p class="text">Ogni impegno è un seme. Pianta, annaffia e guarda la tua crescita giorno dopo giorno.</p>
         </div>
-        <div class="step">
-          <div class="content">
-            <h3>3. Raccogli i frutti</h3>
-            <p>Raggiungi i tuoi traguardi e visualizza i progressi.</p>
-          </div>
+      </div>
+
+      <!-- col-md-4: ogni colonna prende 4/12 dello spazio, quindi ci saranno 3 colonne per riga. Da mobile invece verranno visualizzate una sopra l'altra-->
+      <div class="col-md-4">
+        <div class="d-flex flex-column align-items-center">
+          <div class="fs-1 mb-3">🪴</div>
+          <h5>Visualizza il tuo progresso</h5>
+          <p class="text">Potrai vedere una pianta che cresce invece di spuntare la solita to-do list.</p>
         </div>
-      </section>
-    
-   
+      </div>
+
+      <div class="col-md-4">
+        <div class="d-flex flex-column align-items-center">
+          <div class="fs-1 mb-3">🌸</div>
+          <h5>Niente pressione</h5>
+          <p class="text"> Sei tu a decidere quando inserire le task nel tuo calendario. E ricorda, anche piccole azioni quotidiane fanno crescere qualcosa di bello.</p>
+        </div>
+      </div>
+      <p class="info"> Vuoi sapere di più su come funziona? <a href = "comefunziona.html"> Clicca qui </a></p>
+
+
+    </div>
+  </div>
+  </section>
+</div>
+</div>
+</section>
+
+
+
+
+<footer class="text-center py-3 mt-auto mx-3 mb-3 bg-white bg-opacity-75 rounded shadow-sm">
+  <small>© 2025 Plan(t)-It</small>
+</footer>
 
 </body>
 
