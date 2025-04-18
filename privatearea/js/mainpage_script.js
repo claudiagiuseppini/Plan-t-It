@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('notifiche-link').addEventListener('click', () => loadPageContent('notifiche'));
     document.getElementById('giardino-link').addEventListener('click', () => loadPageContent('giardino'));
     document.getElementById('amici-link').addEventListener('click', () => loadPageContent('amici'));
+    document.getElementById('compiti-link').addEventListener('click', () => loadPageContent('assignments'));
   
     // Carica la pagina di default (ad esempio Home)
     loadPageContent('calendario');
