@@ -1,3 +1,58 @@
-<div>
-    homepage
+<div class="container my-4">
+    <!--Header di Benvenuto-->
+    <h3 class="mb-4">Bentornato Mario!</h3>
+    
+    <!-- Card centrale con il calendario-->
+    <div class="card shadow-sm">  <!--riquadro Bootsrap con bordo e sfondo -->
+        <div class="card-body">
+            <h4><i class="fas fa-calendar-check text-success me-2"></i>Le tue attività</h4>
+            <div id="calendarList" class="w-100"></div>
+        </div>
+    </div>
+    
+    <!-- Card carousel con le piantine -->
+<div class="card shadow-sm mt-4">
+    <div class="card-body">
+        <h4><i class="fa-solid fa-quote-left text-success me-2"></i>Frasi motivazionali</h4>
+
+        <div id="plantCarousel" class="carousel slide mt-3" data-bs-ride="carousel" data-bs-interval="3000">
+            
+            <!-- Indicatori -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#plantCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#plantCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#plantCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+
+            <!-- Immagini -->
+            <div class="carousel-inner rounded">
+                <div class="carousel-item active">
+                    <img src="../assets/motivation1.jpg" class="d-block w-100 rounded" alt="Pianta 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="../assets/motivation2.jpg" class="d-block w-100 rounded" alt="Pianta 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="../assets/motivation3.jpg" class="d-block w-100 rounded" alt="Pianta 3" >
+                </div>
+            </div>
+
+            <!-- Bottoni di controllo -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#plantCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#plantCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+</div>
+
+    <!-- Card con suggerimenti del giorno-->
+    <div class="card shadow-sm mt-4">
+        <div class="card-body">
+            <h4><i class="fas fa-lightbulb text-success me-2"></i>Suggerimento del giorno</h4>
+            <p class="mt-2">Le foglie ingiallite possono essere segno di troppa acqua. Controlla sempre l'umidità del terreno prima di annaffiare.</p>
+        </div>
+    </div>
 </div>

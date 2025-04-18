@@ -1,0 +1,34 @@
+:root {
+    --pastel-green: #66bb6a;
+
+    --fc-button-bg-color: var(--pastel-green);
+    --fc-button-border-color: var(--pastel-green);
+    --fc-button-hover-bg-color: #2e7d32;
+    --fc-button-hover-border-color: #2e7d32;
+    --fc-button-active-bg-color: #2e7d32;
+    --fc-button-active-border-color: #2e7d32;
+    --fc-button-text-color: white;
+
+  }
+
+/*colori lun-mar-mer...*/
+#calendar .fc-col-header-cell-cushion{
+    color:rgb(49, 49, 49);;
+    text-decoration: none !important; /*serve per togliere la sottolineatura, se cancello la riga la possiamo rimettere*/
+}
+/*colori giorni mese*/
+#calendar .fc-daygrid-day-number{
+    color: #4d4d4d;
+    text-decoration: none !important;
+}
+
+/*responsive*/
+@media (max-width: 768px) {
+    #calendar .fc-toolbar button {
+        font-size: 15px;
+    }
+    #calendar .fc-toolbar-title {
+        font-size: 20px;
+    }
+}
+

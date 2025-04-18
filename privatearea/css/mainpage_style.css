@@ -1,5 +1,5 @@
 body {
-    background: url('../images/mainpage_backgroung.jpg') no-repeat center center fixed;
+    background: url('../../assets/sfondo.png') no-repeat center center fixed;
     background-size: cover;
     min-height: 100vh;
     font-family: 'Segoe UI', sans-serif;
@@ -19,16 +19,23 @@ body {
 
   .nav-link {
     color: #2e7d32;
+    border-radius: 10px;
   }
 
   .nav-link:hover {
-    background-color: rgba(46, 125, 50, 0.1);
+    background-color: #2e7d32;
+    color:white;
+    border-radius: 10px;
+  }
+  .nav-link.active{
+    background-color: #2e7d32 !important; 
+    color:white !important;
     border-radius: 10px;
   }
 
   #sidebar h1 {
     font-size: 1.5rem;
-    color: #388e3c;
+    color: #2e7d32;
     padding-top: 1rem;
   }
 
