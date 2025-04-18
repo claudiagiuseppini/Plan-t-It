@@ -23,7 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('giardino-link').addEventListener('click', () => loadPageContent('giardino'));
     document.getElementById('amici-link').addEventListener('click', () => loadPageContent('amici'));
     document.getElementById('compiti-link').addEventListener('click', () => loadPageContent('assignments'));
-  
+    document.getElementById('sessione-studio').addEventListener('click', () => loadPageContent('sessione-studio'));
+
+
     // Carica la pagina di default (ad esempio Home)
     loadPageContent('home');
 });
