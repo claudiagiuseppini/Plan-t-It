@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('compiti-link').addEventListener('click', () => loadPageContent('assignments'));
   
     // Carica la pagina di default (ad esempio Home)
-    loadPageContent('calendario');
+    loadPageContent('home');
 });
  
 

@@ -10,7 +10,7 @@
     text-decoration: none !important;
 }
 
-/**pulsanti prev,next*/
+/**pulsanti prev,next calendario*/
 #calendarList .fc-toolbar button{
     background-color: #81c784;
     color: white; 
@@ -28,6 +28,16 @@
     color: white;
     border-color: #2e7d32;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3); 
+}
+
+/*pulsanti carousel*/
+.carousel-control-prev, .carousel-control-next  {
+    background-color: rgba(128, 128, 128, 0.5);
+    width: 3rem;
+}
+/*carousel item*/
+.carousel-item{
+    object-fit: contain;
 }
 
 /*responsive*/

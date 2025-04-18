@@ -33,11 +33,10 @@ function inizializzaCalendarioHome(){
         // Imposta gli eventi per oggi (dobbiamo sostituirli con quelli reali)
         // i colori devranno essere settati a seconda della priorità dell'attività
         events: [
-            { title: 'Compito 1', start: '2025-04-15', borderColor: 'green' },
-            { title: 'Compito 2', start: '2025-04-15', borderColor: 'red' },
-            { title: 'Compito 3', start: '2025-04-15', borderColor: 'orange' },
-            { title: 'Compito 4', start: '2025-04-15', borderColor: 'green' },
-            { title: 'Compito 1', start: '2025-04-16', borderColor: 'green' }
+            { title: 'Compito 1', start: new Date(), borderColor: 'green' },
+            { title: 'Compito 2', start: new Date(), borderColor: 'red' },
+            { title: 'Compito 3', start: new Date(), borderColor: 'orange' },
+            { title: 'Compito 4', start: new Date(), borderColor: 'green' }
         ]
     });
 
