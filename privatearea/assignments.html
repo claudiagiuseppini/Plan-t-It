@@ -3,69 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Stili -->
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="./css/assignments_style.css">
+
     <title>Gestione Compiti</title>
-    <style>
-        .container{
-            height:1200px;
-            width:1000px;
-            padding:10px;
-            background-color:#FDBCB7;
-            margin:0 auto;
-        }
-
-        .box {
-            background-color: lightblue;
-            margin: 10px;
-            padding: 20px;
-            border-radius: 5px;
-            width: 900;
-            height: 10000;
-        }
-    </style>
-
-    <script type ="application/javascript"> 
-    var count = 0;
-
-    function openMyWin() {
-       var x = window.open("./formA.html", "formA", "width=1000,height=1000");
-       x.moveTo(0,0);
-
-    }
-
-    function aggiungiBox(){
-        var nuovoDiv = document.createElement("div");
-        nuovoDiv.classList.add("box"); 
     
-        const title = localStorage.getItem("titolo");
-        const description = localStorage.getItem("descrizione");
-        const priority = localStorage.getItem("priorita");
-        const date = localStorage.getItem("scadenza");
-
-        nuovoDiv.textContent = title + "   " + description + "  " + priority + "  " + date;
-
-        document.getElementById("container").appendChild(nuovoDiv);
-
-    }
-
-
-    window.addEventListener("storage", function(event) {
-      if (event.key === "titolo") {
-        aggiungiBox();
-      }
-    });
-
-
-
-
-
-    </script>
+    <script src ="./js/assignments_script.js"> </script>
 </head>
 <body>
-    <a href = "formA.html" class = "nav-link"> <input class="btn btn-outline-success" type="submit" value="Crea Nuovo Compito" onclick="openMyWin()"> </a>
+    <input class="btn btn-outline-success" type="submit" value="Crea Nuovo Compito" onclick="openMyWin()"> 
    
     
-    <input class="btn btn-primary" type="aggiungi box" value="PROVA" id ="prova" onclick="aggiungiBox()">
+    <input class="btn btn-primary" type="aggiungi box" value="PROVA" id ="prova" onclick="addTaskToContainer()">
 
 
     <div>

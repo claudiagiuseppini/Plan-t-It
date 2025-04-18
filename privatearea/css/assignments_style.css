@@ -1,0 +1,116 @@
+:root {
+    --primary-green: #2e7d32; /* Verde principale */
+    --green-light: rgba(46, 125, 50, 0.1); /* Verde chiaro per hover */
+    --green-dark: #388e3c; /* Verde scuro per titoli e bordi */
+    --priority-red: #d32f2f; /* Colore rosso per priorità */
+    --priority-yellow: #ff9800; /* Colore giallo per priorità media */
+    --priority-green: #4caf50; /* Colore verde per priorità bassa */
+  }
+
+  body {
+    background: url('../images/mainpage_backgroung.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .task-box {
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+    border: none;
+  }
+
+  .task-header {
+    background: none;
+    font-weight: bold;
+    color: var(--primary-green);
+    padding: 1rem;
+    border: none;
+    border-radius: 15px 15px 0 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .task-header:hover {
+    background-color: var(--green-light);
+  }
+
+  .task-title {
+    font-size: 1rem;
+  }
+
+  .task-meta {
+    font-size: 0.9rem;
+    color: #555;
+  }
+
+  .due-date {
+    color: #666;
+  }
+
+  .priority {
+    color: var(--priority-red);
+  }
+
+  .priority.text-warning {
+    color: var(--priority-yellow);
+  }
+
+  .priority.text-success {
+    color: var(--priority-green);
+  }
+
+  .panel-body {
+    font-size: 0.95rem;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-radius: 0 0 15px 15px;
+  }
+
+  .panel-collapse {
+    border-top: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .panel-title a {
+    color: var(--primary-green);
+    text-decoration: none;
+  }
+
+  .form-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-container h2 {
+    color: #2e7d32;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+
+  label {
+    color: #388e3c;
+    font-weight: bold;
+  }
+
+  .form-control {
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+
+  .btn-success {
+    background-color: #2e7d32;
+    border-color: #2e7d32;
+    border-radius: 8px;
+  }
+
+  .btn-success:hover {
+    background-color: #27682a;
+    border-color: #27682a;
+  }

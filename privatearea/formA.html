@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="./css/assignments_style.css">
+
+    <title> form compito</title>
+
+
     <script type ="application/javascript">
         function saveData() {
 
@@ -15,10 +20,7 @@
 
             window.location.href = "assignments.html";
 
-            
-            
-
-
+        
 
             alert("TUTTO SALVATO");
             
@@ -31,7 +33,6 @@
 </head>
 <body>
     <div class="container-form">
-        <h2> Aggiungi Nuovo Compito</h2>
         <form style = "text-align: center;"onsubmit="saveData(); return false;">
             <br>
             <label for="title">Titolo del Compito</label>
@@ -47,11 +48,9 @@
             <label for="priority">Livello di Priorità</label>
             <select id ="priorità" required>
                 <option value="">Seleziona</option>
-                <option value="easy">EASY</option>
-                <option value="normale">Normale</option>
-                <option value="modesto">Difficilotto</option>
-                <option value="difficile">Difficile</option>
-                <option value="molto difficile">Morte</option>
+                <option value="easy">Alta</option>
+                <option value="normale">Media</option>
+                <option value="modesto">Bassa</option>
             </select>
             <br>
             <br>
