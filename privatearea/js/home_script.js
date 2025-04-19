@@ -12,19 +12,16 @@ function inizializzaCalendarioHome(){
         validRange: { start: new Date() }, 
         firstDay: 1, 
         nowIndicator: true,
-        height: isMobile ? window.innerHeight * 0.4 : 300,
+        height: isMobile ? window.innerHeight * 0.4 : 400,
 
-        headerToolbar:isMobile?{
+        headerToolbar: {
             start:'title',
             end: ''
-        }:{
-            start:'title',
-            end: 'today prev,next'
         },
 
-        footerToolbar: isMobile?{
+        footerToolbar:{
             center: 'today prev,next'
-        }: false,
+        },
 
         buttonText: {
             today: 'Oggi'  // Localizza il pulsante "today"
