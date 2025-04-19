@@ -3,6 +3,10 @@
     font-size: 20px;
 }
 
+.card{
+    color:black;
+}
+
 /* giorno (es. martedi) */
 #calendarList .fc-list-day-text {
     color:rgb(49, 49, 49);
