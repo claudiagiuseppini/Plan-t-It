@@ -9,13 +9,72 @@
     <link rel = "stylesheet" href = "style.css">
 </head>
 <body>
-    <h1>come funziona </h1>
-    <br>
-    <br>
-    
+    <header> 
+      <nav class="navbar navbar-expand-lg custom-navbar fixed-top">
+          <div class="container-fluid">
+            <a class="navbar-brand mx-auto" href="#"><img src="../assets/logo plantit.png" height="80"></a>
+      
+            <!--ms auto per allineare a sinistra -->
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="homepage.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Come funziona</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="login.html">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="registrati.html">Registrati</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
 
+
+  <!--data-bs-ride="carousel": per far scorrere le immagini senza click--> 
+  <div class= "container-carousel my-5"> 
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-theme="dark">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <!--IMMAGINI DA MODIFICARE--> 
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="../assets/prova.png"  class="d-block mx-auto" style="height: 250px; width: 60%; object-fit: cover;">
+        </div>
+        <div class="carousel-item">
+          <img src="../assets/logo plantit.png" class="d-block mx-auto" style="height: 250px; width: 60%; object-fit: cover;">
+        </div>
+        <div class="carousel-item">
+          <img src="../assets/prova.png" class="d-block mx-auto" style="height: 250px; width: 60%; object-fit: cover;">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+
+
+  
+ <div class= "container-accordion"> 
     <div class="accordion" id="faq">
-
+      <h2 class="text-center">FAQ</h2>
         <div class="accordion-item">
           <h2 class="accordion-header">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -67,6 +126,14 @@
             </div>
         </div>
     </div>
-
       </div>
+
+    </div>
+
+    
+  <footer class="text-center py-3 mt-auto mx-3 mb-3 bg-white bg-opacity-75 rounded shadow-sm">
+    <small>© 2025 Plan(t)-It</small>
+  </footer>
+
+
 </body>
