@@ -2,7 +2,7 @@ body {
     background: url('../../assets/sfondo.png') no-repeat center center fixed;
     background-size: cover;
     min-height: 100vh;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Poppins', sans-serif !important;
   }
 
   .navbar, #sidebar, footer {
@@ -26,6 +26,7 @@ body {
     background-color: #2e7d32;
     color:white;
     border-radius: 10px;
+    opacity: 0.5;
   }
   .nav-link.active{
     background-color: #2e7d32 !important; 

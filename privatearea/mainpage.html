@@ -11,11 +11,15 @@
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
+   <!-- Goggle Font-->
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <!-- Custom Styles -->
-  <link rel="stylesheet" href="./css/mainpage_style.css" />
+ 
   <link rel="stylesheet" href="./css/calendario_style.css" />
   <link rel="stylesheet" href="./css/home_style.css" />
-
+  <link rel="stylesheet" href="./css/assignments_style.css">
+  <link rel="stylesheet" href="./css/mainpage_style.css" />
 
   <!-- FullCalendar -->
   <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css' rel='stylesheet' />
@@ -40,7 +44,7 @@
         <i class="fa-solid fa-user"></i>
       </button>
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-        <li><h6 class="dropdown-header">Mario Rossi</h6></li>
+        <li><h6 class="dropdown-header">Ciao Giulio</h6></li>
         <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item text-danger" href="../homepage + login/homepage.html">Sign Out</a></li>
       </ul>
@@ -54,16 +58,17 @@
       <!-- Sidebar -->
       <div class="col-auto px-0">
         <div id="sidebar" class="d-lg-block border-end h-100 p-3">
-          <h1 class="fs-3 mb-4 text-success">La tua Area</h1>
+          <h1 class="fs-3 mb-4 ">La tua Area</h1>
           <hr>
-          <!-- Contenuto della sidebar se si aggiunge un nuovo link IMPORTANTE aggiungerlo anche script.js per farlo caricare nel main (sarebbe meglio con Framwork) -->
+          <!-- Contenuto della sidebar se si aggiunge un nuovo link IMPORTANTE aggiungerlo anche script.js per farlo caricare nel main -->
           <ul class="nav flex-column">
             <li class="nav-item fs-5"><a class="nav-link" href="#" id="home-link"><i class="fas fa-home me-2"></i>Home</a></li>
             <li class="nav-item fs-5"><a class="nav-link" href="#" id="calendario-link"><i class="fas fa-calendar-alt me-2"></i>Calendario</a></li>
             <li class="nav-item fs-5"><a class="nav-link" href="#" id="notifiche-link"><i class="fa-regular fa-bell me-2"></i>Notifiche</a></li>
             <li class="nav-item fs-5"><a class="nav-link" href="#" id="giardino-link"><i class="fas fa-leaf me-2"></i>Il tuo giardino</a></li>
             <li class="nav-item fs-5"><a class="nav-link" href="#" id="amici-link"><i class="fa-solid fa-users me-2"></i>Amici</a></li>
-            <li class="nav-item fs-5"><a class="nav-link" href="#" id="compiti-link"><i class="fa-solid fa-book me-2">‌</i></i>Compiti</a></li>
+            <li class="nav-item fs-5"><a class="nav-link" href="#" id="compiti-link"><i class="fa-solid fa-book me-2"></i></i>Compiti</a></li> 
+            <li class="nav-item fs-5"><a class="nav-link" href="#" id="sessione-studio"> <i class="fa-solid fa-stopwatch me-2"></i></i>Sessione studio</a></li>
           </ul>
         </div>
       </div>

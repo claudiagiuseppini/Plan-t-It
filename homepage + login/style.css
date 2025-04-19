@@ -186,3 +186,24 @@
     .content h3 p{
     color: var(--color_3);
     }
+
+    .container-accordion{
+        padding-top: 90px;
+        padding-bottom: 90px;
+    }
+
+    .accordion-button{
+        background-color: var(--color_1)
+    }
+
+    .accordion-button:not(.collapsed){
+        background-color: var(--color_1)
+    }
+
+    .accordion-button:focus {
+        box-shadow: none;
+        border-color: transparent;
+    }
+
+
+   

@@ -3,6 +3,9 @@
     font-size: 20px;
 }
 
+.card{
+    color:black;
+}
 
 /* giorno (es. martedi) */
 #calendarList .fc-list-day-text {
@@ -32,20 +35,17 @@
 
 /*pulsanti carousel*/
 .carousel-control-prev, .carousel-control-next  {
-    background-color: rgba(128, 128, 128, 0.5);
+    background-color: rgba(128, 128, 128, 0.3);
     width: 3rem;
 }
-/*carousel item*/
-.carousel-item{
-    object-fit: contain;
-}
+
 
 /*responsive*/
 @media (max-width: 768px) {
     #calendarList .fc-toolbar button {
-        font-size: 15px;
+        font-size: 13px;
     }
     #calendarList .fc-toolbar-title {
-        font-size: 20px;
+        font-size: 17px;
     }
 }
