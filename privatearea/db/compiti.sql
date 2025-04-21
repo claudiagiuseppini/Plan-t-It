@@ -9,15 +9,13 @@ CREATE TABLE compito (
     età INT not null
 );
 
-CREATE TABLE films (
+CREATE TABLE utente (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    titolo VARCHAR(50),
-    regista VARCHAR(50) references registi(nome),
-    anno INT not null,
-    genere VARCHAR(50),
-    p1 VARCHAR(50),
-    p2 VARCHAR(50)
+    nome VARCHAR(50),
+    cognome VARCHAR(50),
+    password VARCHAR(50),
+   
 );
 
-INSERT INTO registi(nome, età) VALUES ('aaa', 21);
+
 

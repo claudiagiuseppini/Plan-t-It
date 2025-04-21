@@ -8,7 +8,7 @@
   }
 
   body {
-    background: url('../images/mainpage_backgroung.jpg') no-repeat center center fixed;
+    background: url('../../assets/sfondo.png') no-repeat center center fixed;
     background-size: cover;
     min-height: 100vh;
     font-family: 'Segoe UI', sans-serif;
