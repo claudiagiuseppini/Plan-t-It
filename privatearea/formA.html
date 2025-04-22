@@ -5,63 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="./css/assignments_style.css">
+    <script src="./js/form_script.js"></script>
 
     <title> form compito</title>
 
 
-    <script type ="application/javascript">
-        function saveData() {
-
-            localStorage.setItem("titolo", document.getElementById("titolo").value);
-            localStorage.setItem("descrizione", document.getElementById("descrizione").value);
-            localStorage.setItem("priorita", document.getElementById("priorità").value);
-            localStorage.setItem("scadenza", document.getElementById("scadenza").value);
-        
-
-            window.location.href = "assignments.html";
-
-        
-
-            alert("TUTTO SALVATO");
-            
-            window.close();
-
-        }
-        
-        
-    </script>
+    
 </head>
 <body>
     <div class="container-form">
-        <form style = "text-align: center;"onsubmit="saveData(); return false;">
+        <!-- form per comun nuovo compito -->
+        <form style = "text-align: center;"action="php/salva_compito.php" method="POST" enctype="multipart/form-data">
             <br>
             <label for="title">Titolo del Compito</label>
-            <input type="text" id ="titolo"  required >
+            <input type="text" name ="titolo"  required >
             <br>
             <br>
 
             <label for="description">Descrizione del Compito</label>
-            <textarea id ="descrizione" rows="4" required ></textarea>
+            <textarea name ="descrizione" rows="4" required ></textarea>
             <br>
             <br>
 
             <label for="priority">Livello di Priorità</label>
-            <select id ="priorità" required>
+            <select name ="priorità" required>
                 <option value="">Seleziona</option>
-                <option value="easy">Alta</option>
-                <option value="normale">Media</option>
-                <option value="modesto">Bassa</option>
+                <option value="Alta">Alta</option>
+                <option value="Media">Media</option>
+                <option value="Bassa">Bassa</option>
             </select>
             <br>
             <br>
 
             <label for="due-date">Scadenza (opzionale)</label>
-            <input type="date" id ="scadenza" >
+            <input type="date" name ="scadenza" >
             <br>
             <br>
 
             <label for="file">Carica File (opzionale)</label>
-            <input type="file" id ="file">
+            <input type="file" name ="file">
             <br>
             <br>
            
