@@ -1,0 +1,47 @@
+<div class="container mt-4">
+    <h2 class="text-center border-bottom pb-2">Sessione Studio</h2>
+    <h6 class="lead text-center mb-4">
+        Organizza il tuo tempo di studio con il nostro timer! Imposta la durata della sessione di studio, la pausa e il numero di cicli che desideri completare. Il timer ti guiderà automaticamente, alternando sessioni di studio e pause per ottimizzare la tua produttività. Inizia ora e raggiungi i tuoi obiettivi!
+    </h6>
+    <form id="studyForm">
+        <div class="mb-3">
+            <label for="studyTime" class="form-label" id="studyTimeLabel">Tempo Studio</label>
+            <div class="d-flex gap-2">
+                <input type="number" class="form-control" id="studyHours" placeholder="Ore">
+                <input type="number" class="form-control" id="studyMinutes" placeholder="Minuti" >
+              </div>
+        </div>
+        <div class="mb-3">
+            <label for="breakTime" class="form-label" id="breakTimeLabel">Tempo Pausa</label>
+            <div class="d-flex gap-2">
+                <input type="number" class="form-control" id="breakHours" placeholder="Ore">
+                <input type="number" class="form-control" id="breakMinutes" placeholder="Minuti" >
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="sessionsCount" class="form-label" id="sessionsCountLabel">Numero di Cicli</label>
+            <input type="number" class="form-control" id="sessionsCount" >
+        </div>
+        <button type="submit" class="btn">Inizia Sessione</button>
+    </form>
+
+    <div id="timerContainer" class="d-flex flex-column align-items-center mt-4">
+        <div id="timer" class="d-flex justify-content-center align-items-center">
+            <div class="circle-container">
+                <svg width="200" height="200" viewBox="0 0 200 200">
+                    <circle class="circle-background" cx="100" cy="100" r="90"></circle>
+                    <circle id="circle-timer" class="circle-timer" cx="100" cy="100" r="90"></circle>
+                </svg>
+                <div id="timeDisplay" class="time-display">00:00</div>
+            </div>
+        </div>
+        
+        <!-- Pulsanti sotto il timer -->
+        <div class="mt-3 d-flex justify-content-center gap-4">
+            <button id="pauseResumeBtn" class="btn">Interrompi</button>
+            <button id="resetBtn" class="btn">Reset</button>
+        </div>
+    </div>
+    
+    
+</div>

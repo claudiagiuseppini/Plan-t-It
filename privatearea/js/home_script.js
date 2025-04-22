@@ -36,7 +36,7 @@ function inizializzaCalendarioHome(){
             { title: 'Compito 4', start: new Date(), borderColor: 'green' }
         ]
     });
-
+ 
     calendarHome.render();
 }
 /*Salvo la modalità attuale della finestra*/
@@ -50,3 +50,26 @@ window.addEventListener('resize', () => {
         inizializzaCalendarioHome(); /*se ho cambiatà modalità rinizializzo il calendario*/
     }
 });
+
+function impostaSuggerimentoGiornaliero() {
+    const tips = [
+        "Fai oggi ciò che il tuo futuro ti ringrazierà di aver fatto.",
+        "La produttività non significa fare di più, ma fare ciò che conta.",
+        "Ricorda: anche i piccoli progressi sono progressi.",
+        "Dedicare tempo a te stesso non è egoismo, è cura.",
+        "Concentrati su un obiettivo alla volta: la chiarezza batte il caos.",
+        "Il successo è la somma di piccoli sforzi ripetuti ogni giorno.",
+        "Anche le pause fanno parte della produttività.",
+        "Non aspettare la motivazione: inizia, e la motivazione ti seguirà.",
+        "Impara a dire no a ciò che non ti avvicina ai tuoi obiettivi.",
+        "Sii gentile con te stesso: stai facendo del tuo meglio."
+    ];
+
+    const today = new Date();
+    const index = today.getDate() % tips.length; //calcolo dell'indice per cambiare frase a seconda del giorno 
+    const tipOfTheDay = tips[index];
+    const tipEl = document.getElementById("dailyTip");
+    if (tipEl) {
+        tipEl.textContent = tipOfTheDay;
+    }
+}

@@ -11,6 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           if (page==='home'){
             inizializzaCalendarioHome();
+            impostaSuggerimentoGiornaliero();
+          }
+          if (page=='sessione-studio'){
+            sessioneStudio();
           }
         })
         .catch(error => console.error('Errore nel caricamento del contenuto:', error));
@@ -27,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // Carica la pagina di default (ad esempio Home)
-    loadPageContent('home');
+    loadPageContent('sessione-studio');
 });
  
 
