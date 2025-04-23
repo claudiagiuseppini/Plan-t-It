@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // Carica la pagina di default (ad esempio Home)
-    loadPageContent('sessione-studio');
+    loadPageContent('home');
 });
  
 
