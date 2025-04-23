@@ -20,14 +20,15 @@
         </div>
         <div class="mb-3">
             <label for="sessionsCount" class="form-label" id="sessionsCountLabel">Numero di Cicli</label>
-            <input type="number" class="form-control" id="sessionsCount" >
+            <input type="number" class="form-control" id="numCicli" >
         </div>
         <button type="submit" class="btn">Inizia Sessione</button>
     </form>
 
     <div id="timerContainer" class="d-flex flex-column align-items-center mt-4">
         <div id="timer" class="d-flex justify-content-center align-items-center">
-            <div class="circle-container">
+            <div class="circle-container position-relative">
+                <div class="timer-label border-bottom "></div>
                 <svg width="200" height="200" viewBox="0 0 200 200">
                     <circle class="circle-background" cx="100" cy="100" r="90"></circle>
                     <circle id="circle-timer" class="circle-timer" cx="100" cy="100" r="90"></circle>
@@ -38,8 +39,8 @@
         
         <!-- Pulsanti sotto il timer -->
         <div class="mt-3 d-flex justify-content-center gap-4">
-            <button id="pauseResumeBtn" class="btn">Interrompi</button>
-            <button id="resetBtn" class="btn">Reset</button>
+            <button id="interrompi" class="btn">Interrompi</button>
+            <button id="reset" class="btn">Reset</button>
         </div>
     </div>
     

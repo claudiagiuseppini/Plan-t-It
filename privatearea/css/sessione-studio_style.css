@@ -70,15 +70,25 @@
     transform-origin: 50% 50%;
     transition: stroke-dashoffset 1s linear;
 }
+.timer-label {
+    top: 40px !important; /* prima era 20px */
+    font-size: 0.8rem !important;
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%)!important;
+    color: #333 !important;
+    text-align: center;
+}
 
 .time-display {
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 2rem;
     font-weight: bold;
     color: #333;
+    text-align: center;
 }
 
 #timer{
