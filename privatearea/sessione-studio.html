@@ -9,7 +9,8 @@
             <div class="d-flex gap-2">
                 <input type="number" class="form-control" id="studyHours" placeholder="Ore">
                 <input type="number" class="form-control" id="studyMinutes" placeholder="Minuti" >
-              </div>
+            </div>
+            <div class="error-message hidden" id="breakError1" >Inserisci un valore valido per ore e/o minuti</div>
         </div>
         <div class="mb-3">
             <label for="breakTime" class="form-label" id="breakTimeLabel">Tempo Pausa</label>
@@ -17,11 +18,14 @@
                 <input type="number" class="form-control" id="breakHours" placeholder="Ore">
                 <input type="number" class="form-control" id="breakMinutes" placeholder="Minuti" >
             </div>
+            <div class="error-message hidden" id="breakError2" >Inserisci un valore valido per ore e/o minuti</div>
         </div>
         <div class="mb-3">
             <label for="sessionsCount" class="form-label" id="sessionsCountLabel">Numero di Cicli</label>
             <input type="number" class="form-control" id="numCicli" >
         </div>
+        <div class="error-message hidden" id="breakError3" >Inserisci un valore valido per il numero di cicli</div>
+
         <button type="submit" class="btn">Inizia Sessione</button>
     </form>
 

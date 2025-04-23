@@ -9,18 +9,40 @@ let studyTime = 0; // Durata in secondi della fase di studio
 let breakTime = 0; // Durata in secondi della fase di pausa
 let circumference = 2 * Math.PI * 90; // Circonferenza globale
 let offset;
-
+let startTime = null;
 // Funzione principale chiamata al caricamento della pagina
 function sessioneStudio() {
     const form = document.getElementById('studyForm');
     const timerContainer = document.getElementById('timerContainer');
     if (form) {
         form.addEventListener('submit', handleSubmit);
+        form.addEventListener('input', handleInput);
     }
     if (timerContainer){
         document.getElementById('reset').addEventListener('click', resetSession); 
         document.getElementById('interrompi').addEventListener('click', interruptSession); 
     }
+}
+//Funzione per gestire l'input
+function handleInput(event){
+    const targetId = event.target.id; // ID dell'elemento che ha generato l'evento
+    // Rimuovi il messaggio di errore relativo
+    if (targetId === 'studyHours' || targetId === 'studyMinutes') {
+        document.getElementById('breakError1').classList.add('hidden');
+        document.getElementById('studyHours').classList.remove('error');
+        document.getElementById('studyMinutes').classList.remove('error');
+    }
+    if (targetId === 'breakHours' || targetId === 'breakMinutes') {
+        document.getElementById('breakError2').classList.add('hidden');
+        document.getElementById('breakHours').classList.remove('error');
+        document.getElementById('breakMinutes').classList.remove('error')
+    }
+    if (targetId=== 'numCicli'){
+        document.getElementById('numCicli').classList.remove('error');
+        document.getElementById('breakError3').classList.add('hidden');
+    }
+    
+    
 }
 
 // Funzione per gestire il submit del modulo
@@ -29,8 +51,6 @@ function handleSubmit(event) {
     const form = document.getElementById('studyForm');
     const timerContainer = document.getElementById('timerContainer');
     
-    form.style.display = 'none';
-    timerContainer.classList.add('visible');
 
     // Preleva ore e minuti e converte in secondi (Tempo Studio)
     const studyHours = parseInt(document.getElementById('studyHours').value) || 0;
@@ -43,10 +63,32 @@ function handleSubmit(event) {
     breakTime = (breakHours * 60 + breakMinutes) * 60;
 
     totalCycles = parseInt(document.getElementById('numCicli').value) || 1; // Cicli totali
-    currentCycle = 1;
-    isStudyPhase = true; // Inizia sempre con lo studio
-
-    startPhase(); // Avvia la prima fase
+    
+    //controlli campi
+    if (studyHours==0 && studyMinutes==0 || studyHours<0 || studyMinutes<0){
+        document.getElementById('studyHours').classList.add('error');
+        document.getElementById('studyMinutes').classList.add('error');
+        document.getElementById('breakError1').classList.remove('hidden');
+        return;
+    }
+    if (breakHours==0 && breakMinutes==0 || breakHours<0 || breakMinutes<0){
+        document.getElementById('breakHours').classList.add('error');
+        document.getElementById('breakMinutes').classList.add('error');
+        document.getElementById('breakError2').classList.remove('hidden');
+        return;
+    }
+    if (totalCycles<0){
+        document.getElementById('numCicli').classList.add('error');
+        document.getElementById('breakError3').classList.remove('hidden');
+        return;
+    }
+    
+        form.style.display = 'none';
+        timerContainer.classList.add('visible');
+        currentCycle = 1;
+        isStudyPhase = true; // Inizia sempre con lo studio
+        startPhase(); // Avvia la prima fase
+    
 }
 // Avvia una nuova fase (studio o pausa)
 function startPhase() {
@@ -64,26 +106,29 @@ function startPhase() {
         label.innerHTML = `Pausa <br>  Ciclo ${currentCycle} di ${totalCycles}`;
     }
 
-    startTimer(0); // Avvia il timer da zero
+    startTimer(elapsedTime); // Avvia il timer da zero
 }
 
 // Funzione che gestisce l'animazione del timer
 function startTimer(startFrom) {
     const circleTimer = document.getElementById('circle-timer');
     const timeDisplay = document.getElementById('timeDisplay');
-    let startTime = null;
 
+   let startTime = null;
+
+   circleTimer.style.strokeDashoffset=circumference;
     circleTimer.style.strokeDasharray = circumference;
     /*Nota: circleTimer.style.strokeDasharray -> imposta il massimo che voglio colorare, poi decido quanta parte mostrare con il prossimo valore
-            circleTimer.style.strokeDashoffset -> imposta quanto contorno verde si vede*/
+            circleTimer.style.strokeDashoffset -> imposta quanto contorno grigio si vede*/
 
     function animate(timestamp) {
         if (!startTime) startTime = timestamp - startFrom * 1000; // Calcola il tempo di partenza corretto
         
         /*Per vedere più velocemente il funzionamento del timer si può mettere un valore alla
         seguente variabile che indica a quanto corrisponde 1 min in secondi, per farlo funzionare in tempo
-        reale rimettere 1 a speedMultipowe*/
-        const speedMultiplier = 5; // 1 secondo reale = 60 secondi simulati
+        reale rimettere 1 a speedMultipowe (attenzione: se settiamo questa variabile il pulsante riprendi non 
+        funziona bene)*/
+        const speedMultiplier = 1; // 1 secondo reale = 60 secondi simulati
         const elapsed = (timestamp - startTime) / 1000 *speedMultiplier ;
 
 
@@ -106,11 +151,14 @@ function startTimer(startFrom) {
             timerRunning = false;
             if (!isStudyPhase) currentCycle++; // Se era una pausa, incrementa il ciclo
  
-            if (currentCycle <= totalCycles) {
+            if (currentCycle < totalCycles || (!isStudyPhase))  {
                  isStudyPhase = !isStudyPhase; // Passa alla fase opposta
+                 circleTimer.style.strokeDasharray = circumference;
+                    circleTimer.style.strokeDashoffset = circumference;
                  setTimeout(startPhase, 1000); // Dopo 1 sec inizia la prossima fase
-            } else {
-                 // Sessione completata
+            } 
+            else if ( isStudyPhase) {
+                 // Sessione completata (rimuove l'ultima pausa che sarebbe inutile)
                  timeDisplay.innerHTML = "Sessione Completa!";
                  timeDisplay.style.fontSize = "1.2rem";
                  document.querySelector('.timer-label').textContent = "✔ Tutti i cicli completati!";
@@ -139,6 +187,7 @@ function resetSession(){
     document.getElementById('timeDisplay').innerHTML = '00:00';
     timeDisplay.style.fontSize = "2rem";
     document.getElementById('circle-timer').style.strokeDashoffset = circumference; //Reset grafico
+    document.getElementById('interrompi').textContent = "Interrompi";
     document.getElementById('interrompi').disabled = false;
     //Reset variabili globali
     timerRunning = false;
@@ -161,8 +210,7 @@ function interruptSession(){
     else {
         timerRunning = true;
         document.getElementById('interrompi').textContent = "Interrompi";
-        const resumeFrom = elapsedTime; // Usa il tempo trascorso come punto di ripresa
-        startTimer(resumeFrom); 
+        startTimer(elapsedTime); 
     }
 }
 
