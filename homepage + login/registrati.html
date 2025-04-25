@@ -15,33 +15,46 @@
     }
 </style>
 
+<script> 
+    function checkPassword(){
+        pw = document.getElementById("password").value;
+        conf_pw = document.getElementById("conferma_password").value;
+
+        if (pw != conf_pw){
+            alert("Le due password non concidono!"); 
+            return false; 
+        }
+        return true; 
+    }
+</script>
+
 <body> 
-    <div class = "container-form"> 
+    <div class = "container-form" onsubmit="return checkPassword()"> 
         <div class = "register"> 
             <form action= "" class = "register-form">
                 <h2 class = "title"> Registrati </h2>
 
                 <div class = "input" >
-                    <input type = "text" placeholder = "nome" required>
+                    <input type = "text" placeholder = "nome" id = "nome" required>
                 </div>
                 <div class = "input" >
-                    <input type = "text" placeholder = "cognome" required>
+                    <input type = "text" placeholder = "cognome" id = "cognome" required>
                 </div>
 
                 <div class = "input" >
-                    <input type = "mail" placeholder = "email" required>
+                    <input type = "mail" placeholder = "email" id = "email" required>
                 </div>
             
                 <div class = "input" >
-                    <input type = "text" placeholder = "username" required>
+                    <input type = "text" placeholder = "username" id = "username"required>
                 </div>
 
                 <div class = "input" >
-                    <input type = "password" placeholder = "password" required>
+                    <input type = "password" placeholder = "password"  id = "password"required>
                 </div>
 
                 <div class = "input" >
-                    <input type = "password" placeholder = "conferma password" required>
+                    <input type = "password" placeholder = "conferma_password" id = "conferma_password" required>
                 </div>
 
             <button class = "btn-form" type = "submit"> Registrati </button>
