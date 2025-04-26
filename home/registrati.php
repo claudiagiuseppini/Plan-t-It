@@ -9,7 +9,6 @@ if (isset($_POST['registrati'])){
     $username = $_POST['username']; 
     $password = $_POST['password']; 
 
-    echo $email; 
 
     // per controllare se un utente si è già registrato con quella mail
     $checkMail = "SELECT * FROM users WHERE email=$1";
@@ -22,9 +21,14 @@ if (isset($_POST['registrati'])){
         $insertquery = "INSERT INTO users(nome, cognome, email, username, password)
                         VALUES ($1, $2, $3, $4, $5)";
 
-        $result = pg_query_params($conn, $insertquery, [$nome, $cognome, $email, $username, $password]);        
+        $result = pg_query_params($conn, $insertquery, [$nome, $cognome, $email, $username, $password]);  
+
         if ($result == false){
             echo "errore: l'iscrizione non è andata a buon fine";
+        }
+        else{
+            header("Location:iscrizione.html");
+            exit();
         }
 
     }

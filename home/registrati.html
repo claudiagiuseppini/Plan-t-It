@@ -30,36 +30,36 @@
 </script>
 
 <body> 
-    <div class = "container-form" onsubmit="return checkPassword()"> 
+    <div class = "container-form"> 
         <div class = "register"> 
             
-            <form method= "post" action= "registrati.php" class = "register-form">
+            <form method= "POST" action= "registrati.php" class = "register-form" onsubmit="return checkPassword()">
                 <h2 class = "title"> Registrati </h2>
 
                 <div class = "input" >
-                    <input type = "text" placeholder = "nome" id = "nome" required>
+                    <input type = "text" placeholder = "nome" id = "nome" name = "nome"required>
                 </div>
                 <div class = "input" >
-                    <input type = "text" placeholder = "cognome" id = "cognome" required>
+                    <input type = "text" placeholder = "cognome" id = "cognome" name = "cognome"required>
                 </div>
 
                 <div class = "input" >
-                    <input type = "mail" placeholder = "email" id = "email" required>
+                    <input type = "email" placeholder = "email" id = "email" name = "email" required>
                 </div>
             
                 <div class = "input" >
-                    <input type = "text" placeholder = "username" id = "username"required>
+                    <input type = "text" placeholder = "username" id = "username" name = "username" required>
                 </div>
 
                 <div class = "input" >
-                    <input type = "password" placeholder = "password"  id = "password"required>
+                    <input type = "password" placeholder = "password"  id = "password" name = "password"required>
                 </div>
 
                 <div class = "input" >
-                    <input type = "password" placeholder = "conferma_password" id = "conferma_password" required>
+                    <input type = "password" placeholder = "conferma_password" id = "conferma_password" name = "conferma_password"required>
                 </div>
 
-            <button class = "btn-form" type = "submit"> Registrati </button>
+            <button class = "btn-form" type = "submit" name = "registrati"> Registrati </button>
             </form>
         </div>
     </div>
