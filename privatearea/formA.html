@@ -14,45 +14,52 @@
 </head>
 <body>
     <div class="container-form">
-        <!-- form per comun nuovo compito -->
-        <form style = "text-align: center;"action="php/salva_compito.php" method="POST" enctype="multipart/form-data">
-            <br>
-            <label for="title">Titolo del Compito</label>
-            <input type="text" name ="titolo"  required >
-            <br>
-            <br>
+         <!-- form per comun nuovo compito -->
+        <div class="form-container">
 
-            <label for="description">Descrizione del Compito</label>
-            <textarea name ="descrizione" rows="4" required ></textarea>
-            <br>
-            <br>
+            <form style = "text-align: center;"action="php/salva_compito.php" method="POST" enctype="multipart/form-data">
+                <br>
+                <label for="title">Titolo del Compito</label>
+                <input type="text" name ="titolo"  required >
+                <br>
+                <br>
+                
+                <label for="description">Descrizione del Compito</label>
+                <textarea name ="descrizione" rows="4" required ></textarea>
+                <br>
+                <br>
+                
+                <label for="priority">Livello di Priorità</label>
+                <select name ="priorità" required>
+                    <option value="">Seleziona</option>
+                    <option value="Alta">Alta</option>
+                    <option value="Media">Media</option>
+                    <option value="Bassa">Bassa</option>
+                </select>
+                <br>
+                <br>
+                
+                <label for="due-date">Scadenza (opzionale)</label>
+                <input type="date" name ="scadenza" >
+                <br>
+                <br>
 
-            <label for="priority">Livello di Priorità</label>
-            <select name ="priorità" required>
-                <option value="">Seleziona</option>
-                <option value="Alta">Alta</option>
-                <option value="Media">Media</option>
-                <option value="Bassa">Bassa</option>
-            </select>
-            <br>
-            <br>
+                <label for="time">Orario (opzionale)</label>
+                <input type="time" name="orario">
+                <br>
+                <br>
+                
+                <label for="file">Carica File (opzionale)</label>
+                <input type="file" name ="file">
+                
+                <br>
+                <br>
 
-            <label for="due-date">Scadenza (opzionale)</label>
-            <input type="date" name ="scadenza" >
-            <br>
-            <br>
+                <button type="submit" class="submit-btn">Invia</button>
+            </form>
 
-            <label for="file">Carica File (opzionale)</label>
-            <input type="file" name ="file">
-            <br>
-            <br>
-           
-            <button type="submit" class="submit-btn">Invia</button>
-        </form>
+        </div>
 
     </div>
-
-   
-
 </body>
 </html>

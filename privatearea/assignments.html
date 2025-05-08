@@ -3,40 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
     <!-- Stili -->
-    <link rel="stylesheet" href="./css/assignments_style.css">
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+   <link rel="stylesheet" href="./css/assignments_style.css">
+   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
 
     <title>Gestione Compiti</title>
-    
-    <!-- Script -->
-    <script src ="./js/assignments_script.js"> </script>
-    <script src="./js/form_script.js"></script>
-    <!-- <script src="../bootstrap/js/bootstrap.bundle.js"></script> -->
 
 
 </head>
 <body>
-    <input class="btn btn-outline-success" type="submit" value="Crea Nuovo Compito" onclick="openMyWin()"> 
+    <!-- Bottone per creare un nuovo compito -->
+    <input class="btn btn-outline-success" type="submit" value="Crea Nuovo Compito" onclick="openMyWin()">
 
+    <!-- temporaneo !! non trova il container con DOMLoadedContent listener -->
+    <input class="btn btn-outline-success" type="submit" value="Carica Compiti" onclick="initAppSafely()">
 
     <div>
         <br>
     </div>
 
 
-<!-- container contiene TUTTI i compiti /  ogni compito è contenuto in un BOX-->
+    <!-- container contiene TUTTI i compiti /  ogni compito è contenuto in un BOX-->
     <div id = "container" class="container">
         <br> credici che ce la fai
         <!-- qua vengono aggiunti i box -->
 
-       
-        
-        
+
+
+
 
     </div>
 
+    <!-- Script-->
+    <script src="../bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="./js/assignments_script.js"></script>
     
 </body>
 </html>
