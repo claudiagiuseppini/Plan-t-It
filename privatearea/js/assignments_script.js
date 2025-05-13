@@ -5,14 +5,7 @@ function openMyWin() {
 
   }
 
-// NON FUNZIONA
-
-//   //listener che non aspetta che la pagina sia completamente caricata per chiedere i compiti già salvati
-// window.addEventListener("DOMContentLoaded", () => {
-//     caricaCompitiDalServer();
-//   });
-
-
+  
 //chiede al database quali sono i compiti ordinati per scadenza
 function caricaCompitiDalServer() {
     fetch("php/leggi_compiti.php")
@@ -20,14 +13,7 @@ function caricaCompitiDalServer() {
       .then(compiti => {
         const container = document.getElementById("container");
         container.innerHTML = "";
-        // if (!container) {
-        //     console.warn("Contenitore non trovato, ne creo uno nuovo");
-        //     container = document.createElement('div');
-        //     container.id = 'container';
-        //     container.className = 'container';
-        //     document.body.appendChild(container);
-        // }
-        
+    
   
         compiti.forEach((c, index) => {
           container.innerHTML += generaCompitoDaOggetto(c, index);
@@ -58,64 +44,37 @@ function caricaCompitiDalServer() {
         </button>
         <div class="panel-heading" role="tab" id="heading${index}">
             <h4 class="panel-title mb-0">
-                <button class="btn btn-link w-100 text-start d-flex justify-content-between align-items-center"
+                <button class="btn text-body w-100 text-start d-flex justify-content-between align-items-center"
                         data-bs-toggle="collapse" data-bs-target="#${id}" aria-expanded="false" aria-controls="${id}">
                     <div>
-                        <strong>${compito.titolo}</strong><br>
+                        <strong class="text-success">${compito.titolo}</strong><br>
                         <small class="text-muted">Scadenza: ${compito.scadenza || 'Nessuna scadenza'}</small>
                         <br>
                         <small class="text-muted">Orario: ${compito.ora || 'Nessun orario'}</small>
                     </div>
-                    <i class="fas fa-chevron-down"></i>
                 </button>
             </h4>
         </div>
         <div id="${id}" class="collapse panel-collapse">
             <div class="panel-body task-body p-3">
+
+                <div class="progress mb-3" style="height: 8px;">
+                    <div class="progress-bar bg-success" 
+                         role="progressbar" 
+                         style="width: 50%;" 
+                         aria-valuenow="50" 
+                         aria-valuemin="0" 
+                         aria-valuemax="100">
+                    </div>
+                </div>
+                
                 <p>${compito.descrizione}</p>
                 ${fileLink}
             </div>
         </div>
     </div>`;
-  }
-  
-  // Funzione di utilità per aggiornare in sicurezza il DOM
-  function safeDOMUpdate(elementId, html) {
-      const element = document.getElementById(elementId);
-      if (element) {
-          element.innerHTML = html;
-      } else {
-          console.error(`Elemento ${elementId} non trovato per l'aggiornamento`);
-      }
-  }
-  
-  
-  // Inizializzazione sicura dell'app
-  function initAppSafely() {
-      try {
-          if (typeof bootstrap === 'undefined') {
-              throw new Error("Bootstrap non caricato correttamente");
-          }
-          caricaCompitiDalServer();
-      } catch (error) {
-          console.error("Errore di inizializzazione:", error);
-          safeDOMUpdate('container', `
-              <div class="alert alert-danger m-3">
-                  <h4>Errore di inizializzazione</h4>
-                  <p>${error.message}</p>
-                  <button onclick="location.reload()" class="btn btn-primary">
-                      Ricarica la pagina
-                  </button>
-              </div>
-          `);
-      }
-  }
 
-  
-  
-//   window.onload = function() {
-//     initAppSafely();
-// };
+  }
 
 
 

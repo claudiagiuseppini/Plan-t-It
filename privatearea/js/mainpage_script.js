@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           if (page==='calendario'){
             inizializzaCalendario();
+            aggiungiCompiti();
           }
           if (page==='home'){
             inizializzaCalendarioHome();
@@ -16,6 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
           if (page=='sessione-studio'){
             sessioneStudio();
           }
+          if (page =='assignments'){
+            caricaCompitiDalServer();
+          }
+
         })
         .catch(error => console.error('Errore nel caricamento del contenuto:', error));
     };

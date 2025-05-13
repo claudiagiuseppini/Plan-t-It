@@ -90,3 +90,46 @@ window.addEventListener('resize', () => {
         inizializzaCalendario(); /*se ho cambiatà modalità rinizializzo il calendario*/
     }
 });
+
+function aggiungiCompiti() {
+
+    // tolgo tutti gli eventi vecchi
+    calendar.getEvents().forEach(event => event.remove());
+
+    // chiedo al DB i compiti presenti
+    fetch("php/leggi_compiti.php")
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            return res.json();
+        })
+        .then(compiti => {
+            // per ogni compito aggiungo un evento al calendario
+            compiti.forEach(compito => {
+                try {
+                    const event = {
+                        id: compito.id,
+                        title: compito.titolo,
+                        start: compito.scadenza,
+                        allDay: !compito.orario, //se non esiste orario tutto il giorno
+                        extendedProps: {
+                            descrizione: compito.descrizione,
+                        }
+                    };
+
+                    //se esiste orario
+                    if (compito.orario) {
+                        event.start = `${compito.scadenza}T${compito.orario}`;
+                    }
+
+                    calendar.addEvent(event);
+                } catch (e) {
+                    console.error("Errore nell'aggiungere eventi:", e);
+                }
+            });
+        })
+        .catch(error => {
+            console.error("Errore nella connessione DB:", error);
+        });
+}
