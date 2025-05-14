@@ -15,6 +15,7 @@ async function inizializzaCalendarioHome(){
         validRange: { start: new Date() },
         firstDay: 1,
         nowIndicator: true,
+        noEventsContent: 'Nessun evento da visualizzare',
         height: isMobile ? window.innerHeight * 0.4 : 400,
 
         headerToolbar: {

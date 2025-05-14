@@ -8,7 +8,6 @@ function inizializzaCalendario(){
     calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: window.innerWidth < 768 ? 'timeGridDay' : 'dayGridMonth',
         locale: 'it',
-        selectable: true,
         validRange: { start: new Date() }, //non fa vedere i giorni passati
         firstDay: 1, //lunedì come primo giorno 
         nowIndicator: true,
@@ -52,29 +51,6 @@ function inizializzaCalendario(){
             }
 
         },
-        
-        dateClick: function(info) {
-            const title = prompt('Titolo del nuovo evento:');
-            if (title) {
-              calendar.addEvent({
-                title: title,
-                start: info.date,
-                allDay: info.allDay
-              });
-            }
-          },
-    
-        select: function(info) {
-            const title = prompt('Titolo del nuovo evento:');
-            if (title) {
-                calendar.addEvent({
-                    title: title,
-                    start: info.start,
-                    end: info.end,
-                    allDay: info.allDay
-                });
-            }
-        },
         events: []
       });
       calendar.render();
@@ -115,12 +91,22 @@ function aggiungiCompiti() {
                         allDay: !compito.orario, //se non esiste orario tutto il giorno
                         extendedProps: {
                             descrizione: compito.descrizione,
-                        }
+                            priorita: compito.priorita
+                        },
+                        classNames: []
                     };
 
                     //se esiste orario
                     if (compito.orario) {
                         event.start = `${compito.scadenza}T${compito.orario}`;
+                    }
+                     // Aggiungo la classe CSS in base alla priorità
+                    if (compito.priorita === 'Alta') {
+                        event.classNames.push('alta-priorita');
+                    } else if (compito.priorita === 'Media') {
+                        event.classNames.push('media-priorita');
+                    } else if (compito.priorita === 'Bassa') {
+                        event.classNames.push('bassa-priorita');
                     }
 
                     calendar.addEvent(event);

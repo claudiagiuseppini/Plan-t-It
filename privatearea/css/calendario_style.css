@@ -21,6 +21,21 @@
     color: #4d4d4d;
     text-decoration: none !important;
 }
+/* priorità compiti */
+#calendar .fc-event.alta-priorita {
+    background-color: red !important;  
+    border-color: red !important;
+}
+
+#calendar .fc-event.media-priorita {
+    background-color: orange !important;  
+    border-color: orange !important;
+}
+
+#calendar .fc-event.bassa-priorita {
+    background-color: green !important;  
+    border-color: green !important;
+}
 
 /*responsive*/
 @media (max-width: 768px) {
