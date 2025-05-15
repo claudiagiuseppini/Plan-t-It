@@ -1,10 +1,20 @@
 <?php
+session_start();
 // Connetti al DB
 $conn = pg_connect("host=localhost dbname=plant user=postgres password=biar");
 
 if (!$conn) {
     die("Errore connessione al DB");
 }
+
+$username = isset($_SESSION['username']) ? $_SESSION['username'] : null;
+
+if ($username === null) {
+    http_response_code(401);
+    echo json_encode(["error" => "Utente non autenticato"]);
+    exit;
+}
+
 
 // Leggi i dati dal form
 $titolo = $_POST['titolo'];
@@ -37,8 +47,8 @@ if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
 }
 
 // Inserisci nel DB
-$query = "INSERT INTO compiti (titolo, descrizione, priorita, scadenza, ora, file_path) 
-          VALUES ($1, $2, $3, $4, $5::time, $6) RETURNING id";
+$query = "INSERT INTO compiti (titolo, descrizione, priorita, scadenza, ora, file_path, utente) 
+          VALUES ($1, $2, $3, $4, $5::time, $6, $7) RETURNING id";
 
 $result = pg_query_params($conn, $query, [
     $titolo,
@@ -46,7 +56,8 @@ $result = pg_query_params($conn, $query, [
     $priorita,
     $scadenza,
     $orario, 
-    $file_path
+    $file_path,
+    $username
 ]);
 
 if ($result) {
@@ -58,7 +69,8 @@ if ($result) {
         'priorita' => $priorita,
         'scadenza' => $scadenza,
         'ora' => $orario,  
-        'file_path' => $file_path
+        'file_path' => $file_path,
+        'utente' => $username
     ];
     
     echo "<script>

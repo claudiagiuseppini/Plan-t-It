@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    //chiede al db
+    //chiede al db - sicuramente un problema di sicurezza ma ok
     $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
     $result = pg_query($conn, $query);
 
