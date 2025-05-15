@@ -18,7 +18,7 @@ CREATE TABLE users(
 
 /* 
 per far par funzionare tutto su windows dal terminale di vscode: 
-- entrare nella cartella home 
+- entrare nella cartella plan-t-it
 - fare php -S localhost: 8000 
 - e poi nel browser: http://localhost:8000/homepage.html
 - e poi registrati 
