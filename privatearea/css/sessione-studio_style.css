@@ -103,6 +103,10 @@
     text-align: center;
 }
 
+.pause-phase {
+    color: #f8bd65 !important;
+}
+
 #timer{
     display: none;
 }
@@ -113,7 +117,7 @@
 .circle-timer {
     filter: hue-rotate(0deg);
     animation: colorPulse 6s infinite linear;
-  }
+}
   
   @keyframes colorPulse {
     from { filter: hue-rotate(0deg); }

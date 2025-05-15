@@ -94,16 +94,19 @@ function handleSubmit(event) {
 function startPhase() {
     const label = document.querySelector('.timer-label');
     const circleTimer = document.getElementById('circle-timer');
+    const timeDisplay= document.getElementById('timeDisplay');
     elapsedTime = 0; // Azzera il tempo trascorso
 
     if (isStudyPhase) {
         totalTime = studyTime;
-        circleTimer.style.stroke = "#4caf50"; // verde
+        timeDisplay.classList.remove('pause-phase');
         label.innerHTML = `Studio <br> Ciclo ${currentCycle} di ${totalCycles}`;
+        label.classList.remove('pause-phase');
     } else {
         totalTime = breakTime;
-        circleTimer.style.stroke = "#FAE7A5"; // giallo 
+        timeDisplay.classList.add('pause-phase'); 
         label.innerHTML = `Pausa <br>  Ciclo ${currentCycle} di ${totalCycles}`;
+        label.classList.add('pause-phase');
     }
 
     startTimer(elapsedTime); // Avvia il timer da zero

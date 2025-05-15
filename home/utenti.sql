@@ -11,8 +11,8 @@ E poi ho creato la tabella users
 CREATE TABLE users(
     nome varchar(50) NOT NULL, 
     cognome varchar(50) NOT NULL, 
-    email varchar(50) PRIMARY KEY, -- ho messo mail primary key così non si può usare più volte la stessa mail: il controllo viene fatto da registrati.php
-    username varchar(50) NOT NULL,
+    email varchar(50) UNIQUE, 
+    username varchar(50) PRIMARY KEY,
     password varchar(50) NOT NULL,
 )
 
