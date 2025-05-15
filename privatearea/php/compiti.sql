@@ -11,6 +11,7 @@ CREATE TABLE compiti (
     priorita TEXT,
     scadenza DATE,
     ora TIME,
+    progresso INTEGER DEFAULT 0,
     file_path TEXT  
 );
 
