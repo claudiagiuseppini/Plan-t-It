@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  username_exit();
     // Funzione per caricare il contenuto dinamicamente
     const loadPageContent = (page) => {
       fetch(`${page}.html`)  // Carica il file HTML specifico
@@ -71,3 +72,10 @@ document.querySelectorAll('.nav-link').forEach(link => {
   });
 })
 
+function username_exit(){
+  fetch('php/after_login.php')
+  .then(response => response.text())
+  .then(name => {
+      document.getElementById('goodbye').textContent = "Ciao " + name +"!";
+  });
+}

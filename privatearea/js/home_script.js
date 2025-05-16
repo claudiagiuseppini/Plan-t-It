@@ -73,7 +73,7 @@ function impostaSuggerimentoGiornaliero() {
 
 function getColor(p){
     if (p === 'Alta') return 'red';
-    if (p === 'Media') return 'yellow';
+    if (p === 'Media') return 'orange';
     if (p === 'Bassa') return 'green';
     return 'black';
 }
