@@ -17,6 +17,14 @@
                     <button type="submit" class="btn btn-primary">Invia Richiesta</button>
                 </form>
                 <div id="friendRequestStatus" class="mt-3"></div>
+
+                <h4 class="border-bottom pb-2 mt-5 mb-3"> <i class="fa-solid fa-hourglass-half text-success me-2"></i>Richieste in Attesa</h4>
+                <div class="pending-requests-container border rounded p-3" style="max-height: 300px; overflow-y: auto;">
+                    <ul class="list-group" id="pending-requests-list">
+                    <!-- Lista richieste in attesa popolata da JavaScript -->
+                    <li class="list-group-item text-muted">Nessuna richiesta in attesa.</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
