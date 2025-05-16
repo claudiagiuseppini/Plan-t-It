@@ -24,7 +24,7 @@
     }
 
     .custom-navbar{
-        background-color: #c7f9cc;
+        background-color: var(--color_2);
     }
 
     .navbar ul li a {
@@ -66,11 +66,12 @@
     background-color: var(--color_1);
     color: var(--color_3);
     }
-
    
     .section-1{
     padding-top: 70px;
     }
+
+    
 
     .section-1 .card-title{
     font-family: "Poppins", cursive; 
@@ -84,18 +85,11 @@
     font-family: "Poppins", cursive; 
     }
     
-    .section-1 .card-custom{
-    background-color: #F5F5F0; 
-    }
+
 
     .section-2{
         padding-top: 70px
     }
-
-    .section-2 .card-custom{
-        background-color: #F5F5F0; 
-    }
-
 
 
     .btn-form{
