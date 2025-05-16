@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
           if (page =='assignments'){
             caricaCompitiDalServer();
           }
+          if(page== 'amici'){
+            initAmici();
+          }
 
         })
         .catch(error => console.error('Errore nel caricamento del contenuto:', error));
