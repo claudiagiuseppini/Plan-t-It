@@ -1,11 +1,46 @@
 //funzione che apre il form per creazione compito
-function openMyWin() {
-    var x = window.open("./formA.html", "formA", "width=1000,height=1000");
-    x.moveTo(0,0);
+function showForm() {
+  fetch("formA.html")
+      .then(response => response.text())
+      .then(html => {
+          // creo una finestra all'interno della pagina
+          const modal = document.createElement('div');
+          modal.className = 'assignment-modal';
+          modal.innerHTML = `
+              <div class="assignment-modal-content">
+                  <span class="close-modal">&times;</span>
+                  ${html}
+              </div>
+          `;
+          //svuoto e l'aggiungo al container dei compiti
+          document.getElementById("container").innerHTML = '';
+          document.getElementById("container").appendChild(modal);
+          
+          //permetto che si possa chiudere
+          modal.querySelector('.close-modal').addEventListener('click', function() {
+              modal.remove();
+              caricaCompitiDalServer();
+          });
+          
+          // si chiude anche premendo al di fuori della finestra
+          modal.addEventListener('click', function(e) {
+              if (e.target === modal) {
+                  modal.remove();
+                  caricaCompitiDalServer();
+              }
+          });
+
+          //mando la query
+          const form = modal.querySelector('form');
+          
+
+      }
+    )
+    .catch(error => console.error('Errore caricamento form:', error));
 
   }
 
-  
+
 //chiede al database quali sono i compiti ordinati per scadenza
 function caricaCompitiDalServer() {
     fetch("php/leggi_compiti.php")
@@ -18,6 +53,7 @@ function caricaCompitiDalServer() {
         compiti.forEach((c, index) => {
           container.innerHTML += generaCompitoDaOggetto(c, index);
         });
+        inizializzaListenerProgresso();
       });
   }      
   
@@ -25,6 +61,8 @@ function caricaCompitiDalServer() {
   function generateUniqueId(index) {
     return `collapseTask${index}`;
   }
+
+
   
   //prende in input un compito e crea una box
   function generaCompitoDaOggetto(compito, index) {
@@ -57,17 +95,34 @@ function caricaCompitiDalServer() {
         </div>
         <div id="${id}" class="collapse panel-collapse">
             <div class="panel-body task-body p-3">
+                <div class="d-flex align-items-center mb-3 gap-2">
+                  <!-- Etichetta + Select -->
+                  <div class="d-flex align-items-center">
+                      <label for="progressSelect-${compito.id}" class="me-2 mb-0">Progress:</label>
+                      <select id="progressSelect-${compito.id}" class="form-select form-select-sm w-auto">
+                          <option value="0" ${compito.progresso == 0 ? 'selected' : ''}>0%</option>
+                          <option value="25" ${compito.progresso == 25 ? 'selected' : ''}>25%</option>
+                          <option value="50" ${compito.progresso == 50 ? 'selected' : ''}>50%</option>
+                          <option value="75" ${compito.progresso == 75 ? 'selected' : ''}>75%</option>
+                          <option value="100" ${compito.progresso == 100 ? 'selected' : ''}>100%</option>
+                      </select>
+                  </div>
 
-                <div class="progress mb-3" style="height: 8px;">
-                    <div class="progress-bar bg-success" 
-                         role="progressbar" 
-                         style="width: 50%;" 
-                         aria-valuenow="50" 
-                         aria-valuemin="0" 
-                         aria-valuemax="100">
-                    </div>
-                </div>
-                
+                  <!-- Progress Bar -->
+                  <div class="flex-grow-1">
+                      <div class="progress" style="height: 10px;">
+                          <div class="progress-bar bg-success" 
+                              role="progressbar" 
+                              style="width: ${compito.progresso}%;" 
+                              aria-valuenow="${compito.progresso}" 
+                              aria-valuemin="0" 
+                              aria-valuemax="100">
+                              ${compito.progresso}%
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
                 <p>${compito.descrizione}</p>
                 ${fileLink}
             </div>
@@ -76,17 +131,63 @@ function caricaCompitiDalServer() {
 
   }
 
+  function inizializzaListenerProgresso() {
+    document.querySelectorAll('select[id^="progressSelect-"]').forEach(select => {
+      select.addEventListener("change", function () {
+        const progresso = this.value;
+        const compitoId = this.id.split("-")[1];
+  
+        // Aggiorna la barra visivamente
+        const progressBar = document.querySelector(`#task-${compitoId} .progress-bar`);
+        if (progressBar) {
+          progressBar.style.width = progresso + "%";
+          progressBar.setAttribute("aria-valuenow", progresso);
+          progressBar.textContent = progresso + "%";
+        }
+  
+        // Salva nel DB
+        fetch("php/aggiorna_progresso.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          body: `id=${compitoId}&progresso=${progresso}`
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (!data.success) {
+            alert("Errore nel salvataggio del progresso.");
+            return;
+          }
+  
+          // Se progresso = 100, chiedi conferma per eliminazione
+          if (parseInt(progresso) === 100) {
+            const conferma = confirm("Hai completato il compito. Vuoi eliminarlo?");
+            if (conferma) {
+              eliminaCompito(compitoId); // usa la funzione esistente
+            }
+          }
+        })
+        .catch(() => {
+          alert("Errore di rete durante l'aggiornamento del progresso.");
+        });
+      });
+    });
+  }
+  
+  
+
 
 
   
-//prende in input un compito, chiama la funzione precedente e aggiunge al container un box con il compito
-  function aggiungiCompitoDopoSalvataggio(compito) {
-    const container = document.getElementById("container");
-    if (!container) return;
+// //prende in input un compito, chiama la funzione precedente e aggiunge al container un box con il compito
+//   function aggiungiCompitoDopoSalvataggio(compito) {
+//     const container = document.getElementById("container");
+//     if (!container) return;
     
-    const index = container.children.length;
-    container.insertAdjacentHTML('beforeend', generaCompitoDaOggetto(compito, index));
-  }
+//     const index = container.children.length;
+//     container.insertAdjacentHTML('beforeend', generaCompitoDaOggetto(compito, index));
+//   }
   
 //permette di cancellare il compito dalla pagina
   function eliminaCompito(id) {

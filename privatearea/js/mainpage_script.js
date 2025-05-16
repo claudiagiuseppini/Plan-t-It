@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
             aggiungiCompiti();
           }
           if (page==='home'){
+            username();
             inizializzaCalendarioHome();
             impostaSuggerimentoGiornaliero();
           }

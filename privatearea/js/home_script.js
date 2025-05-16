@@ -89,3 +89,11 @@ function salvaCompiti(){
             }));
         });
 }
+
+function username(){
+    fetch('php/after_login.php')
+    .then(response => response.text())
+    .then(name => {
+        document.getElementById('user').textContent = "Bentornato, " + name +"!";
+    });
+}
