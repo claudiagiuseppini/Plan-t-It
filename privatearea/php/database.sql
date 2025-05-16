@@ -24,6 +24,7 @@ CREATE TABLE compiti (
     descrizione TEXT,
     priorita TEXT NOT NULL,
     scadenza DATE NOT NULL,
+    progresso INTEGER DEFAULT 0,
     ora TIME,
     file_path TEXT,
     FOREIGN KEY (utente) REFERENCES users(username) ON DELETE CASCADE,
