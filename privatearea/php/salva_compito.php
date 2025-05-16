@@ -72,11 +72,9 @@ if ($result) {
         'file_path' => $file_path,
         'utente' => $username
     ];
-    
-    echo "<script>
-        window.opener.aggiungiCompitoDopoSalvataggio(".json_encode($task_data).");
-        window.close();
-    </script>";
+    header("Location: ../mainpage.html"); // DA CAMBIARE redireziono per ora a mainpage !!!
+    exit();
+
 } 
 else {
     echo "Errore nel salvataggio: " . pg_last_error();
