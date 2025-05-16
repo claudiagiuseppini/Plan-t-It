@@ -98,66 +98,6 @@
 
 
 
-
-    .container-form{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    }
-
-
-    .login{
-    text-align: center;
-    background-color: var(--color_1);
-    padding: 50px; 
-    border-top-left-radius: 35px;
-    border-bottom-left-radius: 35px;
-    border-top-right-radius: 35px;
-    border-bottom-right-radius: 35px;
-    align-items: center; 
-    }
-
-
-
-    .login-form h2{
-    text-align: center;
-    margin-bottom: 30px;
-    color: var(--color_3)
-    }
-
-    .login-form input{
-    text-align: left;
-    color: var(--color_3);
-    padding: 15px 30px; 
-    margin-bottom: 15px;
-    border-radius: 35px;
-    }
-
-    .register{
-    text-align: center;
-    background-color: var(--color_1);
-    padding: 50px; 
-    border-top-left-radius: 35px;
-    border-bottom-left-radius: 35px;
-    border-top-right-radius: 35px;
-    border-bottom-right-radius: 35px;
-    align-items: center; 
-    }
-
-    .register-form h2{
-    text-align: center;
-    margin-bottom: 30px;
-    color: var(--color_3)
-    }
-
-    .register-form input{
-    text-align: left;
-    color: var(--color_3);
-    padding: 10px 40px; 
-    margin-bottom: 10px;
-    }
-
     .btn-form{
     border: none;
     border-radius: 25px;
