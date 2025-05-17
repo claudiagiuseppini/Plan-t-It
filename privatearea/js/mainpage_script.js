@@ -26,7 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
             initAmici();
           }
           if(page== 'giardino'){
+            MesediDefault();
             CaricaPiantina();
+
+            const inputMese = document.getElementById('mese');
+            if(inputMese){
+              inputMese.addEventListener('change', () => CaricaPiantina());
+            }
+            
           }
 
         })
