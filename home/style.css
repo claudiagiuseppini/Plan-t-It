@@ -44,13 +44,7 @@
 
 
    
-    .bg-white{
-    padding-top: 100px;
-    }
-
-    
-
-
+  
     .btn-form{
     border: none;
     border-radius: 25px;
@@ -118,7 +112,6 @@
     .plant-emoji:nth-child(3) { animation-delay: 1s; }
 
     .d-flex{
-       
         margin-left: 2px;
         margin-right: 2px;
         border-radius: 15px;

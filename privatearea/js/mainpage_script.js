@@ -25,6 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
           if(page== 'amici'){
             initAmici();
           }
+          if(page== 'giardino'){
+            CaricaPiantina();
+          }
 
         })
         .catch(error => console.error('Errore nel caricamento del contenuto:', error));

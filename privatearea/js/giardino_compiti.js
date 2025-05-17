@@ -5,17 +5,16 @@ function CreaPiantina(p){
 let svgPath;
 
   switch (p.priorita) {
-    case 'Alta':
-      svgPath = "../../assets/svg/plant_dfficult.svg";
+    case "Alta":
+      svgPath = "../../assets/svg/plant_difficult.svg";
       break;
-    case 'Media':
+    case "Media":
       svgPath = "../../assets/svg/plant_medium.svg";
       break;
-    case 'Massa':
+    case "Bassa":
       svgPath = "../../assets/svg/plant_easy.svg";
       break;
   }
-
 
   const img = document.createElement('img');
   img.src = svgPath;
