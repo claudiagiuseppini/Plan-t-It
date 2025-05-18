@@ -1,7 +1,4 @@
 function initAmici() {
-    const addFriendForm = document.getElementById('addFriendForm');
-    const friendUsernameInput = document.getElementById('friendUsername');
-    const friendRequestStatus = document.getElementById('friendRequestStatus');
     const friendsList = document.getElementById('friends-list');
     const pendingFriendsList = document.getElementById('pending-requests-list');
 
@@ -103,6 +100,38 @@ function initAmici() {
                 console.error('Errore durante il caricamento delle richieste in attesa:', error);
             }); 
     }
+
+    //Funzione per inviare richieste di amicizia
+    document.getElementById('addFriendForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const friendUsernameInput = document.getElementById('friendUsername');
+        const friendUsername = friendUsernameInput.value.trim();
+        const friendRequestStatus = document.getElementById('friendRequestStatus');
+
+        if (friendUsername === '') {
+            friendRequestStatus.innerHTML = '<div class="alert alert-danger">Inserisci un username valido</div>';
+            return;
+        }
+
+        fetch('php/send_request.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ friendUsername })
+        })
+        .then(response => response.json())
+        .then(data => {
+            friendRequestStatus.innerHTML = `<div class="alert alert-${data.success ? 'success' : 'danger'}">${data.message}</div>`;
+            if (data.success) {
+                friendUsernameInput.value = ''; // Svuota il campo di input
+                loadPendingRequest(); // Aggiorna la lista delle richieste in attesa
+            }
+        })
+        .catch(error => {
+            console.error('Errore durante l\'invio della richiesta:', error);
+            friendRequestStatus.innerHTML = '<div class="alert alert-danger">Errore durante l\'invio della richiesta</div>';
+        });
+    });
 }
 
 

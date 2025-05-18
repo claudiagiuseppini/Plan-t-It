@@ -55,3 +55,9 @@ CREATE TABLE amicizia (
     PRIMARY KEY (mittente, destinatario),
     FOREIGN KEY (mittente, destinatario) REFERENCES richiestaAmicizia(mittente, destinatario) ON DELETE CASCADE
 );
+
+--Da aggiungere nel vostro db
+
+--Per evitare che venga mandata stessa richiesta 
+ALTER TABLE richiestaAmicizia 
+ADD CONSTRAINT unique_request UNIQUE (mittente, destinatario);

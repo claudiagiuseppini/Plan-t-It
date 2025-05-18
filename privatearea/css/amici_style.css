@@ -40,6 +40,9 @@
         font-size: 0.65rem; 
     }
     #pending-requests-list li {
-        font-size: 0.65rem; 
+        font-size: 0.80rem; 
+    }
+    #friendRequestStatus {
+         font-size: 0.80rem; 
     }
  }
