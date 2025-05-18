@@ -3,6 +3,7 @@
     --color_1: #198754;
     --color_2: #ffffff; 
     --color_3: #000000; 
+    --color_4: #cef8d0;
     }
 
     *{
@@ -42,7 +43,9 @@
     border-radius: 35px;
     }
 
-
+    .bg-opacity{
+        background-color: rgba(255, 255, 255, 0.42) !important;
+    }
    
   
     .btn-form{
@@ -53,50 +56,12 @@
     margin-bottom: 15px;
     }
 
-
-    .timeline {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 20px;
-    margin:auto; 
-    }
-
-    .step {
-    background-color: #F5F5F0;
-    padding: 20px 20px;
-    border-radius: 35px;
-    margin-left: 30px;
-    text-align: center;
-    }
-
-    .content h3 p{
-    color: var(--color_3);
-    }
+   
 
     .container{
         margin-top: 50px;
     }
 
-    .container-accordion{
-        padding-top: 90px;
-        padding-bottom: 90px;
-    }
-
-    .accordion-button{
-        background-color: var(--color_1);
-        color: var(--color_2);
-    }
-
-    .accordion-button:not(.collapsed){
-        background-color: var(--color_1);
-        color: var(--color_2);
-    }
-
-    .accordion-button:focus {
-        box-shadow: none;
-        border-color: transparent;
-    }
 
     @keyframes bounce {
         0%, 100% { transform: translateY(0); }
@@ -111,12 +76,19 @@
     .plant-emoji:nth-child(2) { animation-delay: 0.5s; }
     .plant-emoji:nth-child(3) { animation-delay: 1s; }
 
+    /*
     .d-flex{
         margin-left: 2px;
         margin-right: 2px;
         border-radius: 15px;
         background-color: #cef8d0;
      
+    }
+    */
+
+     
+    .card-green{
+        background-color: var(--color_4);
     }
 
     
