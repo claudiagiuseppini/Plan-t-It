@@ -36,7 +36,14 @@
     background-color: green !important;  
     border-color: green !important;
 }
-
+#calendar .fc-event-time,
+#calendar .fc-event-title{
+    color: white !important;
+    font-weight: normal !important;
+}
+#calendar .fc-daygrid-event-dot {
+    display: none !important;
+}
 /*responsive*/
 @media (max-width: 768px) {
     #calendar .fc-toolbar button {
