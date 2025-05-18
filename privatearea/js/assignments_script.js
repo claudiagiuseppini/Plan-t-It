@@ -191,30 +191,52 @@ function caricaCompitiDalServer() {
   
 //permette di cancellare il compito dalla pagina
   function eliminaCompito(id) {
-    if (!confirm("Sei sicuro di voler eliminare questo compito?")) return;
-  
-    fetch("php/elimina_compito.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: id })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.successo) {
-            const taskBox = document.getElementById(`task-${id}`);
-            if (taskBox) {
-                taskBox.style.transition = "opacity 0.3s";
-                taskBox.style.opacity = "0";
-                setTimeout(() => taskBox.remove(), 300);
-            }
-        } else {
-            alert("Errore nell'eliminazione: " + data.errore);
+    swal({
+        title: "Sei sicuro?",
+        text: "Questa azione non può essere annullata!",
+        icon: "warning",
+        buttons: ["Annulla", "Elimina"],
+        dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        fetch("php/elimina_compito.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id: id })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.successo) {
+                const taskBox = document.getElementById(`task-${id}`);
+                if (taskBox) {
+                    taskBox.style.transition = "opacity 0.3s";
+                    taskBox.style.opacity = "0";
+                    setTimeout(() => taskBox.remove(), 300);
+                }
+                swal({
+                        title: "Eliminato!",
+                        text: "Il compito è stato eliminato con successo.",
+                        icon: "success",
+                        timer: 1500,
+                        buttons: false,
+                });
+            } else {
+                    swal({
+                        title: "Errore!",
+                        text: data.errore,
+                        icon: "error",
+                    });
+                  }
+        })
+        .catch(err => {
+            console.error("Errore:", err);
+            swal({
+                    title: "Errore di connessione!",
+                    text: "Errore durante l'eliminazione del compito.",
+                    icon: "error",
+              });
+            });
         }
-    })
-    .catch(err => {
-        console.error("Errore:", err);
-        alert("Errore di connessione durante l'eliminazione");
     });
 }
-
   
