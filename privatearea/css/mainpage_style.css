@@ -67,8 +67,11 @@ body {
   }
   .dropdown-item:active {
    background-color: rgba(128, 128, 128, 0.479) !important;
+  }
 
-}
+  .dropdown-item{
+    font-size: 0.875rem;
+  }
 
   /* Sidebar overlay solo su mobile */
   @media (max-width: 991.98px) {
