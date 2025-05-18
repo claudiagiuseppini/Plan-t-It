@@ -3,8 +3,13 @@ require 'db_connect.php';
 header('Content-Type: application/json');
 
 session_start();
-//$currentUser = $_SESSION['username'];
-$currentUser = "Mario";
+$currentUser = strval(isset($_SESSION['username']) ? $_SESSION['username'] : null);
+if ($currentUser === null) {
+    http_response_code(401);
+    echo json_encode(["error" => "Utente non autenticato"]);
+    exit;
+}
+
 $data = json_decode(file_get_contents('php://input'), true);
 $friendUsername = trim($data['username'] ?? '');
 

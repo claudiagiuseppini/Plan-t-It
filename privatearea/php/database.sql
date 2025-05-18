@@ -1,6 +1,3 @@
-CREATE DATABASE IF NOT EXISTS plant;
-USE plant;
-
 -- Tabella users
 CREATE TABLE users (
     username VARCHAR(50) PRIMARY KEY,
@@ -18,7 +15,7 @@ CREATE TABLE piante (
 -- Tabella compiti
 CREATE TABLE compiti (
     id SERIAL PRIMARY KEY,
-    utente VARCHAR(50) NOT NULL default 'Mario',
+    utente VARCHAR(50) NOT NULL,
     pianta VARCHAR(50),
     titolo TEXT NOT NULL,
     descrizione TEXT,
