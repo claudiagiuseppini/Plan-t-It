@@ -28,6 +28,18 @@ CREATE TABLE compiti (
     FOREIGN KEY (pianta) REFERENCES piante(codice) ON DELETE CASCADE
 );
 
+
+-- Tabella compitiCompletati
+CREATE TABLE compitiCompletati(
+    id PRIMARY KEY,
+    utente VARCHAR(50) NOT NULL,
+    titolo TEXT NOT NULL,
+    priorita TEXT NOT NULL,
+    scadenza DATE NOT NULL,
+    FOREIGN KEY (utente) REFERENCES users(username) ON DELETE CASCADE
+);
+
+
 -- Tabella compitiCondivisi
 CREATE TABLE compitiCondivisi (
     id SERIAL PRIMARY KEY,

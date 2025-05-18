@@ -6,6 +6,7 @@ function MesediDefault(){
     inputMese.value = `${anno}-${mese}`;
 }
 
+
 function CreaPiantina(p){
   const div = document.createElement('div');
 
@@ -29,8 +30,13 @@ let svgPath;
   img.style.width = '160px';
   img.style.height = '200px';
   
+  const title = document.createElement('p');
+  title.textContent= p.titolo;
+  title.style.fontWeight = "bold";
+  title.style.textAlign= "center"; 
 
   div.appendChild(img);
+  div.appendChild(title); 
 
   return div;
 }
