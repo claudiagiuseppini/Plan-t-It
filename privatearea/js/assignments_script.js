@@ -162,10 +162,17 @@ function caricaCompitiDalServer() {
   
           // Se progresso = 100, chiedi conferma per eliminazione
           if (parseInt(progresso) === 100) {
-            const conferma = confirm("Hai completato il compito. Vuoi eliminarlo?");
-            if (conferma) {
-              eliminaCompito(compitoId); // usa la funzione esistente
-            }
+            // aggiungo il compito alla tabella dei compiti completati
+            aggiungiCompitoCompletato(compitoId).then (success => {
+
+              if (success){
+                const conferma = confirm("Hai completato il compito. Vuoi eliminarlo?");
+                if (conferma) {
+                  eliminaCompito(compitoId); // usa la funzione esistente
+                }
+              }
+
+            });
           }
         })
         .catch(() => {
@@ -177,9 +184,6 @@ function caricaCompitiDalServer() {
   
   
 
-
-
-  
 // //prende in input un compito, chiama la funzione precedente e aggiunge al container un box con il compito
 //   function aggiungiCompitoDopoSalvataggio(compito) {
 //     const container = document.getElementById("container");
@@ -217,4 +221,17 @@ function caricaCompitiDalServer() {
     });
 }
 
-  
+function aggiungiCompitoCompletato(id){
+   return fetch("php/compito_completato.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: id })
+    })
+    .then(res => res.json())
+
+    .catch(err => {
+        console.error("Errore:", err);
+        alert("Errore di connessione durante l'eliminazione");
+        return false; 
+    });
+}
