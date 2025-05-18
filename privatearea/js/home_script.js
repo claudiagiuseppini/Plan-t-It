@@ -82,11 +82,20 @@ function salvaCompiti(){
     return fetch("php/leggi_compiti.php")
         .then(res => res.json())
         .then(compiti => {
-            return compiti.map(c => ({
-                title: c.titolo,
-                start: c.scadenza,
-                borderColor: getColor(c.priorita)
-            }));
+            return compiti.map(c => {
+                const event = {
+                    id: c.id,
+                    title: c.titolo,
+                    start: c.scadenza,
+                    allDay: !c.ora, //se non esiste orario tutto il giorno
+                    borderColor: getColor(c.priorita)
+                };
+                if (c.ora) {
+                    event.start = `${c.scadenza}T${c.ora}`;
+                    event.allDay = false;
+                }
+                return event;
+            });
         });
 }
 

@@ -88,7 +88,7 @@ function aggiungiCompiti() {
                         id: compito.id,
                         title: compito.titolo,
                         start: compito.scadenza,
-                        allDay: !compito.orario, //se non esiste orario tutto il giorno
+                        allDay: !compito.ora, //se non esiste orario tutto il giorno
                         extendedProps: {
                             descrizione: compito.descrizione,
                             priorita: compito.priorita
@@ -97,8 +97,9 @@ function aggiungiCompiti() {
                     };
 
                     //se esiste orario
-                    if (compito.orario) {
-                        event.start = `${compito.scadenza}T${compito.orario}`;
+                    if (compito.ora) {
+                        event.start = `${compito.scadenza}T${compito.ora}`;
+                        event.allDay = false;
                     }
                      // Aggiungo la classe CSS in base alla priorità
                     if (compito.priorita === 'Alta') {

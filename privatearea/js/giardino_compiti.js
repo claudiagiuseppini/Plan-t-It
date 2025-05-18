@@ -1,3 +1,11 @@
+function MesediDefault(){
+    inputMese = document.getElementById("mese");
+    const data = new Date();
+    const anno = data.getFullYear();
+    const mese = String(data.getMonth() + 1).padStart(2, '0');
+    inputMese.value = `${anno}-${mese}`;
+}
+
 function CreaPiantina(p){
   const div = document.createElement('div');
 
@@ -5,22 +13,21 @@ function CreaPiantina(p){
 let svgPath;
 
   switch (p.priorita) {
-    case 'Alta':
-      svgPath = "../../assets/svg/plant_dfficult.svg";
+    case "Alta":
+      svgPath = "../../assets/svg/plant_difficult.svg";
       break;
-    case 'Media':
+    case "Media":
       svgPath = "../../assets/svg/plant_medium.svg";
       break;
-    case 'Massa':
+    case "Bassa":
       svgPath = "../../assets/svg/plant_easy.svg";
       break;
   }
 
-
   const img = document.createElement('img');
   img.src = svgPath;
-  img.style.width = '80px';
-  img.style.height = '100px';
+  img.style.width = '160px';
+  img.style.height = '200px';
   
 
   div.appendChild(img);
@@ -36,10 +43,19 @@ function CaricaPiantina() {
       .then(piantina => {
         const container = document.getElementById("container");
         container.innerHTML = "";
-    
+        
+        // consideriamo solo i compiti relativi al mese selezionato
+        const selezione = document.getElementById("mese").value;
+        const [annoSelezionato, meseSelezionato] = selezione.split("-").map(Number);
+
         piantina.forEach((p) => {
-            const piantinaDiv = CreaPiantina(p);
-            container.appendChild(piantinaDiv);
+            scadenza = p.scadenza; 
+            const [anno, mese, giorno] = scadenza.split("-").map(Number);
+
+            if (annoSelezionato == anno && meseSelezionato==mese){
+                const piantinaDiv = CreaPiantina(p);
+                container.appendChild(piantinaDiv);
+            }
         });
       });
 } 

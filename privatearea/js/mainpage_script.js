@@ -25,6 +25,16 @@ document.addEventListener('DOMContentLoaded', () => {
           if(page== 'amici'){
             initAmici();
           }
+          if(page== 'giardino'){
+            MesediDefault();
+            CaricaPiantina();
+
+            const inputMese = document.getElementById('mese');
+            if(inputMese){
+              inputMese.addEventListener('change', () => CaricaPiantina());
+            }
+            
+          }
 
         })
         .catch(error => console.error('Errore nel caricamento del contenuto:', error));

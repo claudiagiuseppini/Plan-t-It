@@ -21,9 +21,15 @@
 		.st1{clip-path:url(#SVGID_2_);fill:#72C8A9;stroke:#72C8A9;stroke-miterlimit:10;}
 		.st2{clip-path:url(#SVGID_4_);fill:#72C8A9;stroke:#72C8A9;stroke-miterlimit:10;}
 		.st3_v1{fill:#F5076A;stroke:#F5076A;stroke-miterlimit:10;} 
-		.st3_v2{fill:#FBBB88;stroke:#FBBB88;stroke-miterlimit:10;}
-		.st3_v3{fill:#C26DBC;stroke:#C26DBC;stroke-miterlimit:10;}
+		.st3_v2{fill:#C26DBC;stroke:#C26DBC;stroke-miterlimit:10;}
 		.st4{fill:#FCDA7B;stroke:#FCDA7B;stroke-miterlimit:10;}
+
+    body {
+        background-image: url("../assets/sfondo.png");
+        background-size: cover;
+        background-position: center;
+    }
+
 	</style>
 
 		<script>
@@ -91,7 +97,7 @@
 </header>
 
 
-<section class="bg-white py-5 mt-5 mb-5">
+<section class="bg-white bg-opacity py-3 mt-5 mx-3 mb-5 rounded shadow-sm">
 <div class="container"> 
   <!-- flexbox-->
   <div class="d-flex flex-wrap justify-content-center align-items-center">
@@ -200,11 +206,11 @@
 
 	<!-- petali --> 
 	<g id="F2_Layer_4" opacity = "0">
-		<ellipse class="st3_v3" cx="363.34" cy="249.45" rx="30" ry="27.5"/>
-		<ellipse class="st3_v3" cx="373.36" cy="204.08" rx="30" ry="27.5"/>
-		<ellipse class="st3_v3" cx="334.36" cy="176.58" rx="30" ry="27.5"/>
-		<ellipse class="st3_v3" cx="296.03" cy="204.08" rx="27.25" ry="27.5"/>
-		<ellipse class="st3_v3" cx="312.61" cy="249.45" rx="27.25" ry="27.5"/>
+		<ellipse class="st3_v2" cx="363.34" cy="249.45" rx="30" ry="27.5"/>
+		<ellipse class="st3_v2" cx="373.36" cy="204.08" rx="30" ry="27.5"/>
+		<ellipse class="st3_v2" cx="334.36" cy="176.58" rx="30" ry="27.5"/>
+		<ellipse class="st3_v2" cx="296.03" cy="204.08" rx="27.25" ry="27.5"/>
+		<ellipse class="st3_v2" cx="312.61" cy="249.45" rx="27.25" ry="27.5"/>
 	</g>
 	
   <!-- centro --> 
@@ -223,38 +229,40 @@
 
 
 <!-- py5: classe bootstrap per un ampio padding verticale (top e bottom)-->
-<section class=" bg-white py-5 mt-5 mb-5" id="perche-usare-plantit">
+<section class=" bg-white py-3 mt-5 mx-3 mb-5 bg-opacity rounded shadow-sm" id="perche-usare-plantit">
   <div class="container">
     <!-- mb-5: margin bottom-->
     <h2 class="text-center fw-bold mb-5"> Perché usare <img src="../assets/logo_bianco-removebg-preview.png" height="40"> ?</h2>
 
     <!-- g-5: gap tra le righe e le colonne-->
     <div class="row text-center g-5">
+
       <div class="col-md-4">
-        <div class="d-flex flex-column align-items-center">
+        <div class="card h-100 text-center p-5 rounded-3 border-0 shadow-sm card-green">
           <!-- fs: 1 è il font size-->
           <div class="plant-emoji fs-1 mb-3">🌱</div> 
-          <h5>Coltiva i tuoi obiettivi</h5>
-          <p class="text">Ogni impegno è un seme. Pianta, annaffia e guarda la tua crescita giorno dopo giorno.</p>
+          <h5 class= "card-title">Coltiva i tuoi obiettivi</h5>
+          <p class="card-text">Ogni impegno è un seme. Pianta, annaffia e guarda la tua crescita giorno dopo giorno.</p>
         </div>
       </div>
 
       <!-- col-md-4: ogni colonna prende 4/12 dello spazio, quindi ci saranno 3 colonne per riga. Da mobile invece verranno visualizzate una sopra l'altra-->
       <div class="col-md-4">
-        <div class="d-flex flex-column align-items-center">
+        <div class="card h-100 text-center p-5 rounded-3 border-0 shadow-sm card-green">
           <div class="plant-emoji fs-1 mb-3">🪴</div>
-          <h5>Visualizza il tuo progresso</h5>
-          <p class="text">Potrai vedere una pianta che cresce invece di spuntare la solita to-do list.</p>
+          <h5 class="card-title">Visualizza il tuo progresso</h5>
+          <p class="card-text">Potrai vedere una pianta che cresce invece di spuntare la solita to-do list.</p>
         </div>
       </div>
 
       <div class="col-md-4">
-        <div class="d-flex flex-column align-items-center">
+        <div class="card h-100 text-center p-5 rounded-3 border-0 shadow-sm card-green">
           <div class="plant-emoji fs-1 mb-3">🌸</div>
-          <h5>Niente pressione</h5>
-          <p class="text"> Sei tu a decidere quando inserire le task nel tuo calendario. E ricorda, anche piccole azioni quotidiane fanno crescere qualcosa di bello.</p>
+          <h5 class="card-title">Niente pressione</h5>
+          <p class="card-text"> Sei tu a decidere quando inserire le task nel tuo calendario. E ricorda, anche piccole azioni quotidiane fanno crescere qualcosa di bello.</p>
         </div>
       </div>
+
       <p class="info"> Vuoi sapere di più su come funziona? <a href = "home/come_funziona.html"> Clicca qui </a></p>
 
 

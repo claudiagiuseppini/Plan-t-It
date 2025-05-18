@@ -6,11 +6,21 @@ if (!$conn){
     echo "errore di connessione";
 }
 
+session_start();
+
+$username = isset($_SESSION['username']) ? $_SESSION['username'] : null;
+
+if ($username === null) {
+    http_response_code(401);
+    echo json_encode(["error" => "Utente non autenticato correttamente"]);
+    exit;
+}
+
 // seleziona tutti i compiti completati (progsso = 100)
 $prog = 100; 
 try {
-    $query = "SELECT * FROM compiti WHERE progresso=$1 ORDER BY scadenza DESC";
-    $result = pg_query_params($conn, $query, array($prog));
+    $query = "SELECT * FROM compiti WHERE (progresso=$1 AND utente=$2) ORDER BY scadenza DESC";
+    $result = pg_query_params($conn, $query, array($prog, $username));
     
     if (!$result) {
         http_response_code(500);
