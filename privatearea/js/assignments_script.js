@@ -77,7 +77,7 @@ function caricaCompitiDalServer() {
     <div class="position-relative panel task-box border rounded mb-3 shadow-sm" id="task-${compito.id}">
         <button class="btn btn-sm btn-outline-danger position-absolute" 
                 style="top: 6px; right: 6px; padding: 0.1rem 0.4rem; font-size: 0.75rem;"
-                onclick="eliminaCompito(${compito.id})">
+                onclick="confermaEliminaCompito(${compito.id})">
             &times;
         </button>
         <div class="panel-heading" role="tab" id="heading${index}">
@@ -161,12 +161,19 @@ function caricaCompitiDalServer() {
           }
   
           // Se progresso = 100, chiedi conferma per eliminazione
-          if (parseInt(progresso) === 100) {
-            const conferma = confirm("Hai completato il compito. Vuoi eliminarlo?");
-            if (conferma) {
-              eliminaCompito(compitoId); // usa la funzione esistente
-            }
+         if (parseInt(progresso) === 100) {
+        swal({
+          title: "Hai completato il compito.",
+          text: "Vuoi eliminarlo?",
+          icon: "warning",
+          buttons: ["Annulla", "Elimina"],
+          dangerMode: true,
+        }).then((willDelete) => {
+          if (willDelete) {
+            eliminaCompito(compitoId); 
           }
+        });
+}
         })
         .catch(() => {
           alert("Errore di rete durante l'aggiornamento del progresso.");
@@ -190,15 +197,21 @@ function caricaCompitiDalServer() {
 //   }
   
 //permette di cancellare il compito dalla pagina
+
+function confermaEliminaCompito(id) {
+  swal({
+      title: "Sei sicuro?",
+      text: "Questa azione non può essere annullata!",
+      icon: "warning",
+      buttons: ["Annulla", "Elimina"],
+      dangerMode: true,
+  }).then((willDelete) => {
+    if (willDelete) {
+      eliminaCompito(id);  // chiama la funzione che fa la fetch
+    }
+  });
+}
   function eliminaCompito(id) {
-    swal({
-        title: "Sei sicuro?",
-        text: "Questa azione non può essere annullata!",
-        icon: "warning",
-        buttons: ["Annulla", "Elimina"],
-        dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
         fetch("php/elimina_compito.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -235,8 +248,6 @@ function caricaCompitiDalServer() {
                     text: "Errore durante l'eliminazione del compito.",
                     icon: "error",
               });
-            });
-        }
-    });
+        });
 }
   
