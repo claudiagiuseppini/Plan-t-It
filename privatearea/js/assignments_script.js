@@ -166,12 +166,21 @@ function caricaCompitiDalServer() {
             aggiungiCompitoCompletato(compitoId).then (success => {
 
               if (success){
-                const conferma = confirm("Hai completato il compito. Vuoi eliminarlo?");
-                if (conferma) {
-                  eliminaCompito(compitoId); // usa la funzione esistente
-                }
-              }
+                swal({
+                title: "Hai completato il compito.",
+                text: "Vuoi eliminarlo?",
+                icon: "warning",
+                buttons: ["Annulla", "Elimina"],
+                dangerMode: true,
 
+                }).then((willDelete) => {
+                  if (willDelete) {
+                    eliminaCompito(compitoId); 
+                }
+                });
+                               
+              }
+              
             });
           }
         })
