@@ -77,7 +77,7 @@ function caricaCompitiDalServer() {
     <div class="position-relative panel task-box border rounded mb-3 shadow-sm" id="task-${compito.id}">
         <button class="btn btn-sm btn-outline-danger position-absolute" 
                 style="top: 6px; right: 6px; padding: 0.1rem 0.4rem; font-size: 0.75rem;"
-                onclick="eliminaCompito(${compito.id})">
+                onclick="confermaEliminaCompito(${compito.id})">
             &times;
         </button>
         <div class="panel-heading" role="tab" id="heading${index}">
@@ -194,31 +194,58 @@ function caricaCompitiDalServer() {
 //   }
   
 //permette di cancellare il compito dalla pagina
+
+function confermaEliminaCompito(id) {
+  swal({
+      title: "Sei sicuro?",
+      text: "Questa azione non può essere annullata!",
+      icon: "warning",
+      buttons: ["Annulla", "Elimina"],
+      dangerMode: true,
+  }).then((willDelete) => {
+    if (willDelete) {
+      eliminaCompito(id);  // chiama la funzione che fa la fetch
+    }
+  });
+}
   function eliminaCompito(id) {
-    if (!confirm("Sei sicuro di voler eliminare questo compito?")) return;
-  
-    fetch("php/elimina_compito.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: id })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.successo) {
-            const taskBox = document.getElementById(`task-${id}`);
-            if (taskBox) {
-                taskBox.style.transition = "opacity 0.3s";
-                taskBox.style.opacity = "0";
-                setTimeout(() => taskBox.remove(), 300);
-            }
-        } else {
-            alert("Errore nell'eliminazione: " + data.errore);
-        }
-    })
-    .catch(err => {
-        console.error("Errore:", err);
-        alert("Errore di connessione durante l'eliminazione");
-    });
+        fetch("php/elimina_compito.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id: id })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.successo) {
+                const taskBox = document.getElementById(`task-${id}`);
+                if (taskBox) {
+                    taskBox.style.transition = "opacity 0.3s";
+                    taskBox.style.opacity = "0";
+                    setTimeout(() => taskBox.remove(), 300);
+                }
+                swal({
+                        title: "Eliminato!",
+                        text: "Il compito è stato eliminato con successo.",
+                        icon: "success",
+                        timer: 1500,
+                        buttons: false,
+                });
+            } else {
+                    swal({
+                        title: "Errore!",
+                        text: data.errore,
+                        icon: "error",
+                    });
+                  }
+        })
+        .catch(err => {
+            console.error("Errore:", err);
+            swal({
+                    title: "Errore di connessione!",
+                    text: "Errore durante l'eliminazione del compito.",
+                    icon: "error",
+              });
+        });
 }
 
 function aggiungiCompitoCompletato(id){

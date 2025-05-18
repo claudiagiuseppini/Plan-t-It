@@ -27,6 +27,10 @@
     padding: 20px;      
     background-color: #2e7d322b; 
 }
+.pending-requests-container{
+     background-color: #2e7d322b; 
+
+}
 
  @media (max-width: 575.98px){
     .friends-container{
@@ -34,5 +38,11 @@
     }
     #friends-list li {
         font-size: 0.65rem; 
+    }
+    #pending-requests-list li {
+        font-size: 0.80rem; 
+    }
+    #friendRequestStatus {
+         font-size: 0.80rem; 
     }
  }
