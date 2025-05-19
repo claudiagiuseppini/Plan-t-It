@@ -13,7 +13,12 @@ if ($currentUser === null) {
 $query ="SELECT u.username, u.nome, u.cognome, u.email
           FROM amicizia a 
           INNER JOIN users u ON a.destinatario = u.username 
-          WHERE a.mittente = $1";
+          WHERE a.mittente = $1
+          UNION
+         SELECT u.username, u.nome, u.cognome, u.email
+          FROM amicizia a 
+          INNER JOIN users u ON a.mittente = u.username 
+          WHERE a.destinatario = $1";
 
 $result = pg_query_params($conn, $query, [$currentUser]);
 

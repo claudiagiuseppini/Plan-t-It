@@ -76,10 +76,23 @@ function caricaCompitiDalServer() {
     return `
     <div class="position-relative panel task-box border rounded mb-3 shadow-sm" id="task-${compito.id}">
         <button class="btn btn-sm btn-outline-danger position-absolute" 
-                style="top: 6px; right: 6px; padding: 0.1rem 0.4rem; font-size: 0.75rem;"
+                style="top: 6px; right: 6px; padding: 0.1rem 0.4rem; font-size: 0.9rem;"
                 onclick="confermaEliminaCompito(${compito.id})">
             &times;
         </button>
+         <div class="position-absolute" style="top: 8px; right: 70px;">
+        <button class="btn btn-outline-primary d-flex align-items-center dropdown-toggle" 
+                style="padding: 0.35rem 0.65rem; font-size: 0.9rem;"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                onmouseover="caricaAmiciPerCondivisione(${compito.id})">
+            <i class="fa-solid fa-share-from-square me-1"></i>
+            <span>Condividi</span>
+        </button>
+        
+            <ul class="dropdown-menu p-2" id="dropdown-amici-${compito.id}" style="width: 200px; max-height: 300px; overflow-y: auto;">
+                <li class="dropdown-item-text text-muted">Caricamento amici...</li>
+            </ul>
+        </div>
         <div class="panel-heading" role="tab" id="heading${index}">
             <h4 class="panel-title mb-0">
                 <button class="btn text-body w-100 text-start d-flex justify-content-between align-items-center"
@@ -270,4 +283,81 @@ function aggiungiCompitoCompletato(id){
         alert("Errore di connessione durante l'eliminazione");
         return false; 
     });
+}
+
+function caricaAmiciPerCondivisione(taskId) {
+  fetch('php/get_amici.php')
+      .then(response => response.json())
+      .then(amici => {
+          const dropdown = document.getElementById(`dropdown-amici-${taskId}`);
+          dropdown.innerHTML = '';
+          
+          if (amici.length > 0) {
+              amici.forEach(amico => {
+                  const li = document.createElement('li');
+                  li.className = 'd-flex justify-content-between align-items-center p-2';
+                  li.innerHTML = `
+                      <span>${amico.username}</span>
+                      <button class="btn btn-sm btn-success" 
+                              onclick="condividiCompitoConAmico(${taskId}, '${amico.username}')">
+                          <i class="fas fa-share"></i>
+                      </button>
+                  `;
+                  dropdown.appendChild(li);
+              });
+          } else {
+              dropdown.innerHTML = '<li class="dropdown-item-text text-muted">Nessun amico disponibile</li>';
+          }
+      })
+      .catch(error => {
+          console.error('Errore nel caricamento degli amici:', error);
+          document.getElementById(`dropdown-amici-${taskId}`).innerHTML = 
+              '<li class="dropdown-item-text text-danger">Errore nel caricamento</li>';
+      });
+}
+
+
+function condividiCompitoConAmico(taskId, amicoUsername) {
+  fetch('php/condividi_compito.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+          taskId: taskId, 
+          amicoUsername: amicoUsername 
+      })
+  })
+  .then(response => {
+      if (!response.ok) {
+          return response.text().then(text => {
+              try {
+                  const errorData = JSON.parse(text);
+                  throw new Error(errorData.message || 'Errore del server');
+              } catch (e) {
+                  throw new Error(text || 'Errore del server');
+              }
+          });
+      }
+      return response.json();
+  })
+  .then(data => {
+      if (data.success) {
+          swal({
+              title: "Successo!",
+              text: data.message || `Compito condiviso con ${amicoUsername}`,
+              icon: "success",
+              timer: 1500,
+              buttons: false
+          });
+      } else {
+          throw new Error(data.message || "Errore durante la condivisione");
+      }
+  })
+  .catch(error => {
+      console.error('Errore:', error);
+      swal({
+          title: "Errore!",
+          text: error.message,
+          icon: "error"
+      });
+  });
 }

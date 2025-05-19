@@ -1,1 +1,47 @@
-notifiche 
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Stili -->
+   <link rel="stylesheet" href="./css/assignments_style.css">
+
+    <title>Gestione Notifiche</title>
+
+
+</head>
+<body>
+   
+    
+   
+    <div id = "container1" class="container p-4 mb-4 ">
+        <div data-bs-spy="scroll">
+            <h4 class="border-bottom pb-2 mb-3"><i class="fa-solid fa-handshake text-success me-2"></i>Le mie Richieste</h4>
+            <div class="request-container border rounded" >
+                <ul class="list-group" id="pending-requests-list">
+                    <!-- richiesta in entrata -->
+                </ul>
+            </div>
+        </div>
+       
+    </div>
+    <div id = "container2" class="container p-4 mb-4">
+        <div data-bs-spy="scroll"></div>
+            <h4 class="border-bottom pb-2 mb-3"><i class="fa-solid fa-user-plus text-success me-2"></i>News</h4>
+            <div class="request-container border rounded" >
+                <ul class="list-group" id="lista-compiti-condivisi">
+                    <!-- compiti condivisi -->
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    
+
+    <!-- Script-->
+    <script src="../bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="./js/notifiche_script.js"></script>
+    
+</body>
+</html>

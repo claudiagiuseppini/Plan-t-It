@@ -25,6 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
           if(page== 'amici'){
             initAmici();
           }
+          if(page== 'notifiche'){
+            loadIncomingRequest();
+            loadSharedTasks();
+          }
           if(page== 'giardino'){
             MesediDefault();
             CaricaPiantina();
