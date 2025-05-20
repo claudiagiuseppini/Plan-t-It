@@ -11,7 +11,7 @@ if (!isset($_SESSION['username'])) {
 $currentUser = $_SESSION['username'];
 // prendiamo i compiti condivisi con user
 try {
-    $query = "SELECT c.id, c.titolo, c.descrizione, c.scadenza, c.utente 
+    $query = "SELECT c.id, c.titolo, c.descrizione, c.scadenza, c.utente, cc.data
               FROM compiti c
               JOIN compitiCondivisi cc ON c.id = cc.id
               WHERE cc.amico = $1

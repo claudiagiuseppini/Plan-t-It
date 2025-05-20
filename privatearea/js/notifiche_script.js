@@ -75,7 +75,7 @@ function loadSharedTasks() {
                     li.innerHTML = `
                         <div>
                             <div class="text-muted small">
-                                 ${task.utente} ha condiviso con te:
+                                 Il ${task.data} ${task.utente} ha condiviso con te:
                             </div>
                             <strong>${task.titolo}</strong> !!
                         </div>

@@ -78,25 +78,55 @@ function getColor(p){
     return 'black';
 }
 
-function salvaCompiti(){
-    return fetch("php/leggi_compiti.php")
-        .then(res => res.json())
-        .then(compiti => {
-            return compiti.map(c => {
-                const event = {
-                    id: c.id,
-                    title: c.titolo,
-                    start: c.scadenza,
-                    allDay: !c.ora, //se non esiste orario tutto il giorno
-                    borderColor: getColor(c.priorita)
-                };
-                if (c.ora) {
-                    event.start = `${c.scadenza}T${c.ora}`;
-                    event.allDay = false;
-                }
-                return event;
-            });
+function salvaCompiti() {
+    // cerca su entrambi i file php
+    return Promise.all([
+        fetch("php/leggi_compiti.php").then(res => res.json()),
+        fetch("php/leggi_compiticondivisi.php").then(res => res.json())
+    ])
+    .then(([compiti, compitiCondivisi]) => {
+        // task normali
+        const regularEvents = compiti.map(c => {
+            const event = {
+                id: c.id,
+                title: c.titolo,
+                start: c.scadenza,
+                allDay: !c.ora, //se non esiste orario tutto il giorno
+                borderColor: getColor(c.priorita),
+                extendedProps: { condiviso: false }
+            };
+            if (c.ora) {
+                event.start = `${c.scadenza}T${c.ora}`;
+                event.allDay = false;
+            }
+            return event;
         });
+
+        //task condivise
+        const sharedEvents = compitiCondivisi.map(c => {
+            const event = {
+                id: c.id,
+                title: c.titolo,
+                start: c.scadenza,
+                allDay: !c.ora, //se non esiste orario tutto il giorno
+                borderColor: getColor(c.priorita),
+                extendedProps: { condiviso: true },
+                className: 'evento-condiviso'
+            };
+            if (c.ora) {
+                event.start = `${c.scadenza}T${c.ora}`;
+                event.allDay = false;
+            }
+            return event;
+        });
+
+        //combinali
+        return [...regularEvents, ...sharedEvents];
+    })
+    .catch(error => {
+        console.error("Errore nel caricare i compiti:", error);
+        throw error; 
+    });
 }
 
 function username(){

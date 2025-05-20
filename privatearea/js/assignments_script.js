@@ -43,15 +43,26 @@ function showForm() {
 
 //chiede al database quali sono i compiti ordinati per scadenza
 function caricaCompitiDalServer() {
+    const container = document.getElementById("container");
     fetch("php/leggi_compiti.php")
       .then(res => res.json())
       .then(compiti => {
-        const container = document.getElementById("container");
+        
         container.innerHTML = "";
     
   
         compiti.forEach((c, index) => {
-          container.innerHTML += generaCompitoDaOggetto(c, index);
+          container.innerHTML += generaCompitoDaOggetto(c, index, false);
+        });
+        inizializzaListenerProgresso();
+      });
+      fetch("php/leggi_compiticondivisi.php")
+      .then(res => res.json())
+      .then(compiti => {
+    
+  
+        compiti.forEach((c, index) => {
+          container.innerHTML += generaCompitoDaOggetto(c, index, true);
         });
         inizializzaListenerProgresso();
       });
@@ -63,36 +74,42 @@ function caricaCompitiDalServer() {
   }
 
 
-  
+
   //prende in input un compito e crea una box
-  function generaCompitoDaOggetto(compito, index) {
+  function generaCompitoDaOggetto(compito, index, cond) {
     const id = generateUniqueId(index);
     const fileLink = compito.file_path
         ? `<a href="uploads/${compito.file_path}" target="_blank" class="btn btn-outline-primary btn-sm mt-2">📎 Apri allegato</a>`
         : '';
-        console.log("Compito ricevuto:", compito);
+    console.log("Compito ricevuto:", compito);
 
+    //se cond è true 
+    const backgroundStyle = cond ? 'style="background-color: #e8f5e9;"' : '';
+
+    //il bottone condividi solo se cond è not true
+    const condividiButton = cond ? '' : `
+        <div class="position-absolute" style="top: 8px; right: 70px;">
+            <button class="btn btn-outline-primary d-flex align-items-center dropdown-toggle" 
+                    style="padding: 0.35rem 0.65rem; font-size: 0.9rem;"
+                    data-bs-toggle="dropdown" aria-expanded="false"
+                    onmouseover="caricaAmiciPerCondivisione(${compito.id})">
+                <i class="fa-solid fa-share-from-square me-1"></i>
+                <span>Condividi</span>
+            </button>
+            <ul class="dropdown-menu p-2" id="dropdown-amici-${compito.id}" style="width: 200px; max-height: 300px; overflow-y: auto;">
+                <li class="dropdown-item-text text-muted">Caricamento amici...</li>
+            </ul>
+        </div>
+    `;
   
     return `
-    <div class="position-relative panel task-box border rounded mb-3 shadow-sm" id="task-${compito.id}">
+    <div class="position-relative panel task-box border rounded mb-3 shadow-sm" id="task-${compito.id}" ${backgroundStyle}>
         <button class="btn btn-sm btn-outline-danger position-absolute" 
                 style="top: 6px; right: 6px; padding: 0.1rem 0.4rem; font-size: 0.9rem;"
                 onclick="confermaEliminaCompito(${compito.id})">
             &times;
         </button>
-         <div class="position-absolute" style="top: 8px; right: 70px;">
-        <button class="btn btn-outline-primary d-flex align-items-center dropdown-toggle" 
-                style="padding: 0.35rem 0.65rem; font-size: 0.9rem;"
-                data-bs-toggle="dropdown" aria-expanded="false"
-                onmouseover="caricaAmiciPerCondivisione(${compito.id})">
-            <i class="fa-solid fa-share-from-square me-1"></i>
-            <span>Condividi</span>
-        </button>
-        
-            <ul class="dropdown-menu p-2" id="dropdown-amici-${compito.id}" style="width: 200px; max-height: 300px; overflow-y: auto;">
-                <li class="dropdown-item-text text-muted">Caricamento amici...</li>
-            </ul>
-        </div>
+        ${condividiButton}
         <div class="panel-heading" role="tab" id="heading${index}">
             <h4 class="panel-title mb-0">
                 <button class="btn text-body w-100 text-start d-flex justify-content-between align-items-center"
@@ -141,8 +158,8 @@ function caricaCompitiDalServer() {
             </div>
         </div>
     </div>`;
-
-  }
+    
+}
 
   function inizializzaListenerProgresso() {
     document.querySelectorAll('select[id^="progressSelect-"]').forEach(select => {
@@ -206,14 +223,6 @@ function caricaCompitiDalServer() {
   
   
 
-// //prende in input un compito, chiama la funzione precedente e aggiunge al container un box con il compito
-//   function aggiungiCompitoDopoSalvataggio(compito) {
-//     const container = document.getElementById("container");
-//     if (!container) return;
-    
-//     const index = container.children.length;
-//     container.insertAdjacentHTML('beforeend', generaCompitoDaOggetto(compito, index));
-//   }
   
 //permette di cancellare il compito dalla pagina
 
