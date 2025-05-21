@@ -2,13 +2,7 @@
 session_start();
 
 // connessione al DB
-$conn = pg_connect("host=localhost dbname=plant user=postgres password=biar");
-
-if (!$conn) {
-    http_response_code(500);
-    echo json_encode(["error" => "Errore di connessione al database"]);
-    exit;
-}
+require 'db_connect.php';
 
 // recupero lo username dalla sessione
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : null;

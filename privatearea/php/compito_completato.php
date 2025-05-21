@@ -6,6 +6,7 @@ header('Content-Type: application/json');
 $input = json_decode(file_get_contents('php://input'), true);
 $id = $input['id'] ?? null;
 
+// prendiamo il compito e i suoi parametri
 $query = "SELECT id, utente, titolo, priorita, scadenza FROM compiti WHERE id = $1 ";
 $result = pg_query_params($conn, $query, [$id]);
 
@@ -16,7 +17,7 @@ if ($result && pg_num_rows($result) > 0) {
     $titolo=$row['titolo'];
     $priorita=$row['priorita'];
     $scadenza=$row['scadenza'];
-
+// inseriamo il compito in compiti completati
     $query = "INSERT into compitiCompletati (id, utente, titolo, priorita, scadenza) values ($1, $2, $3, $4, $5)";
     $result = pg_query_params($conn, $query, [$id, $utente, $titolo, $priorita, $scadenza]);
 
