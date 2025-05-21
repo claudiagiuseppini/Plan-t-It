@@ -8,6 +8,8 @@
         echo json_encode(['success' => false, 'message' => 'Utente non autenticato']);
         exit;
     }
+    $currentUser = $_SESSION['username'];
+
 
     // prendiamo le richieste in arrivo
     $query="SELECT r.mittente
