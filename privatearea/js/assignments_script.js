@@ -100,9 +100,7 @@ function caricaCompitiDalServer() {
         </div>
     ` : '';
 
-    return 
-    // box dei compiti 
-    `
+    return `
     <div class="position-relative panel task-box border rounded mb-3 shadow-sm" id="task-${compito.id}" ${backgroundStyle}>
         <button class="btn btn-sm btn-outline-danger position-absolute action-button" 
                 onclick="confermaEliminaCompito(${compito.id})"
@@ -163,7 +161,7 @@ function caricaCompitiDalServer() {
     </div>`;
     
 }
-// 
+
   function inizializzaListenerProgresso() {
     document.querySelectorAll('select[id^="progressSelect-"]').forEach(select => {
       select.addEventListener("change", function () {
