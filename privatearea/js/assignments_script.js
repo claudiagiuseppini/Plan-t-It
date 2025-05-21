@@ -87,33 +87,39 @@ function caricaCompitiDalServer() {
     const backgroundStyle = cond ? 'style="background-color: #e8f5e9;"' : '';
 
     //il bottone condividi solo se cond è not true
-    const condividiButton = cond ? '' : `
-        <div class="position-absolute" style="top: 8px; right: 70px;">
-            <button class="btn btn-outline-primary d-flex align-items-center dropdown-toggle" 
-                    style="padding: 0.35rem 0.65rem; font-size: 0.9rem;"
-                    data-bs-toggle="dropdown" aria-expanded="false"
+    const condividiButton = !cond ? `
+        <div class="position-absolute share-button-container" style="top: 8px; right: 50px;">
+            <button class="btn btn-outline-primary btn-sm d-flex align-items-center share-button" 
+                    data-bs-toggle="dropdown" 
+                    aria-expanded="false"
                     onmouseover="caricaAmiciPerCondivisione(${compito.id})">
-                <i class="fa-solid fa-share-from-square me-1"></i>
-                <span>Condividi</span>
+                <span class="share-text"><i class="fa-solid fa-share-from-square me-1"></i>Condividi</span>
+                <span class="menu-icon">
+                  <i class="fa fa-bars" aria-hidden="true"></i>
+                </span>
+
             </button>
-            <ul class="dropdown-menu p-2" id="dropdown-amici-${compito.id}" style="width: 200px; max-height: 300px; overflow-y: auto;">
+            <ul class="dropdown-menu p-2" id="dropdown-amici-${compito.id}">
                 <li class="dropdown-item-text text-muted">Caricamento amici...</li>
             </ul>
         </div>
-    `;
-  
+    ` : '';
+
     return `
     <div class="position-relative panel task-box border rounded mb-3 shadow-sm" id="task-${compito.id}" ${backgroundStyle}>
-        <button class="btn btn-sm btn-outline-danger position-absolute" 
-                style="top: 6px; right: 6px; padding: 0.1rem 0.4rem; font-size: 0.9rem;"
-                onclick="confermaEliminaCompito(${compito.id})">
-            &times;
+        <button class="btn btn-sm btn-outline-danger position-absolute action-button" 
+                onclick="confermaEliminaCompito(${compito.id})"
+                title="Elimina">
+            <i class="fas fa-times"></i>
         </button>
-        ${condividiButton}
+        ${condividiButton}  
         <div class="panel-heading" role="tab" id="heading${index}">
             <h4 class="panel-title mb-0">
                 <button class="btn text-body w-100 text-start d-flex justify-content-between align-items-center"
-                        data-bs-toggle="collapse" data-bs-target="#${id}" aria-expanded="false" aria-controls="${id}">
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#${id}" 
+                        aria-expanded="false" 
+                        aria-controls="${id}">
                     <div>
                         <strong class="text-success">${compito.titolo}</strong><br>
                         <small class="text-muted">Scadenza: ${compito.scadenza || 'Nessuna scadenza'}</small>
@@ -127,31 +133,31 @@ function caricaCompitiDalServer() {
             <div class="panel-body task-body p-3">
                 <div class="d-flex align-items-center mb-3 gap-2">
                   <!-- Etichetta + Select -->
-                  <div class="d-flex align-items-center">
-                      <label for="progressSelect-${compito.id}" class="me-2 mb-0">Progress:</label>
-                      <select id="progressSelect-${compito.id}" class="form-select form-select-sm w-auto">
+                    <div class="d-flex align-items-center">
+                      <label for="progressSelect-${compito.id}" class="me-2 mb-0">Progresso:</label>
+                        <select id="progressSelect-${compito.id}" class="form-select form-select-sm w-auto">
                           <option value="0" ${compito.progresso == 0 ? 'selected' : ''}>0%</option>
                           <option value="25" ${compito.progresso == 25 ? 'selected' : ''}>25%</option>
                           <option value="50" ${compito.progresso == 50 ? 'selected' : ''}>50%</option>
                           <option value="75" ${compito.progresso == 75 ? 'selected' : ''}>75%</option>
                           <option value="100" ${compito.progresso == 100 ? 'selected' : ''}>100%</option>
-                      </select>
-                  </div>
+                        </select>
+                    </div>
 
                   <!-- Progress Bar -->
-                  <div class="flex-grow-1">
-                      <div class="progress" style="height: 10px;">
-                          <div class="progress-bar bg-success" 
-                              role="progressbar" 
-                              style="width: ${compito.progresso}%;" 
-                              aria-valuenow="${compito.progresso}" 
-                              aria-valuemin="0" 
-                              aria-valuemax="100">
-                              ${compito.progresso}%
-                          </div>
-                      </div>
-                  </div>
-              </div>
+                    <div class="flex-grow-1">
+                        <div class="progress" style="height: 10px;">
+                            <div class="progress-bar bg-success" 
+                                role="progressbar" 
+                                style="width: ${compito.progresso}%;" 
+                                aria-valuenow="${compito.progresso}" 
+                                aria-valuemin="0" 
+                                aria-valuemax="100">
+                                ${compito.progresso}%
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <p>${compito.descrizione}</p>
                 ${fileLink}

@@ -155,4 +155,51 @@
   .submit-btn:hover {
       background-color: #45a049;
   }
+
+  .action-button, .share-button {
+    width: 32px;
+    height: 32px;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 8px;
+    right: 8px;
+}
+
+.share-button-container {
+    right: 50px !important;
+}
+
+.share-button {
+    width: auto;
+    padding: 0.25rem 0.5rem;
+}
+
+.share-button .share-text {
+    display: inline;
+}
+
+.share-button .menu-icon {
+    display: none;
+}
+
+@media (max-width: 576px) {
+    .share-button {
+        width: 32px;
+        padding: 0.25rem;
+    }
+    
+    .share-button .share-text {
+        display: none;
+    }
+    
+    .share-button .menu-icon {
+        display: inline;
+    }
+    
+    .share-button-container {
+        right: 40px !important;
+    }
+}
   
