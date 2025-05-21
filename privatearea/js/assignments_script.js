@@ -8,7 +8,7 @@ function showForm() {
           modal.className = 'assignment-modal';
           modal.innerHTML = `
               <div class="assignment-modal-content">
-                  <span class="close-modal">&times;</span>
+                  <span class="close-modal btn btn-primary">&times;</span>
                   ${html}
               </div>
           `;

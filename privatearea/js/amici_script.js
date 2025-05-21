@@ -70,7 +70,7 @@ function initAmici() {
             if (data.success) {
                 loadFriends(); 
             }
-        })
+        }) 
         .catch(error => {
             console.error('Errore durante l\'eliminazione dell\'amico:', error);
             swal("Errore", "Non è stato possibile eliminare l'amico.", "error");

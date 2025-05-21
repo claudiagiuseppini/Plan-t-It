@@ -19,11 +19,11 @@ if ($friendUsername === '') {
 }
 
 // Elimina l'amicizia (mittente = utente corrente, destinatario = amico)
-$query = "DELETE FROM amicizia WHERE mittente = $1 AND destinatario = $2";
+$query = "DELETE FROM amicizia WHERE (mittente = $1 AND destinatario = $2) OR (mittente = $2 AND destinatario = $1) ";
 $result = pg_query_params($conn, $query, [$currentUser, $friendUsername]);
 
 // Elimina la richiesta di amicizia
-$query1 = "DELETE FROM richiestaAmicizia WHERE mittente = $1 AND destinatario = $2";
+$query1 = "DELETE FROM richiestaAmicizia WHERE (mittente = $1 AND destinatario = $2) OR (mittente = $2 AND destinatario = $1)";
 $result1 = pg_query_params($conn, $query1, [$currentUser, $friendUsername]);
 
 // Controllo esito

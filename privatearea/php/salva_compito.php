@@ -8,6 +8,7 @@
         echo json_encode(['error' => 'Utente non autenticato']);
         exit;
     }
+    $username = $_SESSION['username'];
 
 
     // Leggi i dati dal form

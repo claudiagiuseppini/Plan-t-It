@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
           }
+          badgeNotifiche();
 
         })
         .catch(error => console.error('Errore nel caricamento del contenuto:', error));

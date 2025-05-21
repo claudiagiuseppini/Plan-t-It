@@ -75,7 +75,7 @@ function getColor(p){
     if (p === 'Alta') return 'red';
     if (p === 'Media') return 'orange';
     if (p === 'Bassa') return 'green';
-    return 'black';
+    return 'blue';
 }
 
 function salvaCompiti() {
@@ -135,4 +135,25 @@ function username(){
     .then(name => {
         document.getElementById('user').textContent = "Bentornato, " + name +"!";
     });
+}
+
+function badgeNotifiche(){
+    fetch('php/get_receivedRequests.php')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Errore nella richiesta");
+            }
+            return response.json();
+        })
+        .then(data => {
+            const badge = document.getElementById('notificationBadge');
+            if (Array.isArray(data) && data.length > 0) {
+                badge.classList.remove('visually-hidden');
+            } else {
+                badge.classList.add('visually-hidden');
+            }
+        })
+        .catch(error => {
+            console.error("Errore nel recupero delle notifiche:", error);
+        });
 }

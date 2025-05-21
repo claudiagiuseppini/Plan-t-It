@@ -35,7 +35,6 @@ function loadIncomingRequest() {
 
 //aggiorna lo status della richiesta 
 function updateRequestStatus(sender, status) {
-    console.error("mandata richiesta");
     fetch('php/aggiorna_request_status.php', {
         method: 'POST',
         headers: {
@@ -50,10 +49,11 @@ function updateRequestStatus(sender, status) {
     .then(data => {
         if (data.success) {
             loadIncomingRequest();
-            alert(`Richiesta ${status} con successo!`);
-        } else {
-            alert(`Errore: ${data.message}`);
-        }
+            badgeNotifiche();
+            if (status === 'rifiutata') {
+                eliminaAmico(sender); 
+            }
+        } 
     })
     .catch(error => {
         console.error('Error:', error);
@@ -101,3 +101,20 @@ function loadSharedTasks() {
             `;
         });
 }
+
+function eliminaAmico(username) {
+        fetch('php/delete_amico.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log("ok");
+            }
+        }) 
+        .catch(error => {
+            console.error('Errore durante l\'eliminazione dell\'amico:', error);
+        });
+    }
