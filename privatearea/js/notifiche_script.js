@@ -61,6 +61,7 @@ function updateRequestStatus(sender, status) {
     });
 }
 
+// carica tutti i compiti condivisi per le news
 function loadSharedTasks() {
     fetch('php/leggi_compiticondivisi.php')
         .then(response => response.json())

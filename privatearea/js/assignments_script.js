@@ -44,23 +44,23 @@ function showForm() {
 //chiede al database quali sono i compiti ordinati per scadenza
 function caricaCompitiDalServer() {
     const container = document.getElementById("container");
+    // chiamo il server per i compiti
     fetch("php/leggi_compiti.php")
       .then(res => res.json())
       .then(compiti => {
-        
+        // svuoto il container
         container.innerHTML = "";
-    
-  
+        // per ogni compito aggiungo un box
         compiti.forEach((c, index) => {
           container.innerHTML += generaCompitoDaOggetto(c, index, false);
         });
         inizializzaListenerProgresso();
       });
+      // chiamo il server per i compiti condivisi
       fetch("php/leggi_compiticondivisi.php")
       .then(res => res.json())
       .then(compiti => {
-    
-  
+        // per ogni compito aggiungo una box
         compiti.forEach((c, index) => {
           container.innerHTML += generaCompitoDaOggetto(c, index, true);
         });
@@ -72,12 +72,13 @@ function caricaCompitiDalServer() {
   //prende in input un compito e crea una box
   function generaCompitoDaOggetto(compito, index, cond) {
     const id = `collapseTask${index}`;
+    // se ho il link del file aggiungo questo
     const fileLink = compito.file_path
         ? `<a href="uploads/${compito.file_path}" target="_blank" class="btn btn-outline-primary btn-sm mt-2">📎 Apri allegato</a>`
         : '';
     console.log("Compito ricevuto:", compito);
 
-    //se cond è true 
+    //se cond è true il background è verde
     const backgroundStyle = cond ? 'style="background-color: #e8f5e9;"' : '';
 
     //il bottone condividi solo se cond è not true
@@ -99,7 +100,9 @@ function caricaCompitiDalServer() {
         </div>
     ` : '';
 
-    return `
+    return 
+    // box dei compiti 
+    `
     <div class="position-relative panel task-box border rounded mb-3 shadow-sm" id="task-${compito.id}" ${backgroundStyle}>
         <button class="btn btn-sm btn-outline-danger position-absolute action-button" 
                 onclick="confermaEliminaCompito(${compito.id})"
@@ -160,7 +163,7 @@ function caricaCompitiDalServer() {
     </div>`;
     
 }
-
+// 
   function inizializzaListenerProgresso() {
     document.querySelectorAll('select[id^="progressSelect-"]').forEach(select => {
       select.addEventListener("change", function () {
@@ -238,7 +241,9 @@ function confermaEliminaCompito(id) {
     }
   });
 }
+// elimima i compiti
   function eliminaCompito(id) {
+    // chiama il server passandogli l'id del compito che si vuole eliminare
         fetch("php/elimina_compito.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -278,6 +283,7 @@ function confermaEliminaCompito(id) {
         });
 }
 
+// aggiungi alla tabella compiti Completati
 function aggiungiCompitoCompletato(id){
    return fetch("php/compito_completato.php", {
         method: "POST",
@@ -293,7 +299,9 @@ function aggiungiCompitoCompletato(id){
     });
 }
 
+// carica gli amici disponibili e li mostra quando si preme condividi
 function caricaAmiciPerCondivisione(taskId) {
+  // chiama il server
   fetch('php/get_amici.php')
       .then(response => response.json())
       .then(amici => {
@@ -324,7 +332,7 @@ function caricaAmiciPerCondivisione(taskId) {
       });
 }
 
-
+// permette di aggiunger un compito a compiticondivisi
 function condividiCompitoConAmico(taskId, amicoUsername) {
   fetch('php/condividi_compito.php', {
       method: 'POST',
