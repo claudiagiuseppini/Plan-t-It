@@ -67,17 +67,11 @@ function caricaCompitiDalServer() {
         inizializzaListenerProgresso();
       });
   }      
-  
-  //funzione che genera id univoci
-  function generateUniqueId(index) {
-    return `collapseTask${index}`;
-  }
-
 
 
   //prende in input un compito e crea una box
   function generaCompitoDaOggetto(compito, index, cond) {
-    const id = generateUniqueId(index);
+    const id = `collapseTask${index}`;
     const fileLink = compito.file_path
         ? `<a href="uploads/${compito.file_path}" target="_blank" class="btn btn-outline-primary btn-sm mt-2">📎 Apri allegato</a>`
         : '';
@@ -231,7 +225,6 @@ function caricaCompitiDalServer() {
 
   
 //permette di cancellare il compito dalla pagina
-
 function confermaEliminaCompito(id) {
   swal({
       title: "Sei sicuro?",
