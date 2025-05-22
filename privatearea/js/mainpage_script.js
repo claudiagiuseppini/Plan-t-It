@@ -94,3 +94,36 @@ function username_exit(){
       document.getElementById('goodbye').textContent = "Ciao " + name +"!";
   });
 }
+
+function caricaProfilo() {
+  fetch('php/get_user_info.php')
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        console.error("Errore:", data.error);
+        return;
+      }
+      document.getElementById("modal-username").textContent = data.username;
+      document.getElementById("modal-nome").textContent = data.nome;
+      document.getElementById("modal-cognome").textContent = data.cognome;
+      document.getElementById("modal-email").textContent = data.email;
+    })
+    .catch(error => {
+      console.error("Errore nel caricamento del profilo:", error);
+    });
+}
+
+const profileModal = document.getElementById('profileModal');
+const userDropdownButton = document.getElementById('userDropdown'); // o un altro elemento esterno focusabile
+
+// Quando la modale sta per chiudersi, tolgo il focus da qualunque elemento dentro la modale
+profileModal.addEventListener('hide.bs.modal', () => {
+  document.activeElement.blur();
+});
+
+// Quando la modale è completamente nascosta, sposta il focus sul bottone esterno
+profileModal.addEventListener('hidden.bs.modal', () => {
+  if(userDropdownButton) {
+    userDropdownButton.focus();
+  }
+});

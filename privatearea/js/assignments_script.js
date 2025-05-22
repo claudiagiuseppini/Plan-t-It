@@ -90,7 +90,7 @@ function caricaCompitiDalServer() {
                     onmouseover="caricaAmiciPerCondivisione(${compito.id})">
                 <span class="share-text"><i class="fa-solid fa-share-from-square me-1"></i>Condividi</span>
                 <span class="menu-icon">
-                  <i class="fa fa-bars" aria-hidden="true"></i>
+                 <i class="fa-solid fa-share"></i>
                 </span>
 
             </button>
