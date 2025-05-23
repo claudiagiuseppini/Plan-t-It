@@ -17,23 +17,18 @@
     <!-- Font-->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+    
+    <!-- css -->
+    <link rel = "stylesheet" href = "css/login_style.css">
+
 </head>
-
-<style>
-    body {
-        background-image: url("../assets/sfondo.png");
-        background-size: cover;
-        background-position: center;
-
-    }
-</style>
 
 <body>
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="card p-4 shadow" style="min-width: 300px; max-width: 400px; width: 100%;">
-            <h2 class="text-center mb-4">Login</h2>
+            <h2 class="text-center mb-4 fw-bold">Login</h2>
 
-            <form action="login.php" method="POST" enctype="multipart/form-data" class="login-form">
+            <form action="php/login.php" method="POST" enctype="multipart/form-data" class="login-form">
 
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>

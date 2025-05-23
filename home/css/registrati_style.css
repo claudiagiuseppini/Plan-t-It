@@ -1,0 +1,24 @@
+
+:root{
+--color_1: #198754;
+--color_2: #ffffff; 
+--color_3: #000000; 
+--color_4: #cef8d0;
+}
+
+*{
+margin: 0; 
+padding: 0; 
+box-sizing: border-box; 
+font-family: 'Poppins', sans-serif; 
+}
+
+a{
+color:var(--color_3);
+}
+
+body{
+background-image: url('../../assets/sfondo.png');
+background-size: cover;
+background-position: center;
+}

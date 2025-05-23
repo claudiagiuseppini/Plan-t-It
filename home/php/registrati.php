@@ -27,7 +27,7 @@ if (isset($_POST['registrati'])){
             echo "errore: l'iscrizione non è andata a buon fine";
         }
         else{
-            header("Location:iscrizione.html");
+            header("Location: ../iscrizione.html");
             exit();
         }
 
