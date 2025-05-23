@@ -9,7 +9,7 @@ let studyTime = 0; // Durata in secondi della fase di studio
 let breakTime = 0; // Durata in secondi della fase di pausa
 let circumference = 2 * Math.PI * 90; // Circonferenza globale
 let offset;
-let startTime = null;
+let startTime = null; 
 // Funzione principale chiamata al caricamento della pagina
 function sessioneStudio() {
     const form = document.getElementById('studyForm');

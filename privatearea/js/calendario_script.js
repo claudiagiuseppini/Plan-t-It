@@ -1,4 +1,5 @@
-let calendar; /*salvo l'istanza del calendario in modo da poterla distruggere e ricreare quando cambia la dim dello schermo*/
+//Salvo l'istanza del calendario in modo da poterla distruggere e ricreare quando cambia la dim dello schermo
+let calendar;
 function inizializzaCalendario(){
     const isMobile = window.innerWidth < 768; //variabile che se true indica che il dispositivo è mobile
     var calendarEl = document.getElementById('calendar');
@@ -52,7 +53,7 @@ function inizializzaCalendario(){
 
         },
         events: []
-      });
+      }); 
       calendar.render();
 }
 /*Salvo la modalità attuale della finestra*/
@@ -67,6 +68,7 @@ window.addEventListener('resize', () => {
     }
 });
 
+//Funzione per aggiungiere i Compiti al calendario
 function aggiungiCompiti() {
 
     // tolgo tutti gli eventi vecchi

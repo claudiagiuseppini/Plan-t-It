@@ -1,5 +1,6 @@
+//Listener che aspetta il caricamento della pagina per effetturare le funzioni javascript
 document.addEventListener('DOMContentLoaded', () => {
-  username_exit();
+  caricaNome();
     // Funzione per caricare il contenuto dinamicamente
     const loadPageContent = (page) => {
       fetch(`${page}.html`)  // Carica il file HTML specifico
@@ -45,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => console.error('Errore nel caricamento del contenuto:', error));
     };
   
-    // Aggiungi gli event listener per ogni link
+    //Event listener per ogni link
     document.getElementById('home-link').addEventListener('click', () => loadPageContent('home'));
     document.getElementById('calendario-link').addEventListener('click', () => loadPageContent('calendario'));
     document.getElementById('notifiche-link').addEventListener('click', () => loadPageContent('notifiche'));
@@ -65,13 +66,13 @@ const hamburgerBtn = document.getElementById('hamburger-menu');
 const sidebar = document.getElementById('sidebar');
 
 
-//serve ad aprire la sideBar
+//Listener per aprire la sideBar
 hamburgerBtn.addEventListener('click', () => {
     sidebar.classList.toggle('show');
     document.body.classList.toggle('sidebar-open');
 });
 
-  // Serve a chiudere la sidebar se clicchi fuori da essa nella versione mobile
+//Listener per chiudere la sidebar se clicchi fuori da essa nella versione mobile
 document.addEventListener('click', (e) => {
     if (!sidebar.contains(e.target) && !hamburgerBtn.contains(e.target) && sidebar.classList.contains('show')) {
     sidebar.classList.remove('show');
@@ -79,7 +80,7 @@ document.addEventListener('click', (e) => {
     }
 });
 
-//aggiunge classe active per ogni nav-link cliccato e la rimuove dagli altri non cliccati
+//Aggiunge classe active per ogni nav-link cliccato e la rimuove dagli altri non cliccati
 document.querySelectorAll('.nav-link').forEach(link => {
   link.addEventListener('click', function() {
     document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
@@ -87,14 +88,24 @@ document.querySelectorAll('.nav-link').forEach(link => {
   });
 })
 
-function username_exit(){
-  fetch('php/after_login.php')
-  .then(response => response.text())
-  .then(name => {
-      document.getElementById('goodbye').textContent = "Ciao " + name +"!";
-  });
+//Funzione per caricare il nome dell'utente nel dropdown menu ("Ciao utente123!")
+function caricaNome(){
+   fetch('php/get_user_info.php')
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        console.error("Errore:", data.error);
+        return;
+      }
+      document.getElementById('goodbye').textContent = "Ciao " + data.username; +"!";
+       })
+    .catch(error => {
+      console.error("Errore nel caricamento del profilo:", error);
+    });
 }
 
+
+//Funzione per caricare tutte le info dell'utente nella modal del pulsante Profilo nel dropdown menu
 function caricaProfilo() {
   fetch('php/get_user_info.php')
     .then(response => response.json())
@@ -113,17 +124,24 @@ function caricaProfilo() {
     });
 }
 
-const profileModal = document.getElementById('profileModal');
-const userDropdownButton = document.getElementById('userDropdown'); // o un altro elemento esterno focusabile
-
-// Quando la modale sta per chiudersi, tolgo il focus da qualunque elemento dentro la modale
-profileModal.addEventListener('hide.bs.modal', () => {
-  document.activeElement.blur();
-});
-
-// Quando la modale è completamente nascosta, sposta il focus sul bottone esterno
-profileModal.addEventListener('hidden.bs.modal', () => {
-  if(userDropdownButton) {
-    userDropdownButton.focus();
-  }
-});
+//Funzione per visualizzare il badge delle notifiche sul bottone Notifiche
+function badgeNotifiche(){
+    fetch('php/get_receivedRequests.php')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Errore nella richiesta");
+            }
+            return response.json();
+        })
+        .then(data => {
+            const badge = document.getElementById('notificationBadge');
+            if (Array.isArray(data) && data.length > 0) {
+                badge.classList.remove('visually-hidden');
+            } else {
+                badge.classList.add('visually-hidden');
+            }
+        })
+        .catch(error => {
+            console.error("Errore nel recupero delle notifiche:", error);
+        });
+}

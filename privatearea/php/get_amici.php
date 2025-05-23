@@ -1,4 +1,5 @@
 <?php
+//File php per ottenere tutte le info degli amici dell'utente
 require 'db_connect.php';
 header('Content-Type: application/json');
 
@@ -8,7 +9,7 @@ if ($currentUser === null) {
     http_response_code(401);
     echo json_encode(["error" => "Utente non autenticato"]);
     exit;
-}
+} 
 
 $query ="SELECT u.username, u.nome, u.cognome, u.email
           FROM amicizia a 

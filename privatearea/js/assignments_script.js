@@ -87,7 +87,6 @@ function caricaCompitiDalServer() {
     const fileLink = compito.file_path
         ? `<a href="uploads/${compito.file_path}" target="_blank" class="btn btn-outline-primary btn-sm mt-2">📎 Apri allegato</a>`
         : '';
-    console.log("Compito ricevuto:", compito);
 
     //se cond è true il background è verde
     const backgroundStyle = cond ? 'style="background-color: #e8f5e9;"' : '';
