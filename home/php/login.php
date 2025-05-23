@@ -23,7 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: ../../privatearea/mainpage.html"); // Reindirizza qua
         exit();
     } else {
-        echo "Username o password errati.";
+        header("Location: ../login.html?error=1");
+
     }
 } else {
     echo "Metodo non valido.";

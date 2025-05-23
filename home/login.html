@@ -49,5 +49,22 @@
         </div>
     </div>
 
+    <!-- Sweet Alert--> 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  <script>
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("error") === "1") {
+    swal({
+      title: "Errore",
+      text: "Username o password errati. Riprova",
+      icon: "error"
+    });
+  }
+</script>
+
+
+
+    
 </body>
 </html>
