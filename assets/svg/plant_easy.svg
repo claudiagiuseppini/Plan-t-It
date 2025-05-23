@@ -9,16 +9,16 @@
 
 
 <style type="text/css">
-	.st0{fill:#8CC63F;stroke:#8CC63F;stroke-miterlimit:10;}
-	.st1{clip-path:url(#SVGID_2_);fill:#8CC63F;stroke:#8CC63F;stroke-miterlimit:10;}
-	.st2{clip-path:url(#SVGID_4_);fill:#8CC63F;stroke:#8CC63F;stroke-miterlimit:10;}
-	.st3{fill:#F5076A;stroke:#F5076A;stroke-miterlimit:10;}
-	.st4{fill:#FFFF00;stroke:#FFFF00;stroke-miterlimit:10;}
+	.gambo{fill:#8CC63F;stroke:#8CC63F;stroke-miterlimit:10;}
+	.foglia_1{clip-path:url(#SVGID_2_);fill:#8CC63F;stroke:#8CC63F;stroke-miterlimit:10 ;}
+	.foglia_2{clip-path:url(#SVGID_4_);fill:#8CC63F;stroke:#8CC63F;stroke-miterlimit:10;}
+	.petali_easy{fill:#F5076A;stroke:#F5076A;stroke-miterlimit:10;}
+	.centro_easy{fill:#FFFF00;stroke:#FFFF00;stroke-miterlimit:10;}
 </style>
 
 
 <g id="gambo">
-	<rect x="334.36" y="254.12" class="st0" width="9" height="226"/>
+	<rect x="334.36" y="254.12" class="gambo" width="9" height="226"/>
 </g>
 
 
@@ -31,7 +31,7 @@
 			<clipPath id="SVGID_2_">
 				<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
 			</clipPath>
-			<path class="st1" d="M246.82,346.78c3.63-4.4,24.61-6.36,30.31-6.45c22.67-1.22,60.99,15.32,61.23,39.75
+			<path class="foglia_1" d="M246.82,346.78c3.63-4.4,24.61-6.36,30.31-6.45c22.67-1.22,60.99,15.32,61.23,39.75
 				c0.01,0.6-0.16,1.21-0.53,1.69c-8.38,10.76-91.11-20.57-91.11-34.99"/>
 		</g>
 		<g>
@@ -41,21 +41,21 @@
 			<clipPath id="SVGID_4_">
 				<use xlink:href="#SVGID_3_"  style="overflow:visible;"/>
 			</clipPath>
-			<path class="st2" d="M430.9,346.78c-3.63-4.4-24.61-6.36-30.31-6.45c-22.67-1.22-60.99,15.32-61.23,39.75
+			<path class="foglia_2" d="M430.9,346.78c-3.63-4.4-24.61-6.36-30.31-6.45c-22.67-1.22-60.99,15.32-61.23,39.75
 				c-0.01,0.6,0.16,1.21,0.53,1.69c8.38,10.76,91.11-20.57,91.11-34.99"/>
 		</g>
 	</g>
 </g>
 
 <g id="petali">
-	<ellipse class="st3" cx="363.34" cy="249.45" rx="30" ry="27.5"/>
-	<ellipse class="st3" cx="373.36" cy="204.08" rx="30" ry="27.5"/>
-	<ellipse class="st3" cx="334.36" cy="176.58" rx="30" ry="27.5"/>
-	<ellipse class="st3" cx="296.03" cy="204.08" rx="27.25" ry="27.5"/>
-	<ellipse class="st3" cx="312.61" cy="249.45" rx="27.25" ry="27.5"/>
+	<ellipse class="petali_easy" cx="363.34" cy="249.45" rx="30" ry="27.5"/>
+	<ellipse class="petali_easy" cx="373.36" cy="204.08" rx="30" ry="27.5"/>
+	<ellipse class="petali_easy" cx="334.36" cy="176.58" rx="30" ry="27.5"/>
+	<ellipse class="petali_easy" cx="296.03" cy="204.08" rx="27.25" ry="27.5"/>
+	<ellipse class="petali_easy" cx="312.61" cy="249.45" rx="27.25" ry="27.5"/>
 </g>
 
 <g id="centro">
-	<ellipse class="st4" cx="338.86" cy="218.99" rx="22.24" ry="21"/>
+	<ellipse class="centro_easy" cx="338.86" cy="218.99" rx="22.24" ry="21"/>
 </g>
 </svg>

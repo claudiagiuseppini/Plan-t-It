@@ -45,27 +45,38 @@ function showForm() {
 function caricaCompitiDalServer() {
     const container = document.getElementById("container");
     // chiamo il server per i compiti
-    fetch("php/leggi_compiti.php")
-      .then(res => res.json())
-      .then(compiti => {
-        // svuoto il container
-        container.innerHTML = "";
-        // per ogni compito aggiungo un box
-        compiti.forEach((c, index) => {
-          container.innerHTML += generaCompitoDaOggetto(c, index, false);
-        });
+
+    console.log("Avvio caricamento compiti dal server...");
+    Promise.all([
+          fetch("php/leggi_compiti.php").then(res => res.json()),
+          fetch("php/leggi_compiticondivisi.php").then(res => res.json())
+    ]) 
+    .then(([compiti, compitiCondivisi]) => {
+      // svuoto il container
+      container.innerHTML = "";
+      // per ogni compito aggiungo un box
+      compiti.forEach((c, index) => {
+        container.innerHTML += generaCompitoDaOggetto(c, index, false);
+        inizializzaListenerProgresso();
+
+      });
+
+    const startIndex = compiti.length;
+      // per ogni compito condiviso aggiungo una box
+      compitiCondivisi.forEach((c, index) => {
+        container.innerHTML += generaCompitoDaOggetto(c, index + startIndex, true);
         inizializzaListenerProgresso();
       });
-      // chiamo il server per i compiti condivisi
-      fetch("php/leggi_compiticondivisi.php")
-      .then(res => res.json())
-      .then(compiti => {
-        // per ogni compito aggiungo una box
-        compiti.forEach((c, index) => {
-          container.innerHTML += generaCompitoDaOggetto(c, index, true);
-        });
-        inizializzaListenerProgresso();
-      });
+
+    
+      // dopo che sono stati caricati tutti i compiti 
+      VisualizzaPiantina();
+
+    });
+
+
+
+
   }      
 
 
@@ -115,12 +126,18 @@ function caricaCompitiDalServer() {
                         data-bs-target="#${id}" 
                         aria-expanded="false" 
                         aria-controls="${id}">
+                    
+                    <div class="d-flex flex-wrap align-items-center gap-3"> 
+                    <div class = "plant-container plant-container-${compito.id}" priority="${compito.priorita}" progress= "${compito.progresso}" id= "svg-container-${compito.id}" > </div> 
                     <div>
                         <strong class="text-success">${compito.titolo}</strong><br>
                         <small class="text-muted">Scadenza: ${compito.scadenza || 'Nessuna scadenza'}</small>
                         <br>
                         <small class="text-muted">Orario: ${compito.ora || 'Nessun orario'}</small>
                     </div>
+
+                    </div> 
+
                 </button>
             </h4>
         </div>
@@ -175,7 +192,18 @@ function caricaCompitiDalServer() {
           progressBar.setAttribute("aria-valuenow", progresso);
           progressBar.textContent = progresso + "%";
         }
-  
+
+        const containerPlant = document.getElementById(`svg-container-${compitoId}`);
+        let p =  parseInt(progresso);
+        if (containerPlant) {
+        console.log("Container trovato:", containerPlant);
+        containerPlant.setAttribute("progress", p);
+        const priorità = containerPlant.getAttribute("priority");
+        AggiornaPiantina(containerPlant, priorità, p);
+        }
+        
+        
+    
         // Salva nel DB
         fetch("php/aggiorna_progresso.php", {
           method: "POST",
@@ -197,6 +225,7 @@ function caricaCompitiDalServer() {
             aggiungiCompitoCompletato(compitoId).then (success => {
 
               if (success){
+                setTimeout(()=> {
                 swal({
                 title: "Hai completato il compito.",
                 text: "Vuoi eliminarlo?",
@@ -209,7 +238,8 @@ function caricaCompitiDalServer() {
                     eliminaCompito(compitoId); 
                 }
                 });
-                               
+              }, 500); 
+                
               }
               
             });
@@ -374,4 +404,169 @@ function condividiCompitoConAmico(taskId, amicoUsername) {
           icon: "error"
       });
   });
+}
+
+function VisualizzaPiantina(){
+    document.querySelectorAll(".plant-container").forEach(container => {
+        console.log("Caricamento piantina");
+        const priorità = container.getAttribute("priority");
+        let file_svg= ""; 
+
+        switch(priorità){
+            case "Bassa": 
+                file_svg= "../../assets/svg/plant_easy.svg"; 
+                break; 
+            case "Media": 
+                file_svg= "../../assets/svg/plant_medium.svg"; 
+                break; 
+            
+            case "Alta": 
+                file_svg= "../../assets/svg/plant_difficult.svg" ; 
+                break; 
+            default: 
+                file_svg= "../../assets/svg/plant_easy.svg"; 
+        }
+
+        
+    fetch(file_svg)
+      .then(res => res.text())
+      .then(svgText => {
+        container.innerHTML = svgText;
+
+        let progresso = parseInt(container.getAttribute("progress"));
+        console.log(`Piantina con progresso ${progresso}`);
+        return AggiornaSVG(container,priorità,progresso); 
+
+      })
+      .catch(err => console.error("Errore nel caricamento della piantina:", err));
+    });
+}
+
+
+function AggiornaSVG(container, priorità, progresso) {
+
+  if (priorità == "Bassa" || priorità == "Alta") {
+    const gambo = container.querySelector("#gambo");
+    const foglie = container.querySelector("#foglie");
+    const centro = container.querySelector("#centro");
+    const petali = container.querySelector("#petali");
+
+    switch (progresso) {
+      case 0:
+        gambo.style.opacity = 0;
+        foglie.style.opacity = 0;
+        centro.style.opacity = 0;
+        petali.style.opacity = 0;
+        break;
+
+      case 25:
+        gambo.style.opacity = 1;
+        foglie.style.opacity = 0;
+        centro.style.opacity = 0;
+        petali.style.opacity = 0;
+        break;
+
+      case 50:
+        gambo.style.opacity = 1;
+        foglie.style.opacity = 1;
+        centro.style.opacity = 0;
+        petali.style.opacity = 0;
+        break;
+
+      case 75:
+        gambo.style.opacity = 1;
+        foglie.style.opacity = 1;
+        centro.style.opacity = 1;
+        petali.style.opacity = 0;
+        break;
+
+      case 100:
+        gambo.style.opacity = 1;
+        foglie.style.opacity = 1;
+        centro.style.opacity = 1;
+        petali.style.opacity = 1;
+        break;
+
+    }
+
+  }
+
+  else if (priorità == "Media") {
+    const gambo = container.querySelector("#gambo");
+    const foglie = container.querySelector("#foglie");
+    const petali = container.querySelector("#petali");
+    const stami = container.querySelector("#stami");
+
+
+    switch (progresso) {
+      case 0:
+        gambo.style.opacity = 0;
+        foglie.style.opacity = 0;
+        petali.style.opacity = 0;
+        stami.style.opacity = 0;
+        break;
+
+      case 25:
+        gambo.style.opacity = 1;
+        foglie.style.opacity = 0;
+        petali.style.opacity = 0;
+        stami.style.opacity = 0;
+        break;
+
+      case 50:
+        gambo.style.opacity = 1;
+        foglie.style.opacity = 1;
+        petali.style.opacity = 0;
+        stami.style.opacity = 0;
+        break;
+
+      case 75:
+        gambo.style.opacity = 1;
+        foglie.style.opacity = 1;
+        petali.style.opacity = 1;
+        stami.style.opacity = 0;
+        break;
+
+      case 100:
+         gambo.style.opacity = 1;
+        foglie.style.opacity = 1;
+        petali.style.opacity = 1;
+        stami.style.opacity = 1;
+        break;
+
+    }
+
+  }
+
+}
+
+
+function AggiornaPiantina(container, priorità, progresso){
+  let file_svg= ""; 
+  switch(priorità){
+      case "Bassa": 
+          file_svg= "../../assets/svg/plant_easy.svg"; 
+          break; 
+      case "Media": 
+          file_svg= "../../assets/svg/plant_medium.svg"; 
+          break; 
+      
+      case "Alta": 
+          file_svg= "../../assets/svg/plant_difficult.svg" ; 
+          break; 
+      default: 
+          file_svg= "../../assets/svg/plant_easy.svg"; 
+  }
+
+    console.log("sto aggiornando la piantina"); 
+    console.log(`Piantina con progresso ${progresso}`);
+
+    fetch(file_svg)
+      .then(res => res.text())
+      .then(svgText => {
+        container.innerHTML = svgText;
+        return AggiornaSVG(container,priorità,progresso); 
+
+      })
+      .catch(err => console.error("Errore nel caricamento della piantina:", err));
 }

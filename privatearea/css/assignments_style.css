@@ -202,4 +202,9 @@
         right: 40px !important;
     }
 }
-  
+
+.plant-container svg{
+  width: 140px;    
+  height: auto;
+  display: block; 
+}
