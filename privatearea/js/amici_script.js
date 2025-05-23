@@ -1,3 +1,4 @@
+//Funzione di inizializzazione chiamata da mainpage_script.js
 function initAmici() {
     const friendsList = document.getElementById('friends-list');
     const pendingFriendsList = document.getElementById('pending-requests-list');
@@ -8,10 +9,8 @@ function initAmici() {
     //Carica richieste in attesa all'avvio
     loadPendingRequest();
 
-    
 
     // Carica gli amici dal database
-   
     function loadFriends() {
         fetch('php/get_amici.php')
             .then(response => response.json())
@@ -56,7 +55,7 @@ function initAmici() {
             .catch(error => {
                 console.error('Errore durante il caricamento degli amici:', error);
             }); 
-    }
+    } 
     // Funzione per eliminare un amico 
     function eliminaAmico(username) {
         fetch('php/delete_amico.php', {
@@ -76,7 +75,7 @@ function initAmici() {
             swal("Errore", "Non è stato possibile eliminare l'amico.", "error");
         });
     }
-
+ 
     //Funzione per caricare le richieste in attesa
     function loadPendingRequest(){
         fetch('php/get_pendingRequest.php')

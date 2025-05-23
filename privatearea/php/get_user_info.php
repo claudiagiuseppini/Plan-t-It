@@ -1,4 +1,5 @@
 <?php
+//File php per ottenere tutti i dati dell'utente
 require 'db_connect.php';
 header('Content-Type: application/json');
 
@@ -13,6 +14,7 @@ if ($currentUser === null) {
 $query= "SELECT username, nome, cognome, email FROM users WHERE username=$1";
 $result= pg_query_params ($conn, $query,[$currentUser]);
 
+//Controllo se non ho un risultato
 if (!$result) {
     http_response_code(500);
     echo json_encode(["error" => "Errore nella query al database"]);

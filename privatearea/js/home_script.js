@@ -1,5 +1,5 @@
 let calendarHome;
-
+//Funzione per caricare dinamicamente il calendario nella home
 async function inizializzaCalendarioHome(){
     const isMobile = window.innerWidth < 768;
     if (calendarHome) { /* se esiste già un calendario lo distrugge*/
@@ -7,7 +7,8 @@ async function inizializzaCalendarioHome(){
     }
     var calendarEl = document.getElementById('calendarList');
 
-    const list = await salvaCompiti(); 
+    //await consente di aspettare che la promise venga risolta
+    const list = await caricaCompitiHome(); 
 
     calendarHome = new FullCalendar.Calendar(calendarEl, {
         initialView: 'listDay',
@@ -36,10 +37,12 @@ async function inizializzaCalendarioHome(){
 
     calendarHome.render();
 }
-/*Salvo la modalità attuale della finestra*/
+
+
+//Salvo la modalità attuale della finestra
 let lastIsMobileHome = window.innerWidth < 768;
 
-/*Ascoltatore evento resize: succede ogni volta che cambio la dimensione della finestra*/
+//Listener evento resize: succede ogni volta che cambio la dimensione della finestra
 window.addEventListener('resize', () => {
     const currentIsMobile = window.innerWidth < 768;
     if (currentIsMobile !== lastIsMobileHome) {
@@ -48,7 +51,9 @@ window.addEventListener('resize', () => {
     }
 });
 
+//Funzione per impostare i suggerimenti giornalieri
 function impostaSuggerimentoGiornaliero() {
+    //crea array con delle frasi motivazionali
     const tips = [
         "Fai oggi ciò che il tuo futuro ti ringrazierà di aver fatto.",
         "La produttività non significa fare di più, ma fare ciò che conta.",
@@ -61,24 +66,29 @@ function impostaSuggerimentoGiornaliero() {
         "Impara a dire no a ciò che non ti avvicina ai tuoi obiettivi.",
         "Sii gentile con te stesso: stai facendo del tuo meglio."
     ];
-
+    //prendo la data di oggi
     const today = new Date();
-    const index = today.getDate() % tips.length; //calcolo dell'indice per cambiare frase a seconda del giorno 
+    //calcolo dell'indice per cambiare frase a seconda del giorno
+    const index = today.getDate() % tips.length;  
+    //salvo la stringa a quell'indice
     const tipOfTheDay = tips[index];
+    //imposto il suggerimento nella card
     const tipEl = document.getElementById("dailyTip");
     if (tipEl) {
         tipEl.textContent = tipOfTheDay;
     }
 }
 
+//Funzione usata da caricaCompitiHome per mettere i pallini dei compiti del colore giusto a seconda della priorità
 function getColor(p){
     if (p === 'Alta') return 'red';
     if (p === 'Media') return 'orange';
     if (p === 'Bassa') return 'green';
-    return 'blue';
+    return 'blue'; //blue se sono condivisi
 }
 
-function salvaCompiti() {
+//Funzione per caricare i compiti sul calendario della home 
+function caricaCompitiHome() {
     // cerca su entrambi i file php
     return Promise.all([
         fetch("php/leggi_compiti.php").then(res => res.json()),
@@ -100,7 +110,7 @@ function salvaCompiti() {
                 event.allDay = false;
             }
             return event;
-        });
+        }); 
 
         //task condivise
         const sharedEvents = compitiCondivisi.map(c => {
@@ -129,31 +139,17 @@ function salvaCompiti() {
     });
 }
 
+//Funzione per caricare l'username di benvenuto
 function username(){
-    fetch('php/after_login.php')
-    .then(response => response.text())
-    .then(name => {
-        document.getElementById('user').textContent = "Bentornato, " + name +"!";
+    fetch('php/get_user_info.php')
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        console.error("Errore:", data.error);
+        return;
+      }
+    document.getElementById('user').textContent = "Bentornato, " + data.username +"!";       })
+    .catch(error => {
+      console.error("Errore nel caricamento del profilo:", error);
     });
-}
-
-function badgeNotifiche(){
-    fetch('php/get_receivedRequests.php')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Errore nella richiesta");
-            }
-            return response.json();
-        })
-        .then(data => {
-            const badge = document.getElementById('notificationBadge');
-            if (Array.isArray(data) && data.length > 0) {
-                badge.classList.remove('visually-hidden');
-            } else {
-                badge.classList.add('visually-hidden');
-            }
-        })
-        .catch(error => {
-            console.error("Errore nel recupero delle notifiche:", error);
-        });
 }
