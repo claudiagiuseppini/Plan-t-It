@@ -23,26 +23,23 @@
         //verifichiamo che sia il proprietario della task
         $verifyQuery = "SELECT 1 FROM compiti WHERE id = $1 AND utente = $2";
         $verifyResult = pg_query_params($conn, $verifyQuery, [$taskId, $currentUser]);
-        
-        if (!$verifyResult || pg_num_rows($verifyResult) === 0) {
-            throw new Exception('Compito non trovato o non autorizzato');
-        }
 
-        //verifichiamo che esista l'amico
-        $friendQuery = "SELECT 1 FROM users WHERE username = $1";
-        $friendResult = pg_query_params($conn, $friendQuery, [$amicoUsername]);
-        
-        if (!$friendResult || pg_num_rows($friendResult) === 0) {
-            throw new Exception('Amico non trovato');
+        if (!$verifyResult) {
+            echo json_encode(['success' => false, 'message' => 'Non sei proprietario di questo compito']);
+            exit;
         }
+        
+
 
         //verifichiamo che non sia stata già condivisa
         $checkSharedQuery = "SELECT 1 FROM compitiCondivisi WHERE id = $1 AND amico = $2";
         $checkSharedResult = pg_query_params($conn, $checkSharedQuery, [$taskId, $amicoUsername]);
         
         if ($checkSharedResult && pg_num_rows($checkSharedResult) > 0) {
-            throw new Exception('Compito già condiviso con questo amico');
+            echo json_encode(['success' => false, 'message' => 'Compito già condiviso con questo amico']);
+            exit;
         }
+        
 
         //inseriamo
         $insertQuery = "INSERT INTO compitiCondivisi (id, amico) VALUES ($1, $2)";

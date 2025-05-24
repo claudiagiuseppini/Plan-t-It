@@ -1,42 +1,49 @@
 let calendarHome;
 //Funzione per caricare dinamicamente il calendario nella home
-async function inizializzaCalendarioHome(){
+async function inizializzaCalendarioHome() {
+  try {
     const isMobile = window.innerWidth < 768;
-    if (calendarHome) { /* se esiste già un calendario lo distrugge*/
-        calendarHome.destroy();
-    }
-    var calendarEl = document.getElementById('calendarList');
 
-    //await consente di aspettare che la promise venga risolta
-    const list = await caricaCompitiHome(); 
+    if (calendarHome) {
+      calendarHome.destroy();
+    }
+
+    const calendarEl = document.getElementById('calendarList');
+    if (!calendarEl) throw new Error("Elemento #calendarList non trovato");
+
+    const list = await caricaCompitiHome();
 
     calendarHome = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'listDay',
-        locale: 'it',
-        validRange: { start: new Date() },
-        firstDay: 1,
-        nowIndicator: true,
-        noEventsContent: 'Nessun evento da visualizzare',
-        height: isMobile ? window.innerHeight * 0.4 : 400,
+      initialView: 'listDay',
+      locale: 'it',
+      validRange: { start: new Date() },
+      firstDay: 1,
+      nowIndicator: true,
+      noEventsContent: 'Nessun evento da visualizzare',
+      height: isMobile ? window.innerHeight * 0.4 : 400,
 
-        headerToolbar: {
-            start:'title',
-            end: ''
-        },
+      headerToolbar: {
+        start: 'title',
+        end: ''
+      },
 
-        footerToolbar:{
-            center: 'today prev,next'
-        },
+      footerToolbar: {
+        center: 'today prev,next'
+      },
 
-        buttonText: {
-            today: 'Oggi'  // Localizza il pulsante "today"
-        },
+      buttonText: {
+        today: 'Oggi'
+      },
 
-        events: list // contiene gli eventi dalla funzione salva compiti
+      events: list
     });
 
     calendarHome.render();
+
+  } catch (e) {
+  }
 }
+
 
 
 //Salvo la modalità attuale della finestra

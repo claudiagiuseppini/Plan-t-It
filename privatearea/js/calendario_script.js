@@ -1,60 +1,64 @@
 //Salvo l'istanza del calendario in modo da poterla distruggere e ricreare quando cambia la dim dello schermo
 let calendar;
-function inizializzaCalendario(){
-    const isMobile = window.innerWidth < 768; //variabile che se true indica che il dispositivo è mobile
-    var calendarEl = document.getElementById('calendar');
-    if (calendar) { /* se esiste già un calendario lo distrugge*/
-        calendar.destroy();
+function inizializzaCalendario() {
+  try {
+    const isMobile = window.innerWidth < 768;
+    const calendarEl = document.getElementById('calendar');
+    
+    if (!calendarEl) throw new Error("Elemento #calendar non trovato");
+
+    if (calendar) {
+      calendar.destroy();
     }
+
     calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: window.innerWidth < 768 ? 'timeGridDay' : 'dayGridMonth',
-        locale: 'it',
-        validRange: { start: new Date() }, //non fa vedere i giorni passati
-        firstDay: 1, //lunedì come primo giorno 
-        nowIndicator: true,
-        aspectRatio: 1.35, // più basso = calendario più alto, più compatto
-        height: isMobile ? window.innerHeight * 0.6 : 600, // Su mobile, il calendario occupa il 60% dell'altezza della finestra
+      initialView: isMobile ? 'timeGridDay' : 'dayGridMonth',
+      locale: 'it',
+      validRange: { start: new Date() },
+      firstDay: 1,
+      nowIndicator: true,
+      aspectRatio: 1.35,
+      height: isMobile ? window.innerHeight * 0.6 : 600,
 
-        headerToolbar: isMobile? {
-            start:'prev,next',
-            center:'title',
-            end:''
-        }:{
-            start:'prev,next',
-            center:'title',
-            end:'dayGridMonth,timeGridWeek,timeGridDay'
+      headerToolbar: isMobile ? {
+        start: 'prev,next',
+        center: 'title',
+        end: ''
+      } : {
+        start: 'prev,next',
+        center: 'title',
+        end: 'dayGridMonth,timeGridWeek,timeGridDay'
+      },
+
+      footerToolbar: isMobile ? {
+        center: 'dayGridMonth,timeGridWeek,timeGridDay'
+      } : false,
+
+      views: isMobile ? {
+        dayGridMonth: {
+          dayHeaderFormat: { weekday: 'narrow' },
+          buttonText: 'Mese'
         },
-        footerToolbar: isMobile?{
-            center: 'dayGridMonth,timeGridWeek,timeGridDay'
-        }: false,
-
-        views: isMobile? { //cambia solo che se è mobile su settimana e mese vedrò D anzichè dom 04/02
-            dayGridMonth: {
-                dayHeaderFormat: { weekday: 'narrow' },
-                buttonText: 'Mese'
-            },
-            timeGridWeek: {
-                dayHeaderFormat: { weekday: 'narrow' },
-                buttonText: 'Settimana'
-            },
-            timeGridDay: {
-                buttonText: 'Giorno'
-            }
-        }: {
-            dayGridMonth: {
-                buttonText: 'Mese'
-            },
-            timeGridWeek: {
-                buttonText: 'Settimana'
-            },
-            timeGridDay: {
-                buttonText: 'Giorno'
-            }
-
+        timeGridWeek: {
+          dayHeaderFormat: { weekday: 'narrow' },
+          buttonText: 'Settimana'
         },
-        events: []
-      }); 
-      calendar.render();
+        timeGridDay: {
+          buttonText: 'Giorno'
+        }
+      } : {
+        dayGridMonth: { buttonText: 'Mese' },
+        timeGridWeek: { buttonText: 'Settimana' },
+        timeGridDay: { buttonText: 'Giorno' }
+      },
+
+      events: []
+    });
+
+    calendar.render();
+
+  } catch (e) {
+  }
 }
 /*Salvo la modalità attuale della finestra*/
 let lastIsMobile = window.innerWidth < 768;
