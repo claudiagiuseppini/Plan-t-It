@@ -339,7 +339,7 @@ function eliminaCompito(id) {
     })
     .catch(err => {
       console.error("Errore:", err);
-      swal({
+      Swal.fire({
         title: "Errore di connessione!",
         text: "Errore durante l'eliminazione del compito.",
         icon: "error",
@@ -418,12 +418,12 @@ function condividiCompitoConAmico(taskId, amicoUsername) {
   })
   .then(data => {
       if (data.success) {
-        swal({
+        Swal.fire({
           title: "Successo!",
           text: data.message || `Compito condiviso con ${amicoUsername}`,
           icon: "success",
           timer: 1500,
-          buttons: false
+          showConfirmButton: false
         });
       } else {
         throw new Error(data.message || "Errore durante la condivisione");
@@ -431,7 +431,7 @@ function condividiCompitoConAmico(taskId, amicoUsername) {
     })
     .catch(error => {
       console.error('Errore:', error);
-      swal({
+      Swal.fire({
         title: "Errore!",
         text: error.message,
         icon: "error"
