@@ -4,3 +4,15 @@
     gap: 16px;
     justify-content: start;
 }
+#selezione_mese {
+  margin-bottom: 20px; /* spazio di 20px sotto il primo div */
+}
+#container {
+    background-image: url('../../assets/sfondogiardino.jpg');
+     background-size: cover;         
+     border-radius: 15px;
+     background-repeat: no-repeat;    
+    background-position: center;    
+    min-height: 100vh;              
+    width: 100%;  
+}
