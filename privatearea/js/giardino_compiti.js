@@ -47,7 +47,7 @@ function CaricaPiantina() {
     fetch("php/giardino_compiti.php")
       .then(res => res.json())
       .then(piantina => {
-        const container = document.getElementById("container");
+        const container = document.getElementById("containerGiardino");
         container.innerHTML = "";
         
         // consideriamo solo i compiti relativi al mese selezionato
