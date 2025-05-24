@@ -8,10 +8,16 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
           document.querySelector('main').innerHTML = data;  // Inserisci il contenuto nel main 
 
-          if (page==='calendario'){
-            inizializzaCalendario();
-            aggiungiCompiti();
-          }
+          if (page === 'calendario') {
+  const intervalId = setInterval(() => {
+    const calendarEl = document.getElementById('calendar');
+    if (calendarEl) {
+      clearInterval(intervalId); // Ferma il controllo appena trovato
+      inizializzaCalendario();
+      aggiungiCompiti();
+    }
+  }, 50); // ogni 50ms controlla
+}
           if (page==='home'){
             username();
             inizializzaCalendarioHome();
