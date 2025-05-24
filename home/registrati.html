@@ -17,6 +17,9 @@
     <!-- css -->
     <link rel = "stylesheet" href = "css/registrati_style.css">
 
+    <!-- Sweet Alert--> 
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </head>
 
 <script> 
@@ -25,7 +28,11 @@
         conf_pw = document.getElementById("conferma_password").value;
 
         if (pw != conf_pw){
-            alert("Le due password non concidono!"); 
+            swal({
+            title: "Errore",
+            text: "Le due password non concidono!",
+            icon: "error"
+            });
             return false; 
         }
         return true; 
