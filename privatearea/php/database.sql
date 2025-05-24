@@ -42,9 +42,10 @@ CREATE TABLE compitiCompletati(
 
 -- Tabella compitiCondivisi
 CREATE TABLE compitiCondivisi (
-    id SERIAL PRIMARY KEY,
+    id INTEGER,
     amico VARCHAR(50) NOT NULL,
     data DATE DEFAULT CURRENT_DATE,
+    PRIMARY KEY (id, amico),
     FOREIGN KEY (id) REFERENCES compiti(id) ON DELETE CASCADE,
     FOREIGN KEY (amico) REFERENCES users(username) ON DELETE CASCADE
 );

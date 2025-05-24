@@ -369,18 +369,15 @@ function condividiCompitoConAmico(taskId, amicoUsername) {
           amicoUsername: amicoUsername 
       })
   })
-  .then(response => {
+  .then(async response => {
+      const contentType = response.headers.get("content-type");
+      const isJson = contentType && contentType.includes("application/json");
+      const data = isJson ? await response.json() : { message: await response.text() };
+
       if (!response.ok) {
-          return response.text().then(text => {
-              try {
-                  const errorData = JSON.parse(text);
-                  throw new Error(errorData.message || 'Errore del server');
-              } catch (e) {
-                  throw new Error(text || 'Errore del server');
-              }
-          });
+          throw new Error(data.message || 'Errore del server');
       }
-      return response.json();
+      return data;
   })
   .then(data => {
       if (data.success) {
