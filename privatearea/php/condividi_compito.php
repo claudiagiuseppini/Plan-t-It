@@ -24,7 +24,7 @@
         $verifyQuery = "SELECT 1 FROM compiti WHERE id = $1 AND utente = $2";
         $verifyResult = pg_query_params($conn, $verifyQuery, [$taskId, $currentUser]);
 
-        if ($checkSharedResult && pg_num_rows($checkSharedResult) > 0) {
+        if ($verifyResult && pg_num_rows($verifyResult) > 0) {
             echo json_encode(['success' => false, 'message' => 'Non sei proprietario di questo compito']);
             exit;
         }
