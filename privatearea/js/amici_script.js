@@ -33,17 +33,22 @@ function initAmici() {
                         `;
                         const btn = li.querySelector('button');
                         btn.addEventListener('click', () => {
-                            swal({
+
+                            Swal.fire({
                                 title: "Sei sicuro?",
                                 text:  `Vuoi eliminare ${friend.username} dagli amici?`,
                                 icon: "warning",
-                                buttons: ["Annulla", "Elimina"],
-                                dangerMode: true,
-                            }).then((willDelete) => {
-                                if (willDelete) {
+                                showCancelButton: true,
+                                confirmButtonText: "Elimina",
+                                cancelButtonText: "Annulla",
+                                reverseButtons: true,
+                                confirmButtonColor: "#d33",
+                            }).then((result) => {
+                                if (result.isConfirmed) {
                                     eliminaAmico(friend.username);
                                 }
                             });
+
                         });
 
                         friendsList.appendChild(li);
@@ -64,15 +69,24 @@ function initAmici() {
             body: JSON.stringify({ username })
         })
         .then(response => response.json())
-        .then(data => {
-             swal("Completato", data.message, data.success ? "success" : "error");
-            if (data.success) {
-                loadFriends(); 
-            }
+        .then(data => {           
+            Swal.fire({
+            title: "Completato",
+            text: data.message,
+            icon: data.success ? "success" : "error"
+            }).then(() => {
+                if (data.success) {
+                    loadFriends(); 
+                }
+            });
         }) 
         .catch(error => {
             console.error('Errore durante l\'eliminazione dell\'amico:', error);
-            swal("Errore", "Non è stato possibile eliminare l'amico.", "error");
+            Swal.fire({
+            title: "Errore",
+            text: "Non è stato possibile eliminare l'amico.",
+            icon: "error"                
+        });
         });
     }
  
