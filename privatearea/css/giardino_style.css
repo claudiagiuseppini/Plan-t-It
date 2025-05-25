@@ -8,7 +8,7 @@
   margin-bottom: 20px; /* spazio di 20px sotto il primo div */
 }
 #containerGiardino {
-    background-image: url('../../assets/sfondogiardino.jpg');
+    background-image: url('../../assets/giardino.png');
      background-size: cover;         
      border-radius: 15px;
      background-repeat: no-repeat;    
