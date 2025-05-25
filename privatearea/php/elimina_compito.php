@@ -28,8 +28,9 @@
         $utente=$row['utente']; 
         // se utente non è proprietario lo togliamo dai compiti condivisi
         if ($utente != $_SESSION['username']){
-            $query = "DELETE FROM compitiCondivisi WHERE id = $1 ";
-            $result = pg_query_params($conn, $query, [$id]); 
+
+            $query = "DELETE FROM compitiCondivisi WHERE id = $1 AND amico = $2 ";
+            $result = pg_query_params($conn, $query, [$id, $_SESSION['username']]); 
 
             if (!$result) {
                 echo json_encode(["successo" => false, "errore" => pg_last_error($conn)]);
@@ -37,7 +38,7 @@
             }
 
         }else {
-            // elimino dal db
+            //se sono il proprietario elimino dal db
             $query = "DELETE FROM compiti WHERE id = $1 ";
             $result = pg_query_params($conn, $query, [$id]); 
 
