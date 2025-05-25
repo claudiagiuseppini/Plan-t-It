@@ -249,13 +249,13 @@ function inizializzaListenerProgresso() {
                       return Swal.fire({
                         title: "Hai ottenuto una nuova piantina!",
                         html: `
-                        <div style="margin-top: 1em;">${svgText}</div>
-                        <p>Hai completato il compito.Vuoi eliminarlo?</p>
+                        <div >${svgText}</div>
+                        <p>Hai completato il compito. Vuoi eliminarlo?</p>
                         `,
-                        icon: "warning",
                         showCancelButton: true,
                         confirmButtonText: "Elimina",
                         cancelButtonText: "Annulla",
+                        confirmButtonColor: "#198754",
                         reverseButtons: true,
                         focusCancel: true
                       });
@@ -294,8 +294,7 @@ function confermaEliminaCompito(id) {
     confirmButtonText: "Elimina",
     cancelButtonText: "Annulla",
     reverseButtons: true,
-    confirmButtonColor: "#d33",
-    cancelButtonColor: "#3085d6"
+    confirmButtonColor: "#198754",
   }).then((result) => {
     if (result.isConfirmed) {
       eliminaCompito(id);  // chiama la funzione che fa la fetch
