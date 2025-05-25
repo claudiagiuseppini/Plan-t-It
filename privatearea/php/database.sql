@@ -7,16 +7,10 @@ CREATE TABLE users (
     password VARCHAR(50) NOT NULL
 );
 
--- Tabella piante (bozza)
-CREATE TABLE piante (
-    codice VARCHAR(50) PRIMARY KEY
-);
-
 -- Tabella compiti
 CREATE TABLE compiti (
     id SERIAL PRIMARY KEY,
     utente VARCHAR(50) NOT NULL,
-    pianta VARCHAR(50),
     titolo TEXT NOT NULL,
     descrizione TEXT,
     priorita TEXT NOT NULL,
@@ -24,18 +18,18 @@ CREATE TABLE compiti (
     progresso INTEGER DEFAULT 0,
     ora TIME,
     file_path TEXT,
-    FOREIGN KEY (utente) REFERENCES users(username) ON DELETE CASCADE,
-    FOREIGN KEY (pianta) REFERENCES piante(codice) ON DELETE CASCADE
+    FOREIGN KEY (utente) REFERENCES users(username) ON DELETE CASCADE
 );
 
 
 -- Tabella compitiCompletati
 CREATE TABLE compitiCompletati(
-    id SERIAL PRIMARY KEY,
+    id SERIAL,
     utente VARCHAR(50) NOT NULL,
     titolo TEXT NOT NULL,
     priorita TEXT NOT NULL,
     scadenza DATE NOT NULL,
+    PRIMARY KEY (id, utente),
     FOREIGN KEY (utente) REFERENCES users(username) ON DELETE CASCADE
 );
 

@@ -26,7 +26,29 @@ if ($result && pg_num_rows($result) > 0) {
     } else {
     echo json_encode(["successo" => "il compito è stato inserito correttamente"]);
     }
-   
+
+      //controlliamo in compiti condivisi
+    $query = "SELECT amico FROM compitiCondivisi WHERE id = $1 ";
+    $result = pg_query_params($conn, $query, [$id]);
+
+    if ($result && pg_num_rows($result) > 0) {
+    $rows = pg_fetch_all($result); 
+
+    foreach ($rows as $row) {
+        $utente = $row['amico']; 
+        $insertQuery = "INSERT into compitiCompletati (id, utente, titolo, priorita, scadenza) values ($1, $2, $3, $4, $5)";
+        $insertResult = pg_query_params($conn, $insertQuery, [$id, $utente, $titolo, $priorita, $scadenza]);
+
+        if ($insertResult === false) {
+            $response = ["errore" => "Uno o più compiti non sono stati aggiunti correttamente"];
+            break; // se vuoi uscire appena uno fallisce
+        } else {
+            $response = ["successo" => "Compiti completati inseriti correttamente"];
+        }
+    }
+
+    }
+  
 } else {
     echo json_encode(["errore" => "Compito non trovato"]);
 }
