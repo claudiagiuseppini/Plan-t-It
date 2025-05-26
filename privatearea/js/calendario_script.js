@@ -14,7 +14,6 @@ function inizializzaCalendario() {
     calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: isMobile ? 'timeGridDay' : 'dayGridMonth',
       locale: 'it',
-      validRange: { start: new Date() },
       firstDay: 1,
       nowIndicator: true,
       aspectRatio: 1.35,

@@ -201,6 +201,12 @@
     .share-button-container {
         right: 40px !important;
     }
+    #lista-compiti-condivisi{
+      font-size:15px !important;
+    }
+    #pending-requests-list {
+       font-size:15px !important;
+    }
 }
 
 .plant-container svg{

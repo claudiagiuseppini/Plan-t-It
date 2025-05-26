@@ -127,11 +127,10 @@ function startTimer(startFrom) {
     function animate(timestamp) {
         if (!startTime) startTime = timestamp - startFrom * 1000; // Calcola il tempo di partenza corretto
         
-        /*Per vedere più velocemente il funzionamento del timer si può mettere un valore alla
-        seguente variabile che indica a quanto corrisponde 1 min in secondi, per farlo funzionare in tempo
+        /*Per vedere più velocemente il funzionamento del timer, per farlo funzionare in tempo
         reale rimettere 1 a speedMultipowe (attenzione: se settiamo questa variabile il pulsante riprendi non 
         funziona bene)*/
-        const speedMultiplier = 1; // 1 secondo reale = 60 secondi simulati
+        const speedMultiplier = 1; 
         const elapsed = (timestamp - startTime) / 1000 *speedMultiplier ;
 
 
