@@ -8,11 +8,17 @@
   margin-bottom: 20px; /* spazio di 20px sotto il primo div */
 }
 #containerGiardino {
-    background-image: url('../../assets/giardino.png');
+    background-image: url('../../assets/sfondo_giardino.jpeg');
      background-size: cover;         
      border-radius: 15px;
      background-repeat: no-repeat;    
     background-position: center;    
     min-height: 100vh;              
     width: 100%;  
+}
+
+div{
+  margin-bottom: 0;
+  padding-bottom: 0;
+
 }
