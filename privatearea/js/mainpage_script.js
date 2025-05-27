@@ -103,7 +103,7 @@ function caricaNome(){
         console.error("Errore:", data.error);
         return;
       }
-      document.getElementById('goodbye').textContent = "Ciao " + data.username; +"!";
+      document.getElementById('goodbye').textContent = "Ciao " + data.username +"!";
        })
     .catch(error => {
       console.error("Errore nel caricamento del profilo:", error);
