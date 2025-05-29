@@ -21,6 +21,12 @@
     margin-bottom: 1rem;
     border: none;
   }
+  .panel-body.task-body {
+    max-height: 200px; 
+    overflow-y: auto;
+  }
+  
+  
 
   .task-header {
     background: none;
