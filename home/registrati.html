@@ -82,4 +82,23 @@
         </div>
     </div>
 
+ <script>
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("error") === "1") {
+    swal({
+      title: "Errore",
+      text: "Email già utilizzata. Riprova",
+      icon: "error"
+    });
+  }
+
+   if (params.get("error") === "2") {
+    swal({
+      title: "Errore",
+      text: "l'iscrizione non è andata a buon fine. Riprova",
+      icon: "error"
+    });
+  }
+</script>
+
 </body>

@@ -10,12 +10,12 @@ if (isset($_POST['registrati'])){
     $password = $_POST['password']; 
 
 
-    // per controllare se un utente si è già registrato con quella mail
+    // controlliamo se un utente si è già registrato con quella mail
     $checkMail = "SELECT * FROM users WHERE email=$1";
     $result = pg_query_params($conn, $checkMail, array($email));   
 
     if(pg_num_rows($result) > 0){
-        echo "L' email è già stata utilizzata per un altro account!";
+        header("Location: ../registrati.html?error=1");
     }
     else {       
         $insertquery = "INSERT INTO users(nome, cognome, email, username, password)
@@ -24,7 +24,7 @@ if (isset($_POST['registrati'])){
         $result = pg_query_params($conn, $insertquery, [$nome, $cognome, $email, $username, $password]);  
 
         if ($result == false){
-            echo "errore: l'iscrizione non è andata a buon fine";
+            header("Location: ../registrati.html?error=2");
         }
         else{
             header("Location: ../iscrizione.html");
