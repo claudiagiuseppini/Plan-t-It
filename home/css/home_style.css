@@ -18,6 +18,9 @@
 
     body{
     padding-top: 90px;
+    background-image: url("../../assets/sfondo.png");
+    background-size: cover;
+    background-position: center;
     }
 
     .custom-navbar{
@@ -47,16 +50,6 @@
     }
    
   
-    .btn-form{
-    border: none;
-    border-radius: 25px;
-    padding: 5px 15px; 
-    margin-top: 15px;
-    margin-bottom: 15px;
-    }
-
-   
-
     .container{
         margin-top: 50px;
     }
@@ -74,16 +67,6 @@
     .plant-emoji:nth-child(1) { animation-delay: 0s; }
     .plant-emoji:nth-child(2) { animation-delay: 0.5s; }
     .plant-emoji:nth-child(3) { animation-delay: 1s; }
-
-    /*
-    .d-flex{
-        margin-left: 2px;
-        margin-right: 2px;
-        border-radius: 15px;
-        background-color: #cef8d0;
-     
-    }
-    */
 
      
     .card-green{
